@@ -1,6 +1,7 @@
 import { Inter, Lora } from 'next/font/google';
 import './globals.css';
 import Navigation from '@/components/Navigation';
+import Footer from '@/components/Footer';
 
 const loraCyrillic = Lora({
   subsets: ['cyrillic'],
@@ -26,6 +27,7 @@ export default function RootLayout({ children }) {
       >
         <Navigation />
         {children}
+        <Footer />
       </body>
     </html>
   );

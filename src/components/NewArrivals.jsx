@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 const NewArrivals = () => {
   return (
@@ -6,7 +7,7 @@ const NewArrivals = () => {
       <h2 className="text-4xl font-medium text-black">New Arrivals</h2>
       <div className="h-80 overflow-auto no-scrollbar">
         <div className="flex pt-6 gap-4">
-          <div className="flex h-28 flex-col   ">
+          <Link href={'/products/1'} className="flex h-28 flex-col   ">
             <div className=" relative w-[230px] min-h-[230px] ">
               <Image
                 src={
@@ -26,9 +27,9 @@ const NewArrivals = () => {
                 <p>$300.00</p>
               </div>
             </div>
-          </div>
+          </Link>
 
-          <div className="flex h-28 flex-col">
+          <Link href={'/products/2'} className="flex h-28 flex-col">
             <div className=" relative w-[230px] min-h-[230px] ">
               <Image
                 src={
@@ -48,7 +49,7 @@ const NewArrivals = () => {
                 <p>$300.00</p>
               </div>
             </div>
-          </div>
+          </Link>
         </div>
       </div>
     </div>
