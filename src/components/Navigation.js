@@ -19,9 +19,12 @@ const Navigation = () => {
 
   return (
     <>
-      <div className="flex min-w-full text-black py-4 px-2 justify-between  items-center bg-white md:px-32 shadow-md">
+      <div className="flex min-w-full text-black py-4 px-2 justify-between  items-center bg-[#FFFCF4] md:px-32 ">
         <div className="flex items-center text-sm">
-          <AtSymbolIcon className="h-6 w-6  " />
+          {/* <AtSymbolIcon className="h-6 w-6  " /> */}
+          <Link className="text-2xl font-bold" href={'/'}>
+            sshop
+          </Link>
         </div>
         <div className="flex gap-4 ">
           <div className="p-1  rounded-full hover:bg-slate-200 ">
@@ -44,7 +47,7 @@ const Navigation = () => {
         {isNavOpen ? (
           <>
             <motion.div
-              className={`fixed top-0 min-h-screen min-w-full`}
+              className={`fixed top-0 min-h-screen min-w-full z-20`}
               initial={{
                 translateX: '100px',
                 opacity: 0,
