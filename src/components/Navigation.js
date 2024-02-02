@@ -19,20 +19,14 @@ const Navigation = () => {
 
   return (
     <>
-      <div className="flex min-w-full text-black py-4 px-2 justify-between  items-center bg-[#FFFCF4] md:px-32 ">
+      <div className="flex min-w-full text-black p-4 justify-between  items-center shadow-sm bg-whiteGray  md:px-32 ">
         <div className="flex items-center text-sm">
           {/* <AtSymbolIcon className="h-6 w-6  " /> */}
-          <Link className="text-2xl font-bold" href={'/'}>
-            sshop
+          <Link className="text-2xl font-bold font-lora-cyrillic" href={'/'}>
+            RenewCarry
           </Link>
         </div>
         <div className="flex gap-4 ">
-          <div className="p-1  rounded-full hover:bg-slate-200 ">
-            <ShoppingBagIcon className="h-6 w-6  cursor-pointer" />
-          </div>
-          <div className="p-1  rounded-full hover:bg-slate-200 ">
-            <UserIcon className="h-6 w-6   cursor-pointer" />
-          </div>
           <div
             className="p-1  rounded-full hover:bg-slate-200 md:hidden"
             onClick={() => setIsNavOpen((prev) => !prev)}
