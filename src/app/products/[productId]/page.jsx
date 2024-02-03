@@ -24,7 +24,7 @@ const ProductId = () => {
           <button className="rounded-lg text-4xl font-bold  grow">+</button>
         </div>
         <div className="flex">
-          <button className="text-lg bg-brightOrange rounded-lg text-white font-bold grow px-2">
+          <button className="text-lg bg-darkGreen rounded-lg text-white font-bold grow px-2">
             Add to cart
           </button>
         </div>

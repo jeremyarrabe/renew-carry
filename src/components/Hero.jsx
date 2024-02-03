@@ -31,7 +31,7 @@ const Hero = () => {
         </p>
       </div>
       <div className="flex justify-center mt-16">
-        <button className="py-4 px-20 bg-brightOrange text-xl rounded-lg font-bold text-white">
+        <button className="py-4 px-20 bg-darkGreen text-xl rounded-lg font-bold text-white">
           Shop Now
         </button>
       </div>
