@@ -10,7 +10,7 @@ const ProductId = () => {
       <div className="flex flex-col mt-10">
         <h1 className="text-4xl font-bold">Mal Backpack</h1>
       </div>
-      <div className=" relative w-full min-h-[400px] mt-4">
+      <div className=" relative w-full min-h-[300px] mt-4">
         <Image
           src={
             'https://images.pexels.com/photos/2081199/pexels-photo-2081199.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
@@ -20,14 +20,14 @@ const ProductId = () => {
           className="object-cover rounded-lg"
         />
       </div>
-      <div className="flex justify-between mt-5">
-        <div className="flex gap-2 items-center">
-          <button className="px-10 py-1 rounded-lg text-4xl font-bold">-</button>
+      <div className="flex justify-between mt-5 gap-1">
+        <div className="flex gap-2 items-center  grow justify-between">
+          <button className="rounded-lg text-4xl font-bold grow">-</button>
           <p className="text-2xl">9</p>
-          <button className="px-10 py-1 rounded-lg text-4xl font-bold">+</button>
+          <button className="rounded-lg text-4xl font-bold  grow">+</button>
         </div>
-        <div>
-          <button className="text-2xl bg-brightOrange px-12 py-3 rounded-lg text-white font-bold">
+        <div className="flex">
+          <button className="text-lg bg-brightOrange rounded-lg text-white font-bold grow px-2">
             Add to cart
           </button>
         </div>

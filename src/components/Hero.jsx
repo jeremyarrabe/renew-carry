@@ -19,7 +19,7 @@ const pagination = {
 const Hero = () => {
   return (
     <div className="flex mt-9 flex-col px-4 ">
-      <div className="text-center text-6xl font-lora-cyrillic font-medium text-darkGreen">
+      <div className="text-center text-5xl font-lora-cyrillic font-medium text-darkGreen">
         <h1>Sustainable</h1>
         <h1 className="py-4">Beautiful</h1>
         <h1>Modern</h1>
