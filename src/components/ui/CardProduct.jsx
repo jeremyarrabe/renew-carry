@@ -1,9 +1,10 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
 
-const CardProduct = ({ src, name, category, price }) => {
+const CardProduct = ({ href, src, name, category, price }) => {
   return (
-    <div className="flex h-28 flex-col">
+    <Link href={href} className="flex h-28 flex-col   ">
       <div className=" relative w-[230px] min-h-[230px] ">
         <Image src={src} alt="" fill className="object-cover rounded-lg" />
       </div>
@@ -16,7 +17,7 @@ const CardProduct = ({ src, name, category, price }) => {
           <p>${price}.00</p>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 
