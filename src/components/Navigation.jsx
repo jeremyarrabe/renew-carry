@@ -12,9 +12,10 @@ import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { mensCategories, womensCategories } from '@/lib/categories';
 import Link from 'next/link';
+import { useToggle } from '@/hooks/useToggle';
 
 const Navigation = () => {
-  const [isNavOpen, setIsNavOpen] = useState(false);
+  const [visible, toggleVisibility] = useToggle(false);
   const [menuId, setMenuId] = useState(0);
 
   return (
@@ -29,7 +30,7 @@ const Navigation = () => {
         <div className="flex gap-4 ">
           <div
             className="p-1  rounded-full hover:bg-slate-200 md:hidden"
-            onClick={() => setIsNavOpen((prev) => !prev)}
+            onClick={() => toggleVisibility()}
           >
             <Bars3Icon className="h-6 w-6   cursor-pointer" />
           </div>
@@ -38,7 +39,7 @@ const Navigation = () => {
 
       {/* Mobile Nav */}
       <AnimatePresence>
-        {isNavOpen ? (
+        {visible ? (
           <>
             <motion.div
               className={`fixed top-0 min-h-screen min-w-full z-20`}
@@ -65,7 +66,7 @@ const Navigation = () => {
                     className="p-1  rounded-full hover:bg-slate-200 "
                     onClick={() => {
                       setMenuId(0);
-                      setIsNavOpen((prev) => !prev);
+                      toggleVisibility();
                     }}
                   >
                     <XMarkIcon className="h-6 w-6  cursor-pointer" />

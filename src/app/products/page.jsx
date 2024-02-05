@@ -1,8 +1,11 @@
+'use client';
+import { useToggle } from '@/hooks/useToggle';
 import { FunnelIcon } from '@heroicons/react/24/outline';
 import Image from 'next/image';
 import Link from 'next/link';
 
 const Products = () => {
+  const [visibile, toggleVisibility] = useToggle();
   return (
     <div>
       <div className="flex overflow-auto mt-4">
@@ -31,7 +34,10 @@ const Products = () => {
       <div className="min-h-96 flex mt-3 px-4 flex-col">
         <div className="flex justify-between items-center ">
           <p className="text-lg opacity-85">10 Results</p>
-          <button className="px-5 py-2 bg-darkGreen flex rounded-full text-white gap-2 items-center">
+          <button
+            className="px-5 py-2 bg-darkGreen flex rounded-full text-white gap-2 items-center"
+            onClick={() => toggleVisibility()}
+          >
             Filter <FunnelIcon className="h-5 w-5 cursor-pointer " />
           </button>
         </div>
@@ -111,14 +117,16 @@ const Products = () => {
           </div>
         </div>
       </div>
+      {visibile && <Filter handleToggle={toggleVisibility} />}
     </div>
   );
 };
 
-const Filter = () => {
+const Filter = ({ handleToggle }) => {
   return (
     <div className="fixed top-0 left-0 h-screen w-screen bg-yellowishGray p-6">
       <h2 className="text-3xl">Filter</h2>
+      <button onClick={() => handleToggle()}>Close</button>
       <div className="py-6 border-b-2 border-black">
         <p>Sort By</p>
         <form className="mt-6 px-3">
