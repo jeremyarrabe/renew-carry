@@ -1,6 +1,6 @@
 const WhyChooseUs = () => {
   return (
-    <div className="mt-16 px-4 ">
+    <div className="mt-16 px-4 pb-16">
       <h2 className="text-4xl font-medium text-center ">Why Choose Us?</h2>
       <div className="flex flex-col gap-2 mt-10">
         <h3 className="text-xl font-medium">Sustainable Styles</h3>

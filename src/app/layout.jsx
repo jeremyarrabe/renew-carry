@@ -8,11 +8,15 @@ const loraCyrillic = Lora({
   style: ['italic'],
   weight: ['400', '500', '600', '700'],
   variable: '--font-lora-cyrillic',
+  display: 'swap',
+  adjustFontFallback: false,
 });
 const loraRegular = Lora({
   subsets: ['latin'],
   variable: '--font-lora-regular',
   weight: ['400', '500', '600', '700'],
+  display: 'swap',
+  adjustFontFallback: false,
 });
 export const metadata = {
   title: 'Create Next App',
@@ -23,10 +27,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${loraCyrillic.variable} ${loraRegular.variable} bg-yellowishGray font-lora-regular`}
+        className={`${loraCyrillic.variable} ${loraRegular.variable} bg-yellowishGray font-lora-regular flex flex-col min-h-svh `}
       >
         <Navigation />
-        {children}
+        <div>{children}</div>
+
         <Footer />
       </body>
     </html>

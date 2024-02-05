@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 const Footer = () => {
   return (
-    <div className="bg-darkGreen text-white px-4 text-lg pt-8 mt-16 flex flex-col">
+    <div className="mt-auto bg-darkGreen text-white px-4 text-lg pt-8  flex flex-col">
       <div className="flex  ">
         <div className="grow">
           <h3 className="font-bold text-xl">Pages</h3>
