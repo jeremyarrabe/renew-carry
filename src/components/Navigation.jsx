@@ -1,21 +1,18 @@
 'use client';
-import {
-  ShoppingBagIcon,
-  UserIcon,
-  Bars3Icon,
-  AtSymbolIcon,
-  XMarkIcon,
-  ChevronRightIcon,
-  ChevronLeftIcon,
-} from '@heroicons/react/24/outline';
-import { useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
-import { mensCategories, womensCategories } from '@/lib/categories';
-import Link from 'next/link';
 import { useToggle } from '@/hooks/useToggle';
+import { mensCategories, womensCategories } from '@/lib/categories';
+import {
+  Bars3Icon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  XMarkIcon,
+} from '@heroicons/react/24/outline';
+import { AnimatePresence, motion } from 'framer-motion';
+import Link from 'next/link';
+import { useState } from 'react';
 
 const Navigation = () => {
-  const [visible, toggleVisibility] = useToggle(false);
+  const [visible, toggleVisibility] = useToggle(true);
   const [menuId, setMenuId] = useState(0);
 
   return (
@@ -51,50 +48,47 @@ const Navigation = () => {
               exit={{ translateX: '100px', opacity: 0 }}
               transition={{ duration: 0.2 }}
             >
-              <div className="absolute right-0 h-screen min-w-[88%] bg-white flex flex-col py-2 px-4 border shadow-lg gap-2">
-                <div className={`flex ${menuId === 0 ? 'justify-end' : 'justify-between'}`}>
-                  <div
-                    className={`p-1  rounded-full hover:bg-slate-200 ${menuId === 0 && 'hidden'}`}
-                    onClick={() => {
-                      setMenuId(0);
-                    }}
-                  >
-                    <ChevronLeftIcon className="h-6 w-6  cursor-pointer" />
-                  </div>
-
+              <div className="absolute right-0 h-screen min-w-[88%] bg-white flex flex-col py-2 px-4 border shadow-lg gap-9 ">
+                <div className="flex justify-end">
                   <div
                     className="p-1  rounded-full hover:bg-slate-200 "
                     onClick={() => {
-                      setMenuId(0);
                       toggleVisibility();
                     }}
                   >
                     <XMarkIcon className="h-6 w-6  cursor-pointer" />
                   </div>
                 </div>
+                <div className="flex gap-2 text-center font-bold ">
+                  <Link href="#" className="grow py-2 bg-darkGreen rounded-lg text-white">
+                    Log in
+                  </Link>
+                  <Link
+                    href="#"
+                    className="grow py-2 text-black  rounded-lg border border-darkGreen"
+                  >
+                    Sign up
+                  </Link>
+                </div>
 
-                <NavContent id={0} menuId={menuId}>
-                  <NavMenu title={'Menss'} handleClick={() => setMenuId(1)} />
-                  <NavMenu title={'Womens'} handleClick={() => setMenuId(2)} />
-                </NavContent>
-                <NavContent id={1} menuId={menuId}>
-                  <div className="flex flex-col gap-2 capitalize font-medium  text-2xl">
-                    {mensCategories.map((category) => (
-                      <Link key={category.id} href={`/mens/${category.title}`}>
-                        {category.title}
-                      </Link>
-                    ))}
-                  </div>
-                </NavContent>
-                <NavContent id={2} menuId={menuId}>
-                  <div className="flex flex-col gap-2 capitalize font-medium  text-2xl">
-                    {womensCategories.map((category) => (
-                      <Link key={category.id} href={`/womens/${category.title}`}>
-                        {category.title}
-                      </Link>
-                    ))}
-                  </div>
-                </NavContent>
+                <Link
+                  href="#"
+                  className="flex justify-between items-center cursor-pointer py-1 font-medium text-2xl "
+                >
+                  <p>Home</p>
+                </Link>
+                <Link
+                  href="#"
+                  className="flex justify-between items-center cursor-pointer py-1 font-medium text-2xl "
+                >
+                  <p>All Products</p>
+                </Link>
+                <Link
+                  href="#"
+                  className="flex justify-between items-center cursor-pointer py-1 font-medium text-2xl "
+                >
+                  <p>About</p>
+                </Link>
               </div>
             </motion.div>
           </>
@@ -106,34 +100,13 @@ const Navigation = () => {
 
 const NavMenu = ({ title, handleClick }) => {
   return (
-    <div
+    <Link
       className="flex justify-between items-center cursor-pointer py-1 font-medium text-2xl"
       onClick={handleClick}
     >
       <p>{title}</p>
       <ChevronRightIcon className="h-6 w-6" />
-    </div>
-  );
-};
-
-const NavContent = ({ children, id, menuId }) => {
-  return (
-    <>
-      {menuId === id && (
-        <motion.div
-          className="h-24 w-full  absolute top-10 left-0 py-4 px-4 "
-          animate={{ translateX: '0px', opacity: 1 }}
-          exit={{ translateX: '100px', opacity: 0 }}
-          transition={{ duration: 0.1 }}
-          style={{
-            translateX: '100px',
-            opacity: 0,
-          }}
-        >
-          {children}
-        </motion.div>
-      )}
-    </>
+    </Link>
   );
 };
 

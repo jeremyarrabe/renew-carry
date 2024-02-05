@@ -1,6 +1,6 @@
 'use client';
 import { useToggle } from '@/hooks/useToggle';
-import { FunnelIcon } from '@heroicons/react/24/outline';
+import { FunnelIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -124,9 +124,15 @@ const Products = () => {
 
 const Filter = ({ handleToggle }) => {
   return (
-    <div className="fixed top-0 left-0 h-screen w-screen bg-yellowishGray p-6">
-      <h2 className="text-3xl">Filter</h2>
-      <button onClick={() => handleToggle()}>Close</button>
+    <div className="fixed top-0 left-0 h-screen w-screen bg-yellowishGray p-6 flex flex-col">
+      <div className="flex justify-between items-center">
+        <h2 className="text-3xl">Filter</h2>
+
+        <button onClick={() => handleToggle()}>
+          <XMarkIcon className="h-5 w-5 cursor-pointer " />
+        </button>
+      </div>
+
       <div className="py-6 border-b-2 border-black">
         <p>Sort By</p>
         <form className="mt-6 px-3">
@@ -144,6 +150,7 @@ const Filter = ({ handleToggle }) => {
           </div>
         </form>
       </div>
+      <button className="bg-darkGreen  py-4 mt-2 font-bold text-white rounded-lg">Apply</button>
     </div>
   );
 };
