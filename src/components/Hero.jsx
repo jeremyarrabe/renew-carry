@@ -8,6 +8,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
+import Link from 'next/link';
 
 const pagination = {
   clickable: true,
@@ -31,9 +32,12 @@ const Hero = () => {
         </p>
       </div>
       <div className="flex justify-center mt-16">
-        <button className="py-4 px-20 bg-darkGreen text-xl rounded-lg font-bold text-white">
+        <Link
+          href={'/products'}
+          className="py-4 px-20 bg-darkGreen text-xl rounded-lg font-bold text-white"
+        >
           Shop Now
-        </button>
+        </Link>
       </div>
     </div>
   );
