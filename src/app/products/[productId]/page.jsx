@@ -1,3 +1,4 @@
+'use client';
 import HorizontalProductScroll from '@/components/HorizontalProductScroll';
 import Image from 'next/image';
 
@@ -20,7 +21,7 @@ const ProductId = () => {
       <div className="flex justify-between mt-5 gap-1">
         <div className="flex gap-2 items-center  grow justify-between">
           <button className="rounded-lg text-4xl font-bold grow">-</button>
-          <p className="text-2xl">9</p>
+          <p className="text-2xl">1</p>
           <button className="rounded-lg text-4xl font-bold  grow">+</button>
         </div>
         <div className="flex">
