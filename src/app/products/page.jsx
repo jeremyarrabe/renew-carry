@@ -43,10 +43,9 @@ const Products = () => {
         </div>
 
         <div className="flex flex-wrap mt-2 justify-between">
-          <div className="flex flex-col  min-h-52 w-1/2 p-1">
+          <Link href={`/products/1`} className="flex flex-col  min-h-52 w-1/2 p-1">
             <div className="relative h-full w-full">
               <Image
-                href={`/products/1`}
                 src={
                   'https://images.pexels.com/photos/2081199/pexels-photo-2081199.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
                 }
@@ -60,11 +59,10 @@ const Products = () => {
               <p className="opacity-95">Backpacks</p>
               <p className="font-bold">$300.00</p>
             </div>
-          </div>
-          <div className="flex flex-col  min-h-52 w-1/2 p-1">
+          </Link>
+          <Link href={`/products/1`} className="flex flex-col  min-h-52 w-1/2 p-1">
             <div className="relative h-full w-full">
               <Image
-                href={`/products/1`}
                 src={
                   'https://images.pexels.com/photos/2081199/pexels-photo-2081199.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
                 }
@@ -78,11 +76,10 @@ const Products = () => {
               <p className="opacity-95">Backpacks</p>
               <p className="font-bold">$300.00</p>
             </div>
-          </div>
-          <div className="flex flex-col  min-h-52 w-1/2 p-1">
+          </Link>
+          <Link href={`/products/1`} className="flex flex-col  min-h-52 w-1/2 p-1">
             <div className="relative h-full w-full">
               <Image
-                href={`/products/1`}
                 src={
                   'https://images.pexels.com/photos/2081199/pexels-photo-2081199.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
                 }
@@ -96,11 +93,10 @@ const Products = () => {
               <p className="opacity-95">Backpacks</p>
               <p className="font-bold">$300.00</p>
             </div>
-          </div>
-          <div className="flex flex-col  min-h-52 w-1/2 p-1">
+          </Link>
+          <Link href={`/products/1`} className="flex flex-col  min-h-52 w-1/2 p-1">
             <div className="relative h-full w-full">
               <Image
-                href={`/products/1`}
                 src={
                   'https://images.pexels.com/photos/2081199/pexels-photo-2081199.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
                 }
@@ -114,7 +110,7 @@ const Products = () => {
               <p className="opacity-95">Backpacks</p>
               <p className="font-bold">$300.00</p>
             </div>
-          </div>
+          </Link>
         </div>
       </div>
       {visibile && <Filter handleToggle={toggleVisibility} />}
