@@ -1,7 +1,7 @@
-import { Inter, Lora } from 'next/font/google';
-import './globals.css';
-import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
+import Navigation from '@/components/Navigation';
+import { Lora } from 'next/font/google';
+import './globals.css';
 
 const loraCyrillic = Lora({
   subsets: ['cyrillic'],
