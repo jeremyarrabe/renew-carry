@@ -3,17 +3,15 @@ import { useToggle } from '@/hooks/useToggle';
 import { mensCategories, womensCategories } from '@/lib/categories';
 import {
   Bars3Icon,
-  ChevronLeftIcon,
+  ShoppingBagIcon,
   ChevronRightIcon,
   XMarkIcon,
 } from '@heroicons/react/24/outline';
 import { AnimatePresence, motion } from 'framer-motion';
 import Link from 'next/link';
-import { useState } from 'react';
 
 const Navigation = () => {
-  const [visible, toggleVisibility] = useToggle(true);
-  const [menuId, setMenuId] = useState(0);
+  const [visible, toggleVisibility] = useToggle();
 
   return (
     <>
@@ -29,6 +27,12 @@ const Navigation = () => {
             className="p-1  rounded-full hover:bg-slate-200 md:hidden"
             onClick={() => toggleVisibility()}
           >
+            <ShoppingBagIcon className="h-6 w-6   cursor-pointer" />
+          </div>
+          <div
+            className="p-1  rounded-full hover:bg-slate-200 md:hidden"
+            onClick={() => toggleVisibility()}
+          >
             <Bars3Icon className="h-6 w-6   cursor-pointer" />
           </div>
         </div>
@@ -39,7 +43,7 @@ const Navigation = () => {
         {visible ? (
           <>
             <motion.div
-              className={`fixed top-0 min-h-screen min-w-full z-20`}
+              className={`fixed top-0 min-h-screen min-w-full z-20 bg-transparent`}
               initial={{
                 translateX: '100px',
                 opacity: 0,
@@ -47,8 +51,14 @@ const Navigation = () => {
               animate={{ translateX: '0px', opacity: 1 }}
               exit={{ translateX: '100px', opacity: 0 }}
               transition={{ duration: 0.2 }}
+              onClick={() => {
+                toggleVisibility();
+              }}
             >
-              <div className="absolute right-0 h-screen min-w-[88%] bg-white flex flex-col py-2 px-4 border shadow-lg gap-9 ">
+              <div
+                className="absolute right-0 h-screen min-w-[88%] bg-white flex flex-col py-2 px-4 border shadow-lg gap-9 "
+                onClick={(e) => e.stopPropagation()}
+              >
                 <div className="flex justify-end">
                   <div
                     className="p-1  rounded-full hover:bg-slate-200 "
@@ -72,20 +82,29 @@ const Navigation = () => {
                 </div>
 
                 <Link
-                  href="#"
+                  href="/"
                   className="flex justify-between items-center cursor-pointer py-1 font-medium text-2xl "
+                  onClick={() => {
+                    toggleVisibility();
+                  }}
                 >
                   <p>Home</p>
                 </Link>
                 <Link
-                  href="#"
+                  href="/products"
                   className="flex justify-between items-center cursor-pointer py-1 font-medium text-2xl "
+                  onClick={() => {
+                    toggleVisibility();
+                  }}
                 >
                   <p>All Products</p>
                 </Link>
                 <Link
                   href="#"
                   className="flex justify-between items-center cursor-pointer py-1 font-medium text-2xl "
+                  onClick={() => {
+                    toggleVisibility();
+                  }}
                 >
                   <p>About</p>
                 </Link>
