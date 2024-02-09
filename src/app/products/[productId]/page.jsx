@@ -1,8 +1,30 @@
 'use client';
 import HorizontalProductScroll from '@/components/HorizontalProductScroll';
+import { useLocalStorage } from '@/hooks/useLocalStorage';
 import Image from 'next/image';
+import { useState } from 'react';
+
+const items = [
+  {
+    id: 1,
+    item: 'Bag',
+    price: 300,
+  },
+];
 
 const ProductId = () => {
+  const [quantity, setQuantity] = useState(1);
+  const { localStorageItems, addItems, getItems, deleteItems } = useLocalStorage('cart');
+
+  const handleQuantity = (x) => {
+    if (x === 1) {
+      setQuantity((prev) => prev + 1);
+    }
+    if (x === 0) {
+      setQuantity((prev) => prev - 1);
+    }
+  };
+  console.log(localStorageItems);
   return (
     <div className="flex flex-col px-4">
       <div className="flex flex-col mt-10">
@@ -19,17 +41,43 @@ const ProductId = () => {
         />
       </div>
       <div className="flex justify-between mt-5 gap-1">
-        <div className="flex gap-2 items-center  grow justify-between">
-          <button className="rounded-lg text-4xl font-bold grow">-</button>
-          <p className="text-2xl">1</p>
-          <button className="rounded-lg text-4xl font-bold  grow">+</button>
+        <div className="flex gap-2 items-center grow justify-between">
+          <button
+            className={`rounded-lg text-4xl font-bold grow`}
+            onClick={() => handleQuantity(0)}
+            disabled={quantity <= 1}
+          >
+            -
+          </button>
+          <p className="text-2xl">{quantity}</p>
+          <button
+            className="rounded-lg text-4xl font-bold  grow"
+            onClick={() => handleQuantity(1)}
+            disabled={quantity >= 9}
+          >
+            +
+          </button>
         </div>
         <div className="flex">
-          <button className="text-lg bg-darkGreen rounded-lg text-white font-bold grow px-2">
+          <button
+            className="text-lg bg-darkGreen rounded-lg text-white font-bold grow px-2"
+            onClick={() => addItems(items)}
+          >
             Add to cart
           </button>
         </div>
       </div>
+
+      {/* {localStorageItems?.map((item, key) => {
+        return (
+          <p key={key}>
+            {item.id}
+            {item.item}
+            {item.price}
+          </p>
+        );
+      })} */}
+
       <p className="mt-5">
         Lorem Ipsumis simply dummy text of the printing and typesetting industry. Lorem Ipsum has
         been the industrys standard dummy text ever since the 1500s, when an unknown printer took a
