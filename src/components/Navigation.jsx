@@ -1,18 +1,18 @@
 'use client';
 import { useToggle } from '@/hooks/useToggle';
-import { mensCategories, womensCategories } from '@/lib/categories';
 import {
   Bars3Icon,
-  ShoppingBagIcon,
   ChevronRightIcon,
+  ShoppingBagIcon,
   XMarkIcon,
 } from '@heroicons/react/24/outline';
 import { AnimatePresence, motion } from 'framer-motion';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 const Navigation = () => {
   const [visible, toggleVisibility] = useToggle();
-
+  const router = useRouter();
   return (
     <>
       <div className="flex min-w-full text-black p-4 justify-between  items-center shadow-sm bg-whiteGray  md:px-32 ">
@@ -23,12 +23,9 @@ const Navigation = () => {
           </Link>
         </div>
         <div className="flex gap-4 ">
-          <div
-            className="p-1  rounded-full hover:bg-slate-200 md:hidden"
-            onClick={() => toggleVisibility()}
-          >
+          <Link href={'/shopping-cart'} className="p-1  rounded-full hover:bg-slate-200 ">
             <ShoppingBagIcon className="h-6 w-6   cursor-pointer" />
-          </div>
+          </Link>
           <div
             className="p-1  rounded-full hover:bg-slate-200 md:hidden"
             onClick={() => toggleVisibility()}
