@@ -87,7 +87,7 @@ const ShoppingCart = () => {
           </div>
         </div>
       </div>
-      <div className="flex flex-col mt-4 font-medium gap-1">
+      <div className="flex flex-col mt-4 font-medium gap-1 pb-6">
         <h3 className="text-2xl font-medium font-lora-cyrillic">Summary</h3>
         <div className="flex justify-between">
           <p>Subtotal</p>
