@@ -1,5 +1,3 @@
-'use client';
-
 import { useEffect, useState } from 'react';
 
 export const useLocalStorage = (key) => {
@@ -35,8 +33,8 @@ export const useLocalStorage = (key) => {
           JSON.parse(localStorage.getItem(key)).length > 0
             ? JSON.parse(localStorage.getItem(key))
             : [JSON.parse(localStorage.getItem(key))];
-
-        const itemInCart = currentCart.find((item) => item.id === 1);
+        console.log(currentCart);
+        const itemInCart = currentCart.find((item) => item.id === value.id);
         // Check if item is alread in cart and just the quantity is needed to be updated
         if (itemInCart) {
           const updatedCart = currentCart.map((item) =>
@@ -53,12 +51,13 @@ export const useLocalStorage = (key) => {
             price: value.price,
             category: value.category,
             quantity: value.quantity,
+            src: value.src,
           });
           localStorage.setItem(key, JSON.stringify(newCart));
           setLocalStorageItems(newCart);
         }
       } else {
-        window.localStorage.setItem(key, JSON.stringify(value));
+        window.localStorage.setItem(key, JSON.stringify([value]));
         const currentItem = JSON.parse(window.localStorage.getItem(key));
         setLocalStorageItems(currentItem);
       }
@@ -68,6 +67,17 @@ export const useLocalStorage = (key) => {
     }
   };
 
+  const updateQuantity = (id, quantity) => {
+    const currentCart =
+      JSON.parse(localStorage.getItem(key)).length > 0
+        ? JSON.parse(localStorage.getItem(key))
+        : [JSON.parse(localStorage.getItem(key))];
+
+    const updatedCart = currentCart.map((item) => (item.id === id ? { ...item, quantity } : item));
+    localStorage.setItem(key, JSON.stringify(updatedCart));
+    setLocalStorageItems(updatedCart);
+  };
+
   useEffect(() => {
     const items = window.localStorage.getItem(key);
     if (items) {
@@ -75,7 +85,7 @@ export const useLocalStorage = (key) => {
     }
   }, [key]);
 
-  return { localStorageItems, addItems, getItems, deleteItems };
+  return { localStorageItems, addItems, getItems, deleteItems, updateQuantity };
 };
 
 // const addItems = (value) => {

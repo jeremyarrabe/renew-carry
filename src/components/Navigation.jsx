@@ -1,10 +1,11 @@
 'use client';
 import { useToggle } from '@/hooks/useToggle';
+import { search } from '@/lib/actions';
 import {
   Bars3Icon,
-  ChevronRightIcon,
   ShoppingBagIcon,
   XMarkIcon,
+  MagnifyingGlassIcon,
 } from '@heroicons/react/24/outline';
 import { AnimatePresence, motion } from 'framer-motion';
 import Link from 'next/link';
@@ -77,6 +78,17 @@ const Navigation = () => {
                     Sign up
                   </Link>
                 </div>
+                <form className="flex" action={search}>
+                  <input
+                    type="text"
+                    placeholder="Search"
+                    className="w-full py-3 px-2 text-base outline-black"
+                    name="search"
+                  />
+                  <button>
+                    <MagnifyingGlassIcon className="h-6 w-6 " />
+                  </button>
+                </form>
 
                 <Link
                   href="/"
@@ -111,18 +123,6 @@ const Navigation = () => {
         ) : null}
       </AnimatePresence>
     </>
-  );
-};
-
-const NavMenu = ({ title, handleClick }) => {
-  return (
-    <Link
-      className="flex justify-between items-center cursor-pointer py-1 font-medium text-2xl"
-      onClick={handleClick}
-    >
-      <p>{title}</p>
-      <ChevronRightIcon className="h-6 w-6" />
-    </Link>
   );
 };
 

@@ -3,6 +3,7 @@ import { useToggle } from '@/hooks/useToggle';
 import { FunnelIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import Image from 'next/image';
 import Link from 'next/link';
+import { productList } from '@/lib/data';
 
 const Products = () => {
   const [visibile, toggleVisibility] = useToggle();
@@ -33,7 +34,7 @@ const Products = () => {
       </div>
       <div className="min-h-96 flex mt-3 px-4 flex-col">
         <div className="flex justify-between items-center ">
-          <p className="text-lg opacity-85">10 Results</p>
+          <p className="text-lg opacity-85">{productList.length} Results</p>
           <button
             className="px-5 py-2 bg-darkGreen flex rounded-full text-white gap-2 items-center"
             onClick={() => toggleVisibility()}
@@ -42,75 +43,25 @@ const Products = () => {
           </button>
         </div>
 
-        <div className="flex flex-wrap mt-2 justify-between">
-          <Link href={`/products/1`} className="flex flex-col  min-h-52 w-1/2 p-1">
-            <div className="relative h-full w-full">
-              <Image
-                src={
-                  'https://images.pexels.com/photos/2081199/pexels-photo-2081199.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
-                }
-                alt=""
-                fill
-                className="object-cover rounded-lg "
-              />
-            </div>
-            <div>
-              <p className="font-medium">Mal Backpack</p>
-              <p className="opacity-95">Backpacks</p>
-              <p className="font-bold">$300.00</p>
-            </div>
-          </Link>
-          <Link href={`/products/1`} className="flex flex-col  min-h-52 w-1/2 p-1">
-            <div className="relative h-full w-full">
-              <Image
-                src={
-                  'https://images.pexels.com/photos/2081199/pexels-photo-2081199.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
-                }
-                alt=""
-                fill
-                className="object-cover rounded-lg "
-              />
-            </div>
-            <div>
-              <p className="font-medium">Mal Backpack</p>
-              <p className="opacity-95">Backpacks</p>
-              <p className="font-bold">$300.00</p>
-            </div>
-          </Link>
-          <Link href={`/products/1`} className="flex flex-col  min-h-52 w-1/2 p-1">
-            <div className="relative h-full w-full">
-              <Image
-                src={
-                  'https://images.pexels.com/photos/2081199/pexels-photo-2081199.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
-                }
-                alt=""
-                fill
-                className="object-cover rounded-lg "
-              />
-            </div>
-            <div>
-              <p className="font-medium">Mal Backpack</p>
-              <p className="opacity-95">Backpacks</p>
-              <p className="font-bold">$300.00</p>
-            </div>
-          </Link>
-          <Link href={`/products/1`} className="flex flex-col  min-h-52 w-1/2 p-1">
-            <div className="relative h-full w-full">
-              <Image
-                src={
-                  'https://images.pexels.com/photos/2081199/pexels-photo-2081199.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
-                }
-                alt=""
-                fill
-                className="object-cover rounded-lg "
-              />
-            </div>
-            <div>
-              <p className="font-medium">Mal Backpack</p>
-              <p className="opacity-95">Backpacks</p>
-              <p className="font-bold">$300.00</p>
-            </div>
-          </Link>
+        <div className="flex flex-wrap mt-2 justify-between pb-5">
+          {productList.map((product) => {
+            return (
+              <Link
+                href={`/products/${product.id}`}
+                className="flex flex-col  min-h-52 w-1/2 p-1"
+                key={product.id}
+              >
+                <div className="relative h-full w-full">
+                  <Image src={product.src} alt="" fill className="object-cover rounded-lg " />
+                </div>
+                <div>
+                  <p className="font-medium text-base">{product.title}</p>
+                  <p className="opacity-95">{product.category}</p>
+                  <p className="font-bold">${product.price}.00</p>
+                </div>
+              </Link>
+            );
+          })}
         </div>
       </div>
       {visibile && <Filter handleToggle={toggleVisibility} />}

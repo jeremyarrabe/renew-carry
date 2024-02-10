@@ -1,8 +1,9 @@
 import { useLocalStorage } from '@/hooks/useLocalStorage';
 import Image from 'next/image';
 import { useState } from 'react';
+import { currencyFormat } from '@/helpers/currencyFormat';
 
-const Product = ({ id, title, category, price, src, description, size }) => {
+const Product = ({ id, title, category, price, src, description, dimensions }) => {
   const [quantity, setQuantity] = useState(1);
   const { addItems } = useLocalStorage('cart');
 
@@ -22,6 +23,7 @@ const Product = ({ id, title, category, price, src, description, size }) => {
       price,
       category,
       quantity,
+      src,
     };
     addItems(item);
   };
@@ -30,7 +32,7 @@ const Product = ({ id, title, category, price, src, description, size }) => {
       <div className="flex flex-col mt-10">
         <h1 className="text-3xl font-medium font-lora-cyrillic">{title}</h1>
         <h3 className="text-lg font-medium">{category}</h3>
-        <h3 className="text-lg font-bold mt-4">$ {price}.00</h3>
+        <h3 className="text-lg font-bold mt-4">{currencyFormat(price)}</h3>
       </div>
       <div className=" relative w-full min-h-[300px] mt-4">
         <Image src={src} alt="" fill className="object-cover rounded-lg" />
@@ -66,7 +68,35 @@ const Product = ({ id, title, category, price, src, description, size }) => {
       <p className="mt-5">{description}</p>
       <div className="mt-10">
         <h2 className="text-3xl font-medium">Size Guide</h2>
-        <p className="mt-5">{size}</p>
+
+        <p className="mt-5">
+          <span className="font-medium">Height: </span>
+          {dimensions.height}
+        </p>
+        <p className="mt-5">
+          <span className="font-medium">Width: </span>
+          {dimensions.width}
+        </p>
+        <p className="mt-5">
+          <span className="font-medium">Weight: </span>
+          {dimensions.weight}
+        </p>
+        <p className="mt-5">
+          <span className="font-medium">Depth: </span>
+          {dimensions.depth}
+        </p>
+        <p className="mt-5">
+          <span className="font-medium">Volume: </span>
+          {dimensions.volume}
+        </p>
+        <p className="mt-5">
+          <span className="font-medium">Max Laptop Size: </span>
+          {dimensions.maxLaptopSize}
+        </p>
+        <p className="mt-5">
+          <span className="font-medium">Carry on: </span>
+          {dimensions.carryOnStandards}
+        </p>
       </div>
     </>
   );
