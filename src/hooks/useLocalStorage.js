@@ -12,13 +12,16 @@ export const useLocalStorage = (key) => {
     }
   };
 
-  const deleteItems = () => {
+  const deleteItem = (id) => {
     try {
-      window.localStorage.clear(key);
-      setLocalStorageItems([]);
+      const local = JSON.parse(window.localStorage.getItem(key));
+      if (local) {
+        const filtered = local.filter((item) => item.id !== id);
+        localStorage.setItem(key, JSON.stringify(filtered));
+        setLocalStorageItems(filtered);
+      }
     } catch (error) {
       console.log(error);
-      setLocalStorageItems([]);
     }
   };
 
@@ -29,11 +32,8 @@ export const useLocalStorage = (key) => {
       // Check if the localstorage is alread set
       if (cart) {
         // If cart is more than 0 it means that there is multiple items in the cart so we pass it along else if its only one we force it to be an array so we can iterate over it
-        const currentCart =
-          JSON.parse(localStorage.getItem(key)).length > 0
-            ? JSON.parse(localStorage.getItem(key))
-            : [JSON.parse(localStorage.getItem(key))];
-        console.log(currentCart);
+        const currentCart = JSON.parse(localStorage.getItem(key));
+
         const itemInCart = currentCart.find((item) => item.id === value.id);
         // Check if item is alread in cart and just the quantity is needed to be updated
         if (itemInCart) {
@@ -85,34 +85,5 @@ export const useLocalStorage = (key) => {
     }
   }, [key]);
 
-  return { localStorageItems, addItems, getItems, deleteItems, updateQuantity };
+  return { localStorageItems, addItems, getItems, deleteItem, updateQuantity };
 };
-
-// const addItems = (value) => {
-//   try {
-//     const cart = window.localStorage.getItem(key);
-//     if (cart) {
-//       const parsedCart = JSON.parse(localStorage.getItem(key));
-//       const checkIfInCart = parsedCart.find((item) => item.id === value.id);
-//       // const newItems = [...items, ...value];
-//       // console.log(a);
-//       // localStorage.setItem(key, JSON.stringify(newItems));
-//       // console.log(`added new item with key ${key}`);
-//       // setLocalStorageItems(newItems);
-
-//       if (checkIfInCart) {
-//         console.log('yes');
-//       } else {
-//         console.log('no');
-//       }
-//     } else {
-//       window.localStorage.setItem(key, JSON.stringify(value));
-//       const currentItem = JSON.parse(window.localStorage.getItem(key));
-//       setLocalStorageItems(currentItem);
-//       console.log(`create new item with key ${key}`);
-//     }
-//   } catch (error) {
-//     console.log(error);
-//     setLocalStorageItems([]);
-//   }
-// };
