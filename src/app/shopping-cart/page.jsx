@@ -83,7 +83,7 @@ const ShoppingCart = () => {
         </div>
         <div className="flex justify-between">
           <p>Estimated Delivery & Handling Fee</p>
-          <p>{localStorage && localStorageItems.length > 0 ? '$10.00' : '$0.00'}</p>
+          <p>{localStorageItems && localStorageItems.length > 0 ? '$10.00' : '$0.00'}</p>
         </div>
         <div className="flex justify-between mt-2">
           <p>Total</p>
