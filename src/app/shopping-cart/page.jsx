@@ -17,7 +17,10 @@ const ShoppingCart = () => {
     <div className="flex flex-col px-4">
       <div className="text-center py-10  ">
         <h1 className="text-2xl font-medium font-lora-cyrillic ">Bag</h1>
-        <p className="mt-2 font-bold">4 Items | {currencyFormat(totalPrice + 10)}</p>
+        <p className="mt-2 font-bold">
+          {localStorageItems.length} Item(s) |
+          {localStorageItems.length > 0 ? currencyFormat(totalPrice + 10) : 0}
+        </p>
       </div>
       <div className="flex flex-col border">
         {localStorageItems && localStorageItems.length > 0 ? (
@@ -32,12 +35,12 @@ const ShoppingCart = () => {
                   <p className="font-medium font-lora-cyrillic">{currencyFormat(item.price)}</p>
                   <p className="font-medium font-lora-cyrillic">{item.title}</p>
                   <p>{item.category}</p>
-                  <div className="flex text-base">
+                  <div className="flex text-base items-center">
                     <label htmlFor="quanitity">Quantity</label>
                     <select
                       id="quanitity"
                       name="quanitity"
-                      className="px-2 bg-yellowishGray pl-4"
+                      className="px-4 bg-yellowishGray py-2 "
                       defaultValue={item.quantity}
                       onChange={(e) => updateQuantity(item.id, e.target.value)}
                     >
@@ -87,7 +90,9 @@ const ShoppingCart = () => {
         </div>
         <div className="flex justify-between mt-2">
           <p>Total</p>
-          <p suppressHydrationWarning>{currencyFormat(totalPrice + 10)}</p>
+          <p suppressHydrationWarning>
+            {localStorageItems.length > 0 ? currencyFormat(totalPrice + 10) : 0}
+          </p>
         </div>
         <button className="bg-transparentpy-4 mt-4 text-black border py-4 border-darkGreen rounded-lg">
           Go to Checkout

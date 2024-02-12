@@ -4,9 +4,11 @@ import { FunnelIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import Image from 'next/image';
 import Link from 'next/link';
 import { productList } from '@/lib/data';
+import { currencyFormat } from '@/helpers/currencyFormat';
 
 const Products = () => {
-  const [visibile, toggleVisibility] = useToggle();
+  const { visible, toggle } = useToggle();
+
   return (
     <div>
       <div className="flex overflow-auto mt-4">
@@ -37,7 +39,7 @@ const Products = () => {
           <p className="text-lg opacity-85">{productList.length} Results</p>
           <button
             className="px-5 py-2 bg-darkGreen flex rounded-full text-white gap-2 items-center"
-            onClick={() => toggleVisibility()}
+            onClick={() => toggle()}
           >
             Filter <FunnelIcon className="h-5 w-5 cursor-pointer " />
           </button>
@@ -52,24 +54,33 @@ const Products = () => {
                 key={product.id}
               >
                 <div className="relative h-full w-full">
-                  <Image src={product.src} alt="" fill className="object-cover rounded-lg " />
+                  <Image
+                    src={product.src}
+                    alt=""
+                    fill
+                    className="object-cover rounded-lg  transition-all blur"
+                    onLoad={(image) => image.target.classList.remove('blur')}
+                    sizes="100%"
+                    priority
+                  />
                 </div>
                 <div>
                   <p className="font-medium text-base">{product.title}</p>
                   <p className="opacity-95">{product.category}</p>
-                  <p className="font-bold">${product.price}.00</p>
+                  <p className="font-bold">{currencyFormat(product.price)}</p>
                 </div>
               </Link>
             );
           })}
         </div>
       </div>
-      {visibile && <Filter handleToggle={toggleVisibility} />}
+      {visible && <Filter handleToggle={toggle} />}
     </div>
   );
 };
 
 const Filter = ({ handleToggle }) => {
+  console.log(handleToggle);
   return (
     <div className="fixed top-0 left-0 h-screen w-screen bg-yellowishGray p-6 flex flex-col">
       <div className="flex justify-between items-center">
