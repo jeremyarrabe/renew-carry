@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "admin",
+    "password": "admin",
+    "database": "test",
+    "host": "172.18.0.3",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "admin",
+    "password": "admin",
+    "database": "test",
+    "host": "172.18.0.3",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "admin",
+    "password": "admin",
+    "database": "test",
+    "host": "172.18.0.3",
+    "dialect": "postgres"
+  }
+}

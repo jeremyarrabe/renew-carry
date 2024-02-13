@@ -1,20 +1,10 @@
-import { useLocalStorage } from '@/hooks/useLocalStorage';
-import Image from 'next/image';
-import { useState } from 'react';
 import { currencyFormat } from '@/helpers/currencyFormat';
+import { useLocalStorage } from '@/hooks/useLocalStorage';
+import { HeartIcon } from '@heroicons/react/24/outline';
+import Image from 'next/image';
 
 const Product = ({ id, title, category, price, src, description, dimensions }) => {
-  const [quantity, setQuantity] = useState(1);
   const { addItems } = useLocalStorage('cart');
-
-  const handleQuantity = (x) => {
-    if (x === 1) {
-      setQuantity((prev) => prev + 1);
-    }
-    if (x === 0) {
-      setQuantity((prev) => prev - 1);
-    }
-  };
 
   const addToBag = () => {
     const item = {
@@ -22,7 +12,7 @@ const Product = ({ id, title, category, price, src, description, dimensions }) =
       title,
       price,
       category,
-      quantity,
+      quantity: 1,
       src,
     };
     addItems(item);
@@ -37,32 +27,18 @@ const Product = ({ id, title, category, price, src, description, dimensions }) =
       <div className=" relative w-full min-h-[300px] mt-4">
         <Image src={src} alt="" fill className="object-cover rounded-lg" />
       </div>
-      <div className="flex justify-between mt-5 gap-1">
-        <div className="flex gap-2 items-center grow justify-between">
-          <button
-            className={`rounded-lg text-4xl font-bold grow`}
-            onClick={() => handleQuantity(0)}
-            disabled={quantity <= 1}
-          >
-            -
-          </button>
-          <p className="text-2xl">{quantity}</p>
-          <button
-            className="rounded-lg text-4xl font-bold  grow"
-            onClick={() => handleQuantity(1)}
-            disabled={quantity >= 9}
-          >
-            +
-          </button>
-        </div>
-        <div className="flex">
-          <button
-            className="text-lg bg-darkGreen rounded-lg text-white font-bold grow px-2"
-            onClick={addToBag}
-          >
-            Add to cart
-          </button>
-        </div>
+
+      <div className="flex justify-between mt-5 gap-2">
+        <button
+          className="text-lg bg-darkGreen rounded-lg text-white font-bold grow  py-3 px-5"
+          onClick={addToBag}
+        >
+          Add to cart
+        </button>
+
+        <button className="text-lg rounded-lg text-white font-bold  py-2 px-5 border border-darkGreen">
+          <HeartIcon className="h-6 w-6 text-black" />
+        </button>
       </div>
 
       <p className="mt-5">{description}</p>

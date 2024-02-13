@@ -1,10 +1,9 @@
 'use client';
-import Image from 'next/image';
-import { HeartIcon, TrashIcon } from '@heroicons/react/24/outline';
-import { useLocalStorage } from '@/hooks/useLocalStorage';
 import { currencyFormat } from '@/helpers/currencyFormat';
+import { useLocalStorage } from '@/hooks/useLocalStorage';
+import { HeartIcon, TrashIcon } from '@heroicons/react/24/outline';
+import Image from 'next/image';
 import Link from 'next/link';
-import { Suspense } from 'react';
 
 const ShoppingCart = () => {
   const { localStorageItems, updateQuantity, deleteItem } = useLocalStorage('cart');
