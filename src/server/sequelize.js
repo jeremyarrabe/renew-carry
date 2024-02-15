@@ -10,8 +10,10 @@ const sequelize = new Sequelize(
   `postgres://${username}:${password}@${host}:${port}/${databaseName}`,
   {
     dialectModule: require('pg'),
+    logging: false,
   },
 );
+
 (async () => {
   try {
     await sequelize.sync(); // Automatically creates tables based on the models
