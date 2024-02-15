@@ -1,5 +1,7 @@
 'use strict';
 
+const { USERS_TABLE } = require('../helpers/constants');
+
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
@@ -13,7 +15,7 @@ module.exports = {
      * }], {});
      */
     await queryInterface.bulkInsert(
-      'Users',
+      USERS_TABLE,
       [
         {
           firstName: 'Jeremy',
@@ -45,6 +47,6 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-    await queryInterface.bulkDelete('Users', null, {});
+    await queryInterface.bulkDelete(USERS_TABLE, null, {});
   },
 };

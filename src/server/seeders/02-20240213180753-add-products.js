@@ -1,5 +1,7 @@
 'use strict';
 
+const { PRODUCTS_TABLE } = require('../helpers/constants');
+
 /** @type {import('sequelize-cli').Migration} */
 
 module.exports = {
@@ -23,6 +25,8 @@ module.exports = {
           carryOnStandards:
             'Meets carry-on standards for most airlines (just barely fits under the seat!)',
         },
+        createdAt: new Date().toLocaleDateString(),
+        updatedAt: new Date().toLocaleDateString(),
       },
       {
         title: 'Messenger Bag',
@@ -41,6 +45,8 @@ module.exports = {
           maxLaptopSize: 'Fits most 15" laptops',
           carryOnStandards: 'Meets carry-on standards for most airlines',
         },
+        createdAt: new Date().toLocaleDateString(),
+        updatedAt: new Date().toLocaleDateString(),
       },
       {
         title: 'Travel Duffel',
@@ -59,6 +65,8 @@ module.exports = {
           maxLaptopSize: 'Does not have a laptop compartment',
           carryOnStandards: 'Meets carry-on standards for most airlines',
         },
+        createdAt: new Date().toLocaleDateString(),
+        updatedAt: new Date().toLocaleDateString(),
       },
       {
         title: 'Tote Bag',
@@ -77,6 +85,8 @@ module.exports = {
           maxLaptopSize: 'Does not have a laptop compartment',
           carryOnStandards: 'Meets carry-on standards for most airlines',
         },
+        createdAt: new Date().toLocaleDateString(),
+        updatedAt: new Date().toLocaleDateString(),
       },
       {
         title: 'Rolling Suitcase',
@@ -95,6 +105,8 @@ module.exports = {
           maxLaptopSize: 'Fits most 17" laptops',
           carryOnStandards: 'Meets carry-on standards for most airlines',
         },
+        createdAt: new Date().toLocaleDateString(),
+        updatedAt: new Date().toLocaleDateString(),
       },
       {
         title: 'Leather Briefcase',
@@ -113,6 +125,8 @@ module.exports = {
           maxLaptopSize: 'Fits most 15" laptops',
           carryOnStandards: 'Meets carry-on standards for most airlines',
         },
+        createdAt: new Date().toLocaleDateString(),
+        updatedAt: new Date().toLocaleDateString(),
       },
       {
         title: 'Weekender Bag',
@@ -131,6 +145,8 @@ module.exports = {
           maxLaptopSize: 'Does not have a laptop compartment',
           carryOnStandards: 'Meets carry-on standards for most airlines',
         },
+        createdAt: new Date().toLocaleDateString(),
+        updatedAt: new Date().toLocaleDateString(),
       },
       {
         title: 'Hiking Backpack',
@@ -149,6 +165,8 @@ module.exports = {
           maxLaptopSize: 'Does not have a laptop compartment',
           carryOnStandards: 'Not suitable for carry-on',
         },
+        createdAt: new Date().toLocaleDateString(),
+        updatedAt: new Date().toLocaleDateString(),
       },
       {
         title: 'Crossbody Bag',
@@ -167,6 +185,8 @@ module.exports = {
           maxLaptopSize: 'Does not have a laptop compartment',
           carryOnStandards: 'Meets carry-on standards for most airlines',
         },
+        createdAt: new Date().toLocaleDateString(),
+        updatedAt: new Date().toLocaleDateString(),
       },
       {
         title: 'Leather Backpack',
@@ -185,6 +205,8 @@ module.exports = {
           maxLaptopSize: 'Fits most 15" laptops',
           carryOnStandards: 'Meets carry-on standards for most airlines',
         },
+        createdAt: new Date().toLocaleDateString(),
+        updatedAt: new Date().toLocaleDateString(),
       },
       {
         title: 'Convert Backpack',
@@ -203,6 +225,8 @@ module.exports = {
           maxLaptopSize: 'Fits most 13" laptops',
           carryOnStandards: 'Meets carry-on standards for most airlines',
         },
+        createdAt: new Date().toLocaleDateString(),
+        updatedAt: new Date().toLocaleDateString(),
       },
       {
         title: 'Weekender Duffel',
@@ -221,6 +245,8 @@ module.exports = {
           maxLaptopSize: 'Does not have a laptop compartment',
           carryOnStandards: 'Meets carry-on standards for most airlines',
         },
+        createdAt: new Date().toLocaleDateString(),
+        updatedAt: new Date().toLocaleDateString(),
       },
     ];
     /**
@@ -233,7 +259,7 @@ module.exports = {
      * }], {});
      */
     await queryInterface.bulkInsert(
-      'Products',
+      PRODUCTS_TABLE,
       productList,
       {},
       { sizes: { type: new Sequelize.JSON() } },
@@ -247,6 +273,6 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-    await queryInterface.bulkDelete('Products', null, {});
+    await queryInterface.bulkDelete(PRODUCTS_TABLE, null, {});
   },
 };

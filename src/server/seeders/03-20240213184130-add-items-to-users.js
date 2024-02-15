@@ -1,5 +1,7 @@
 'use strict';
 
+const { CARTITEMS_TABLE } = require('../helpers/constants');
+
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
@@ -13,7 +15,7 @@ module.exports = {
      * }], {});
      */
     await queryInterface.bulkInsert(
-      'CartItems',
+      CARTITEMS_TABLE,
       [
         {
           quantity: 1,
@@ -69,5 +71,6 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
+    await queryInterface.bulkDelete(CARTITEMS_TABLE, null, {});
   },
 };
