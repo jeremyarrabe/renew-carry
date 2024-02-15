@@ -19,6 +19,7 @@ module.exports = {
       },
       onUpdate: 'CASCADE',
       onDelete: 'SET NULL',
+      allowNull: false,
     });
 
     await queryInterface.addColumn(CARTITEMS_TABLE, 'productId', {
@@ -29,6 +30,7 @@ module.exports = {
       },
       onUpdate: 'CASCADE',
       onDelete: 'SET NULL',
+      allowNull: false,
     });
   },
 

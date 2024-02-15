@@ -13,21 +13,31 @@ const Products = sequelize.define(
     },
     title: {
       type: DataTypes.STRING,
+      allowNull: false,
     },
-    category: {
-      type: DataTypes.STRING,
+    categoryId: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'categories',
+        key: 'id',
+      },
+      allowNull: false,
     },
     price: {
-      type: DataTypes.STRING,
+      type: DataTypes.FLOAT,
+      allowNull: false,
     },
     image: {
       type: DataTypes.STRING,
+      allowNull: false,
     },
     description: {
       type: DataTypes.TEXT,
+      allowNull: false,
     },
     sizes: {
       type: DataTypes.JSON,
+      allowNull: false,
     },
   },
   { timestamps: true },

@@ -14,14 +14,14 @@ const sequelize = new Sequelize(
   },
 );
 
-(async () => {
-  try {
-    await sequelize.sync(); // Automatically creates tables based on the models
-    console.log('Sequelize synchronized successfully.');
-  } catch (error) {
-    console.error('Sequelize synchronization error:', error);
-  }
-})();
+// (async () => {
+//   try {
+//     await sequelize.sync(); // Automatically creates tables based on the models
+//     console.log('Sequelize synchronized successfully.');
+//   } catch (error) {
+//     console.error('Sequelize synchronization error:', error);
+//   }
+// })();
 async function connectToDB() {
   try {
     await sequelize.authenticate();

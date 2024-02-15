@@ -14,27 +14,31 @@ module.exports = {
       },
       title: {
         type: Sequelize.STRING,
-      },
-      category: {
-        type: Sequelize.STRING,
+        allowNull: false,
       },
       price: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.FLOAT,
+        allowNull: false,
       },
       image: {
         type: Sequelize.STRING,
+        allowNull: false,
       },
       description: {
         type: Sequelize.TEXT,
+        allowNull: false,
       },
       sizes: {
         type: Sequelize.JSON,
+        allowNull: false,
       },
       createdAt: {
         type: Sequelize.DATE,
+        allowNull: false,
       },
       updatedAt: {
         type: Sequelize.DATE,
+        allowNull: false,
       },
     });
   },

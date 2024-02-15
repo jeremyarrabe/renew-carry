@@ -13,6 +13,7 @@ const CartItems = sequelize.define(
     },
     quantity: {
       type: DataTypes.INTEGER,
+      allowNull: false,
       defaultValue: 1,
     },
     userId: {
@@ -21,6 +22,7 @@ const CartItems = sequelize.define(
         model: 'users',
         key: 'id',
       },
+      allowNull: false,
     },
     productId: {
       type: DataTypes.INTEGER,
@@ -28,6 +30,7 @@ const CartItems = sequelize.define(
         model: 'products',
         key: 'id',
       },
+      allowNull: false,
     },
   },
   {
