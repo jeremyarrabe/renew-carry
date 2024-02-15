@@ -38,9 +38,12 @@ const Filter = () => {
           <button className="bg-darkGreen  py-4 mt-2 font-bold text-white rounded-lg">Apply</button>
         </div>
       ) : (
-        <Button handleClick={toggle}>
+        <button
+          className=" flex flex-row items-center gap-2 rounded-full bg-darkGreen px-4 py-2 text-white"
+          onClick={() => toggle()}
+        >
           Filter <FunnelIcon className="h-5 w-5 cursor-pointer " />
-        </Button>
+        </button>
       )}
     </>
   );

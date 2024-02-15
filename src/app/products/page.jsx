@@ -1,11 +1,14 @@
 import AllProducts from '@/components/AllProducts';
 import Filter from '@/components/Filter';
-import Button from '@/components/ui/Button';
-import { productList } from '@/lib/data';
-import { FunnelIcon, XMarkIcon } from '@heroicons/react/24/outline';
+import { getProducts } from '@/lib/services/products';
+
+import { Categories, Products } from '@/server/models';
+
 import Link from 'next/link';
 
-const Products = () => {
+const ProductsPage = async () => {
+  const productList = await getProducts();
+
   return (
     <div>
       <div className="flex overflow-auto mt-4">
@@ -33,13 +36,15 @@ const Products = () => {
       </div>
       <div className="min-h-96 flex mt-3 px-4 flex-col">
         <div className="flex justify-between items-center ">
-          <p className="text-lg opacity-85">1 Results</p>
+          <p className="text-lg opacity-85">{productList.length} Results Found</p>
           <Filter />
         </div>
-        <div className="flex flex-wrap mt-2 justify-between pb-5">{<AllProducts />}</div>
+        <div className="flex flex-wrap mt-2 justify-between pb-5">
+          {<AllProducts productList={productList} />}
+        </div>
       </div>
     </div>
   );
 };
 
-export default Products;
+export default ProductsPage;

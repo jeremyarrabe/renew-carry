@@ -1,8 +1,7 @@
-import { Products } from '@/server/models';
+import { Products, Categories } from '@/server/models';
 import Product from './Product';
 
-const AllProducts = async () => {
-  const productList = await Products.findAll();
+const AllProducts = async ({ productList }) => {
   return (
     <>
       {productList.map((product) => {
@@ -12,7 +11,7 @@ const AllProducts = async () => {
             id={product.id}
             image={product.image}
             title={product.title}
-            category={product.category}
+            category={product.categoryDetails.category}
             price={product.price}
           />
         );

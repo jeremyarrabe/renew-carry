@@ -1,11 +1,12 @@
 import HorizontalProductScroll from '@/components/HorizontalProductScroll';
 import { currencyFormat } from '@/helpers/currencyFormat';
 import { addItem } from './_actions';
-import { Products } from '@/server/models';
+import { Categories, Products } from '@/server/models';
 
 import { HeartIcon } from '@heroicons/react/24/outline';
 import Image from 'next/image';
 import { authUser } from '@/lib/auth';
+import Button from '@/components/ui/Button';
 
 const ProductId = async ({ params }) => {
   const { productId } = params;
@@ -15,6 +16,14 @@ const ProductId = async ({ params }) => {
     where: {
       id: productId,
     },
+    include: [
+      {
+        model: Categories,
+        as: 'categoryDetails',
+        attributes: { exclude: [, 'createdAt', 'updatedAt'] },
+      },
+    ],
+    attributes: { exclude: 'categoryId' },
   });
 
   const addItemWithId = addItem.bind(null, userId, product.id);
@@ -23,7 +32,7 @@ const ProductId = async ({ params }) => {
     <div className="flex flex-col px-4">
       <div className="flex flex-col mt-10">
         <h1 className="text-3xl font-medium font-lora-cyrillic">{product.title}</h1>
-        <h3 className="text-lg font-medium">{product.category}</h3>
+        <h3 className="text-lg font-medium capitalize">{product.categoryDetails.category}</h3>
         <h3 className="text-lg font-bold mt-4">{currencyFormat(product.price)}</h3>
       </div>
       <div className=" relative w-full min-h-[300px] mt-4">
@@ -32,12 +41,12 @@ const ProductId = async ({ params }) => {
 
       <div className="flex justify-between mt-5 gap-2">
         <form action={addItemWithId} className="flex grow">
-          <button
+          <Button
             type="submit"
-            className="text-lg bg-darkGreen rounded-lg text-white font-bold grow  py-3 px-5"
+            className="text-lg bg-darkGreen rounded-lg text-white font-bold grow  py-3 px-5 text-center"
           >
             Add to cart
-          </button>
+          </Button>
         </form>
 
         <button className="text-lg rounded-lg text-white font-bold  py-2 px-5 border border-darkGreen">

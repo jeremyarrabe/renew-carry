@@ -7,12 +7,15 @@ export const addItem = async (userId, productId) => {
     const item = await CartItems.findOne({ where: { productId, userId } });
 
     if (!item) {
+      console.log(1);
       await CartItems.create({
         quantity: 1,
         userId,
         productId,
       });
-    } else {
+    }
+
+    if (item && item < 9) {
       CartItems.update(
         { quantity: item.quantity + 1 },
         {
@@ -24,7 +27,6 @@ export const addItem = async (userId, productId) => {
       );
     }
 
-    console.log('Item added');
     revalidatePath('/shopping-cart');
   } catch (error) {
     console.log(error);

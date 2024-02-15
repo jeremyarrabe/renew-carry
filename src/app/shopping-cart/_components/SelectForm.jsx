@@ -1,8 +1,11 @@
 'use client';
 import React from 'react';
 import { updateQuantity } from '../_actions';
+import { useState } from 'react';
 
 const SelectForm = ({ defaultValue, userId, productId }) => {
+  const { pending, setPending } = useState(false);
+
   const onQuantityChange = async (quantity) => {
     const formData = new FormData();
     formData.append('userId', userId);

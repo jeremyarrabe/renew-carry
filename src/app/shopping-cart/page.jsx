@@ -10,9 +10,8 @@ import { deleteItem } from './_actions';
 
 const ShoppingCart = async () => {
   const cart = await getCurrentUserCart(authUser);
-
   let totalPrice = 0;
-  console.log(cart);
+
   return (
     <div className="flex flex-col px-4">
       <div className="text-center py-10  ">
@@ -22,6 +21,7 @@ const ShoppingCart = async () => {
       <div className="flex flex-col border">
         {cart && cart.length > 0 ? (
           cart.map((item) => {
+            totalPrice += item.product.price * item.quantity;
             return (
               <div className="flex py-4 gap-5" key={item.product.id}>
                 <div className="relative w-1/3 h-20">
@@ -36,7 +36,7 @@ const ShoppingCart = async () => {
 
                 <div className="flex flex-col text-lg">
                   <p className="font-medium font-lora-cyrillic">
-                    {currencyFormat(item.product.price)}
+                    {currencyFormat(item.product.price * item.quantity)}
                   </p>
                   <p className="font-medium font-lora-cyrillic">{item.product.title}</p>
                   <p>{item.product.category}</p>
@@ -84,7 +84,7 @@ const ShoppingCart = async () => {
         </div>
         <div className="flex justify-between mt-2">
           <p>Total</p>
-          <p>{currencyFormat(totalPrice + 10)}</p>
+          <p>{totalPrice !== 0 ? currencyFormat(totalPrice + 10) : currencyFormat(0)}</p>
         </div>
         <button className="bg-transparentpy-4 mt-4 text-black border py-4 border-darkGreen rounded-lg">
           Go to Checkout

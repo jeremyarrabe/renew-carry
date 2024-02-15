@@ -6,8 +6,8 @@ import React from 'react';
 
 const Product = ({ id, image, title, category, price }) => {
   return (
-    <Link href={`/products/${id}`} className="flex flex-col  min-h-52 w-1/2 p-1" key={id}>
-      <div className="relative h-full w-full">
+    <Link href={`/product/${id}`} className="flex flex-col  min-h-52 w-1/2 p-1" key={id}>
+      <div className="relative h-[175px] w-full sm:h-[300px]">
         <Image
           src={image}
           alt=""
@@ -18,9 +18,9 @@ const Product = ({ id, image, title, category, price }) => {
           priority
         />
       </div>
-      <div>
-        <p className="font-medium text-base">{title}</p>
-        <p className="opacity-95">{category}</p>
+      <div className="text-base ">
+        <p className="font-medium">{title}</p>
+        <p className="opacity-95 capitalize">{category}</p>
         <p className="font-bold">{currencyFormat(price)}</p>
       </div>
     </Link>

@@ -14,18 +14,17 @@ const Footer = () => {
           <h3 className="font-bold text-xl">Socials</h3>
           <p>Instagram</p>
           <p>Facebook</p>
-          <p>Tiktok</p>
           <p>Twitter</p>
         </div>
       </div>
-      <div className="text-end">
+      {/* <div className="text-end">
         <Link
           href={'https://github.com/jeremyarrabe'}
           className="mt-3 text-xs opacity-80 hover:underline"
         >
           @ Jeremy Arrabe
         </Link>
-      </div>
+      </div> */}
     </div>
   );
 };
