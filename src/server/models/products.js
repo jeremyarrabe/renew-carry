@@ -1,8 +1,9 @@
 const { sequelize } = require('@/server/sequelize');
 const DataTypes = require('sequelize');
+const { PRODUCTS_TABLE } = require('../helpers/constants');
 
 const Products = sequelize.define(
-  'Products',
+  PRODUCTS_TABLE,
   {
     id: {
       type: DataTypes.INTEGER,

@@ -2,8 +2,13 @@ const Users = require('./users');
 const CartItems = require('./cartItems');
 const Products = require('./products');
 
-CartItems.hasMany(Users, { foreignKey: 'id' });
-CartItems.hasMany(Products, { foreignKey: 'id' });
+Users.hasMany(CartItems, { as: 'userCartItems' });
+CartItems.belongsTo(Users);
+
+Users.belongsToMany(Products, { through: CartItems, as: 'products' });
+Products.belongsToMany(Users, { through: CartItems, as: 'users' });
+
+CartItems.belongsTo(Products);
 
 module.exports = {
   Users,

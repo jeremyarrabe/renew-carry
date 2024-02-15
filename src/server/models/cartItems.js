@@ -1,8 +1,9 @@
 const { sequelize } = require('@/server/sequelize');
 const DataTypes = require('sequelize');
+const { CARTITEMS_TABLE } = require('../helpers/constants');
 
 const CartItems = sequelize.define(
-  'CartItems',
+  CARTITEMS_TABLE,
   {
     id: {
       type: DataTypes.INTEGER,
@@ -16,11 +17,17 @@ const CartItems = sequelize.define(
     },
     userId: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      references: {
+        model: 'users',
+        key: 'id',
+      },
     },
     productId: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      references: {
+        model: 'products',
+        key: 'id',
+      },
     },
   },
   {
