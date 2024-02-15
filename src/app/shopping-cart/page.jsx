@@ -1,66 +1,61 @@
-'use client';
 import { currencyFormat } from '@/helpers/currencyFormat';
-import { useLocalStorage } from '@/hooks/useLocalStorage';
+
+import { authUser } from '@/lib/auth';
+import { getCurrentUserCart } from '@/lib/services/cart';
 import { HeartIcon, TrashIcon } from '@heroicons/react/24/outline';
 import Image from 'next/image';
 import Link from 'next/link';
+import SelectForm from './_components/SelectForm';
+import { deleteItem } from './_actions';
 
-const ShoppingCart = () => {
-  const { localStorageItems, updateQuantity, deleteItem } = useLocalStorage('cart');
+const ShoppingCart = async () => {
+  const cart = await getCurrentUserCart(authUser);
 
-  const totalPrice = localStorageItems.reduce((accumulator, item) => {
-    return (accumulator += item.price * item.quantity);
-  }, 0);
-
+  let totalPrice = 0;
+  console.log(cart);
   return (
     <div className="flex flex-col px-4">
       <div className="text-center py-10  ">
-        <h1 className="text-2xl font-medium font-lora-cyrillic ">Bag</h1>
-        <p className="mt-2 font-bold">
-          {localStorageItems.length} Item(s) |
-          {localStorageItems.length > 0 ? currencyFormat(totalPrice + 10) : 0}
-        </p>
+        <h1 className="text-2xl font-medium font-lora-cyrillic">Bag</h1>
+        <p className="mt-2 font-bold">{cart.length} Item(s)</p>
       </div>
       <div className="flex flex-col border">
-        {localStorageItems && localStorageItems.length > 0 ? (
-          localStorageItems.map((item) => {
+        {cart && cart.length > 0 ? (
+          cart.map((item) => {
             return (
-              <div className="flex py-4 gap-5   " key={item.id}>
+              <div className="flex py-4 gap-5" key={item.product.id}>
                 <div className="relative w-1/3 h-20">
-                  <Image src={item.src} alt="" fill className="object-cover " />
+                  <Image
+                    src={item.product.image}
+                    alt=""
+                    fill
+                    className="object-cover "
+                    sizes="100%"
+                  />
                 </div>
 
                 <div className="flex flex-col text-lg">
-                  <p className="font-medium font-lora-cyrillic">{currencyFormat(item.price)}</p>
-                  <p className="font-medium font-lora-cyrillic">{item.title}</p>
-                  <p>{item.category}</p>
-                  <div className="flex text-base items-center">
-                    <label htmlFor="quanitity">Quantity</label>
-                    <select
-                      id="quanitity"
-                      name="quanitity"
-                      className="px-4 bg-yellowishGray py-2 "
-                      defaultValue={item.quantity}
-                      onChange={(e) => updateQuantity(item.id, e.target.value)}
-                    >
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4">4</option>
-                      <option value="5">5</option>
-                      <option value="6">6</option>
-                      <option value="7">7</option>
-                      <option value="8">8</option>
-                      <option value="9">9</option>
-                    </select>
-                  </div>
+                  <p className="font-medium font-lora-cyrillic">
+                    {currencyFormat(item.product.price)}
+                  </p>
+                  <p className="font-medium font-lora-cyrillic">{item.product.title}</p>
+                  <p>{item.product.category}</p>
+                  <SelectForm
+                    userId={item.userId}
+                    productId={item.productId}
+                    defaultValue={item.quantity}
+                  />
                   <div className="flex mt-4 gap-6">
                     <button>
                       <HeartIcon className="h-6 w-6" />
                     </button>
-                    <button onClick={() => deleteItem(item.id)}>
-                      <TrashIcon className="h-6 w-6 " />
-                    </button>
+                    <form action={deleteItem}>
+                      <input type="hidden" name="userId" value={item.userId} />
+                      <input type="hidden" name="productId" value={item.productId} />
+                      <button type="submit">
+                        <TrashIcon className="h-6 w-6 " />
+                      </button>
+                    </form>
                   </div>
                 </div>
               </div>
@@ -81,30 +76,20 @@ const ShoppingCart = () => {
         <h3 className="text-2xl font-medium font-lora-cyrillic">Summary</h3>
         <div className="flex justify-between">
           <p>Subtotal</p>
-          <p>{currencyFormat(totalPrice)}</p>
+          <p> {currencyFormat(totalPrice)}</p>
         </div>
         <div className="flex justify-between">
           <p>Estimated Delivery & Handling Fee</p>
-          <p>{localStorageItems && localStorageItems.length > 0 ? '$10.00' : '$0.00'}</p>
+          <p>{totalPrice !== 0 ? currencyFormat(10) : currencyFormat(0)}</p>
         </div>
         <div className="flex justify-between mt-2">
           <p>Total</p>
-          <p suppressHydrationWarning>
-            {localStorageItems.length > 0 ? currencyFormat(totalPrice + 10) : 0}
-          </p>
+          <p>{currencyFormat(totalPrice + 10)}</p>
         </div>
         <button className="bg-transparentpy-4 mt-4 text-black border py-4 border-darkGreen rounded-lg">
           Go to Checkout
         </button>
       </div>
-    </div>
-  );
-};
-
-const LoadingSummary = () => {
-  return (
-    <div>
-      <p>Loading...</p>
     </div>
   );
 };

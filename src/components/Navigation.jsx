@@ -1,23 +1,22 @@
 'use client';
-import { useContext } from 'react';
+import { currencyFormat } from '@/helpers/currencyFormat';
+import { useLocalStorage } from '@/hooks/useLocalStorage';
 import { useToggle } from '@/hooks/useToggle';
-import { search } from '@/lib/actions';
 import {
   Bars3Icon,
+  MagnifyingGlassIcon,
   ShoppingBagIcon,
   XMarkIcon,
-  MagnifyingGlassIcon,
 } from '@heroicons/react/24/outline';
 import { AnimatePresence, motion } from 'framer-motion';
-import Link from 'next/link';
-import { useLocalStorage } from '@/hooks/useLocalStorage';
 import Image from 'next/image';
-import { currencyFormat } from '@/helpers/currencyFormat';
-import { CartContext } from '@/context/context';
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import { authUser } from '@/lib/auth';
 
 const Navigation = () => {
   const { visible, toggle } = useToggle();
-  const cart = useContext(CartContext);
+  const [data, setData] = useState([]);
 
   return (
     <>
@@ -31,10 +30,13 @@ const Navigation = () => {
         <div className="flex gap-4 ">
           <Link
             href={'/shopping-cart'}
-            // after:content-['${cart.length}'] after:absolute after:top-[27px] after:right-[77px] after:text-[11px]
-            className={`p-1  rounded-full hover:bg-slate-200 `}
+            //  after:content-['${cart?.length}'] after:absolute after:top-[27px] after:right-[77px] after:text-[11px]
+            className="p-1  rounded-full hover:bg-slate-200"
           >
             <ShoppingBagIcon className="h-6 w-6   cursor-pointer" />
+            {data.length > 0 && (
+              <div className="h-3 w-3 bg-darkGreen absolute rounded-full right-[65px] top-[23px]" />
+            )}
           </Link>
           {/* {<AddedToCart />} */}
 

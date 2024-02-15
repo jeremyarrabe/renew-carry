@@ -1,80 +1,29 @@
+'use client';
 import { currencyFormat } from '@/helpers/currencyFormat';
-import { useLocalStorage } from '@/hooks/useLocalStorage';
-import { HeartIcon } from '@heroicons/react/24/outline';
 import Image from 'next/image';
+import Link from 'next/link';
+import React from 'react';
 
-const Product = ({ id, title, category, price, src, description, dimensions }) => {
-  const { addItems } = useLocalStorage('cart');
-
-  const addToBag = () => {
-    const item = {
-      id,
-      title,
-      price,
-      category,
-      quantity: 1,
-      src,
-    };
-    addItems(item);
-  };
+const Product = ({ id, image, title, category, price }) => {
   return (
-    <>
-      <div className="flex flex-col mt-10">
-        <h1 className="text-3xl font-medium font-lora-cyrillic">{title}</h1>
-        <h3 className="text-lg font-medium">{category}</h3>
-        <h3 className="text-lg font-bold mt-4">{currencyFormat(price)}</h3>
+    <Link href={`/products/${id}`} className="flex flex-col  min-h-52 w-1/2 p-1" key={id}>
+      <div className="relative h-full w-full">
+        <Image
+          src={image}
+          alt=""
+          fill
+          className="object-cover rounded-lg  transition-all blur"
+          onLoad={(img) => img.target.classList.remove('blur')}
+          sizes="100%"
+          priority
+        />
       </div>
-      <div className=" relative w-full min-h-[300px] mt-4">
-        <Image src={src} alt="" fill className="object-cover rounded-lg" />
+      <div>
+        <p className="font-medium text-base">{title}</p>
+        <p className="opacity-95">{category}</p>
+        <p className="font-bold">{currencyFormat(price)}</p>
       </div>
-
-      <div className="flex justify-between mt-5 gap-2">
-        <button
-          className="text-lg bg-darkGreen rounded-lg text-white font-bold grow  py-3 px-5"
-          onClick={addToBag}
-        >
-          Add to cart
-        </button>
-
-        <button className="text-lg rounded-lg text-white font-bold  py-2 px-5 border border-darkGreen">
-          <HeartIcon className="h-6 w-6 text-black" />
-        </button>
-      </div>
-
-      <p className="mt-5">{description}</p>
-      <div className="mt-10">
-        <h2 className="text-3xl font-medium">Size Guide</h2>
-
-        <p className="mt-5">
-          <span className="font-medium">Height: </span>
-          {dimensions.height}
-        </p>
-        <p className="mt-5">
-          <span className="font-medium">Width: </span>
-          {dimensions.width}
-        </p>
-        <p className="mt-5">
-          <span className="font-medium">Weight: </span>
-          {dimensions.weight}
-        </p>
-        <p className="mt-5">
-          <span className="font-medium">Depth: </span>
-          {dimensions.depth}
-        </p>
-        <p className="mt-5">
-          <span className="font-medium">Volume: </span>
-          {dimensions.volume}
-        </p>
-        <p className="mt-5">
-          <span className="font-medium">Max Laptop Size: </span>
-          {dimensions.maxLaptopSize}
-        </p>
-        <p className="mt-5">
-          <span className="font-medium">Carry on: </span>
-          {dimensions.carryOnStandards}
-        </p>
-      </div>
-    </>
+    </Link>
   );
 };
 

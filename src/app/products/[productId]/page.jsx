@@ -1,24 +1,83 @@
-'use client';
 import HorizontalProductScroll from '@/components/HorizontalProductScroll';
-import Product from '@/components/Product';
-import { productList } from '@/lib/data';
+import { currencyFormat } from '@/helpers/currencyFormat';
+import { addItem } from './_actions';
+import { Products } from '@/server/models';
 
-const ProductId = ({ params }) => {
+import { HeartIcon } from '@heroicons/react/24/outline';
+import Image from 'next/image';
+import { authUser } from '@/lib/auth';
+
+const ProductId = async ({ params }) => {
   const { productId } = params;
+  const userId = authUser;
 
-  const [getProduct] = productList.filter((product) => product.id === parseInt(productId));
+  const product = await Products.findOne({
+    where: {
+      id: productId,
+    },
+  });
+
+  const addItemWithId = addItem.bind(null, userId, product.id);
 
   return (
     <div className="flex flex-col px-4">
-      <Product
-        id={getProduct.id}
-        title={getProduct.title}
-        category={getProduct.category}
-        price={getProduct.price}
-        src={getProduct.src}
-        description={getProduct.description}
-        dimensions={getProduct.dimensions}
-      />
+      <div className="flex flex-col mt-10">
+        <h1 className="text-3xl font-medium font-lora-cyrillic">{product.title}</h1>
+        <h3 className="text-lg font-medium">{product.category}</h3>
+        <h3 className="text-lg font-bold mt-4">{currencyFormat(product.price)}</h3>
+      </div>
+      <div className=" relative w-full min-h-[300px] mt-4">
+        <Image src={product.image} alt="" fill className="object-cover rounded-lg" priority />
+      </div>
+
+      <div className="flex justify-between mt-5 gap-2">
+        <form action={addItemWithId} className="flex grow">
+          <button
+            type="submit"
+            className="text-lg bg-darkGreen rounded-lg text-white font-bold grow  py-3 px-5"
+          >
+            Add to cart
+          </button>
+        </form>
+
+        <button className="text-lg rounded-lg text-white font-bold  py-2 px-5 border border-darkGreen">
+          <HeartIcon className="h-6 w-6 text-black" />
+        </button>
+      </div>
+
+      <p className="mt-5">{product.description}</p>
+      <div className="mt-10">
+        <h2 className="text-3xl font-medium">Size Guide</h2>
+
+        <p className="mt-5">
+          <span className="font-medium">Height: </span>
+          {product.sizes.height}
+        </p>
+        <p className="mt-5">
+          <span className="font-medium">Width: </span>
+          {product.sizes.width}
+        </p>
+        <p className="mt-5">
+          <span className="font-medium">Weight: </span>
+          {product.sizes.weight}
+        </p>
+        <p className="mt-5">
+          <span className="font-medium">Depth: </span>
+          {product.sizes.depth}
+        </p>
+        <p className="mt-5">
+          <span className="font-medium">Volume: </span>
+          {product.sizes.volume}
+        </p>
+        <p className="mt-5">
+          <span className="font-medium">Max Laptop Size: </span>
+          {product.sizes.maxLaptopSize}
+        </p>
+        <p className="mt-5">
+          <span className="font-medium">Carry on: </span>
+          {product.sizes.carryOnStandards}
+        </p>
+      </div>
       <div className="mt-16">
         <h2 className="text-3xl font-medium text-center">You may also like</h2>
         <HorizontalProductScroll />
