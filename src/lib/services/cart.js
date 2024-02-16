@@ -1,5 +1,3 @@
-'use server';
-
 import { CartItems, Categories, Products, Users } from '@/server/models';
 
 export const getCurrentUserCart = async (id) => {

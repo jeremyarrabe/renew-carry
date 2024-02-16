@@ -2,6 +2,7 @@
 import { currencyFormat } from '@/helpers/currencyFormat';
 import { useLocalStorage } from '@/hooks/useLocalStorage';
 import { useToggle } from '@/hooks/useToggle';
+import { getUserCart } from '@/lib/services/users';
 import {
   Bars3Icon,
   MagnifyingGlassIcon,
@@ -11,13 +12,17 @@ import {
 import { AnimatePresence, motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
-import { authUser } from '@/lib/auth';
+import { useState } from 'react';
 
 const Navigation = () => {
   const { visible, toggle } = useToggle();
   const [data, setData] = useState([]);
+  // const getCart = async () => {
+  //   const cart = await getUserCart();
+  //   return setData(cart);
+  // };
 
+  // console.log(getCart());
   return (
     <>
       <div className="flex min-w-full text-black p-4 justify-between  items-center shadow-sm bg-whiteGray  md:px-32  ">

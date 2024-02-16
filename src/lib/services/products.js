@@ -1,6 +1,5 @@
-'use server';
-
 import { Categories, Products } from '@/server/models';
+import { unstable_noStore } from 'next/cache';
 
 export const getNewArrivals = async () => {
   try {
@@ -22,6 +21,8 @@ export const getNewArrivals = async () => {
   }
 };
 
+export const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
 export const getProducts = async (filterId) => {
   try {
     if (filterId) {
@@ -31,25 +32,24 @@ export const getProducts = async (filterId) => {
             model: Categories,
             as: 'categoryDetails',
             attributes: { exclude: [, 'createdAt', 'updatedAt'] },
+            where: { id: filterId },
           },
         ],
-
-        where: {
-          categoryId: filterId,
-        },
       });
       return filteredProducts;
+    } else {
+      const productList = await Products.findAll({
+        include: [
+          {
+            model: Categories,
+            as: 'categoryDetails',
+            attributes: { exclude: [, 'createdAt', 'updatedAt'] },
+          },
+        ],
+      });
+
+      return productList;
     }
-    const productList = await Products.findAll({
-      include: [
-        {
-          model: Categories,
-          as: 'categoryDetails',
-          attributes: { exclude: [, 'createdAt', 'updatedAt'] },
-        },
-      ],
-    });
-    return productList;
   } catch (error) {
     console.log(error);
   }

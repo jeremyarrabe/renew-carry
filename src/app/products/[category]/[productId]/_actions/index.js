@@ -3,11 +3,11 @@ import { CartItems } from '@/server/models';
 import { revalidatePath } from 'next/cache';
 
 export const addItem = async (userId, productId) => {
+  console.log(userId, productId);
   try {
     const item = await CartItems.findOne({ where: { productId, userId } });
 
     if (!item) {
-      console.log(1);
       await CartItems.create({
         quantity: 1,
         userId,
@@ -15,8 +15,8 @@ export const addItem = async (userId, productId) => {
       });
     }
 
-    if (item && item < 9) {
-      CartItems.update(
+    if (item && item.quantity < 9) {
+      await CartItems.update(
         { quantity: item.quantity + 1 },
         {
           where: {
@@ -27,7 +27,7 @@ export const addItem = async (userId, productId) => {
       );
     }
 
-    revalidatePath('/shopping-cart');
+    revalidatePath('/products');
   } catch (error) {
     console.log(error);
   }

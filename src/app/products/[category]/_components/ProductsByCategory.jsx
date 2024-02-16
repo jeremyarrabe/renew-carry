@@ -1,9 +1,19 @@
 import ViewProducts from '@/components/ViewProducts';
 import { getProducts } from '@/lib/services/products';
-import { Suspense } from 'react';
+import React, { Suspense } from 'react';
 
-const ProductsPage = async () => {
-  const productList = await getProducts();
+const ProductsByCategory = async ({ category }) => {
+  const dictionary = {
+    backpack: 1,
+    handbag: 2,
+    shoulderbag: 3,
+    totebag: 4,
+    slingbag: 5,
+    laptopbag: 6,
+    hikingbag: 7,
+  };
+
+  const productList = await getProducts(dictionary[category]);
 
   return (
     <>
@@ -28,4 +38,4 @@ const ProductsLoading = () => {
   );
 };
 
-export default ProductsPage;
+export default ProductsByCategory;

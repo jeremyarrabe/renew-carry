@@ -6,14 +6,18 @@ import React from 'react';
 
 const Product = ({ id, image, title, category, price }) => {
   return (
-    <Link href={`/product/${id}`} className="flex flex-col  min-h-52 w-1/2 p-1" key={id}>
+    <Link
+      href={`/products/${category}/${id}`}
+      className="flex flex-col  min-h-52 w-1/2 p-1"
+      key={id}
+    >
       <div className="relative h-[175px] w-full sm:h-[300px]">
         <Image
           src={image}
           alt=""
           fill
-          className="object-cover rounded-lg  transition-all blur"
-          onLoad={(img) => img.target.classList.remove('blur')}
+          className="object-cover rounded-lg  "
+          // onLoad={(img) => img.target.classList.remove('blur transition-all blur')}
           sizes="100%"
           priority
         />

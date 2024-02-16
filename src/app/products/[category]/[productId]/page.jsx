@@ -11,7 +11,6 @@ import Button from '@/components/ui/Button';
 const ProductId = async ({ params }) => {
   const { productId } = params;
   const userId = authUser;
-
   const product = await Products.findOne({
     where: {
       id: productId,
@@ -27,7 +26,6 @@ const ProductId = async ({ params }) => {
   });
 
   const addItemWithId = addItem.bind(null, userId, product.id);
-
   return (
     <div className="flex flex-col px-4">
       <div className="flex flex-col mt-10">
