@@ -14,11 +14,11 @@ const ProductsByCategory = async ({ category }) => {
   };
 
   const productList = await getProducts(dictionary[category]);
-
+  const parsedList = JSON.parse(JSON.stringify(productList));
   return (
     <>
       <Suspense key={1} fallback={<ProductsLoading />}>
-        <ViewProducts products={productList} />
+        <ViewProducts products={parsedList} />
       </Suspense>
     </>
   );

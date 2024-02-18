@@ -20,6 +20,16 @@ const loraRegular = Lora({
   adjustFontFallback: false,
 });
 
+export const metadata = {
+  title: {
+    template: '%s | RenewCarry',
+    default: 'RenewCarry',
+  },
+  description:
+    "Elevate your style sustainably with RenewCarry's modern bag collection. Crafted with care, each piece combines timeless style with eco-friendly materials. Discover the beauty of sustainability. Shop now!",
+  // metadataBase: new URL('https://next-learn-dashboard.vercel.sh'),
+};
+
 export default async function RootLayout({ children }) {
   return (
     <html lang="en">

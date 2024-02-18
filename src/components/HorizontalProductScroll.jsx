@@ -5,6 +5,7 @@ import Link from 'next/link';
 
 const HorizontalProductScroll = async () => {
   const newArrival = await getNewArrivals();
+
   return (
     <div className="h-80 overflow-auto no-scrollbar">
       <div className="flex pt-6 gap-4">
@@ -12,7 +13,7 @@ const HorizontalProductScroll = async () => {
           newArrival.map((product) => (
             <Link
               key={product.id}
-              href={`/product/${product.id}`}
+              href={`/products/${product.categoryDetails.category}/${product.id}`}
               className="flex h-28 flex-col   "
             >
               <div className={' relative w-[230px] min-h-[230px]'}>

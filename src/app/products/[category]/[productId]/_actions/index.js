@@ -3,7 +3,6 @@ import { CartItems } from '@/server/models';
 import { revalidatePath } from 'next/cache';
 
 export const addItem = async (userId, productId) => {
-  console.log(userId, productId);
   try {
     const item = await CartItems.findOne({ where: { productId, userId } });
 
@@ -27,7 +26,7 @@ export const addItem = async (userId, productId) => {
       );
     }
 
-    revalidatePath('/products');
+    revalidatePath('/shopping-cart');
   } catch (error) {
     console.log(error);
   }

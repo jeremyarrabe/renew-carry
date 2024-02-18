@@ -1,6 +1,6 @@
-const { sequelize } = require('@/server/sequelize');
-const DataTypes = require('sequelize');
-const { CARTITEMS_TABLE } = require('../helpers/constants');
+import { sequelize } from '@/server/sequelize';
+import { DataTypes } from 'sequelize';
+import { CARTITEMS_TABLE } from '../helpers/constants';
 
 const CartItems = sequelize.define(
   CARTITEMS_TABLE,
@@ -38,4 +38,4 @@ const CartItems = sequelize.define(
   },
 );
 
-module.exports = CartItems;
+export default CartItems;

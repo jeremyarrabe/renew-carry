@@ -2,11 +2,34 @@ import HorizontalProductScroll from '@/components/HorizontalProductScroll';
 import { currencyFormat } from '@/helpers/currencyFormat';
 import { addItem } from './_actions';
 import { Categories, Products } from '@/server/models';
-
 import { HeartIcon } from '@heroicons/react/24/outline';
 import Image from 'next/image';
 import { authUser } from '@/lib/auth';
 import Button from '@/components/ui/Button';
+
+export const generateMetadata = async ({ params }) => {
+  const { productId } = params;
+
+  // const post = await getData(params.slug);
+  const product = await Products.findOne({
+    where: {
+      id: productId,
+    },
+    include: [
+      {
+        model: Categories,
+        as: 'categoryDetails',
+        attributes: { exclude: [, 'createdAt', 'updatedAt'] },
+      },
+    ],
+    attributes: { exclude: 'categoryId' },
+  });
+
+  return {
+    title: product.title,
+    description: product.body,
+  };
+};
 
 const ProductId = async ({ params }) => {
   const { productId } = params;

@@ -1,6 +1,6 @@
-const { sequelize } = require('@/server/sequelize');
-const DataTypes = require('sequelize');
-const { PRODUCTS_TABLE } = require('../helpers/constants');
+import { sequelize } from '@/server/sequelize';
+import { DataTypes } from 'sequelize';
+import { PRODUCTS_TABLE } from '../helpers/constants';
 
 const Products = sequelize.define(
   PRODUCTS_TABLE,
@@ -43,4 +43,4 @@ const Products = sequelize.define(
   { timestamps: true },
 );
 
-module.exports = Products;
+export default Products;

@@ -1,23 +1,28 @@
 import { CartItems, Categories, Products, Users } from '@/server/models';
 
 export const getCurrentUserCart = async (id) => {
-  const cart = CartItems.findAll({
-    where: {
-      userId: id,
-    },
-    order: [['id', 'DESC']],
-    include: [
-      {
-        model: Products,
-        include: [
-          {
-            model: Categories,
-            as: 'categoryDetails',
-            attributes: { exclude: [, 'createdAt', 'updatedAt'] },
-          },
-        ],
+  try {
+    const cart = await CartItems.findAll({
+      where: {
+        userId: id,
       },
-    ],
-  });
-  return cart;
+      order: [['id', 'DESC']],
+      include: [
+        {
+          model: Products,
+          include: [
+            {
+              model: Categories,
+              as: 'categoryDetails',
+              attributes: { exclude: [, 'createdAt', 'updatedAt'] },
+            },
+          ],
+        },
+      ],
+    });
+    // console.log(JSON.parse(JSON.stringify(cart)));
+    return JSON.parse(JSON.stringify(cart));
+  } catch (error) {
+    console.log(error);
+  }
 };

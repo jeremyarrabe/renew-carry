@@ -1,5 +1,4 @@
 import { Categories, Products } from '@/server/models';
-import { unstable_noStore } from 'next/cache';
 
 export const getNewArrivals = async () => {
   try {
@@ -10,12 +9,12 @@ export const getNewArrivals = async () => {
         {
           model: Categories,
           as: 'categoryDetails',
-          attributes: { exclude: [, 'createdAt', 'updatedAt'] },
         },
       ],
       attributes: { exclude: 'categoryId' },
     });
-    return products;
+
+    return JSON.parse(JSON.stringify(products));
   } catch (error) {
     console.log(error);
   }
@@ -36,7 +35,7 @@ export const getProducts = async (filterId) => {
           },
         ],
       });
-      return filteredProducts;
+      return JSON.parse(JSON.stringify(filteredProducts));
     } else {
       const productList = await Products.findAll({
         include: [
@@ -48,7 +47,7 @@ export const getProducts = async (filterId) => {
         ],
       });
 
-      return productList;
+      return JSON.parse(JSON.stringify(productList));
     }
   } catch (error) {
     console.log(error);

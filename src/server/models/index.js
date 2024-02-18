@@ -1,7 +1,7 @@
-const Users = require('./users');
-const CartItems = require('./cartItems');
-const Products = require('./products');
-const Categories = require('./categories');
+import Users from './users';
+import CartItems from './cartItems';
+import Categories from './categories';
+import Products from './products';
 
 Users.hasMany(CartItems, { as: 'userCartItems' });
 CartItems.belongsTo(Users);
@@ -14,9 +14,4 @@ CartItems.belongsTo(Products);
 Products.belongsTo(Categories, { foreignKey: 'categoryId', as: 'categoryDetails' });
 Categories.hasMany(Products, { foreignKey: 'categoryId', as: 'productsDetails' });
 
-module.exports = {
-  Users,
-  CartItems,
-  Products,
-  Categories,
-};
+export { Users, CartItems, Categories, Products };

@@ -1,6 +1,6 @@
-const { sequelize } = require('@/server/sequelize');
-const DataTypes = require('sequelize');
-const { USERS_TABLE } = require('../helpers/constants');
+import { sequelize } from '@/server/sequelize';
+import { DataTypes } from 'sequelize';
+import { USERS_TABLE } from '../helpers/constants';
 
 const Users = sequelize.define(
   USERS_TABLE,
@@ -35,4 +35,4 @@ const Users = sequelize.define(
   { timestamps: true },
 );
 
-module.exports = Users;
+export default Users;

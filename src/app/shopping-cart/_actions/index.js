@@ -29,6 +29,7 @@ export const updateQuantity = async (formData) => {
       userId: formData.get('userId'),
       quantity: formData.get('quantity'),
     };
+
     await CartItems.update(
       { quantity: parseInt(rawFormData.quantity) },
       {

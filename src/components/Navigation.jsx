@@ -16,13 +16,8 @@ import { useState } from 'react';
 
 const Navigation = () => {
   const { visible, toggle } = useToggle();
-  const [data, setData] = useState([]);
-  // const getCart = async () => {
-  //   const cart = await getUserCart();
-  //   return setData(cart);
-  // };
+  const [data, setData] = useState();
 
-  // console.log(getCart());
   return (
     <>
       <div className="flex min-w-full text-black p-4 justify-between  items-center shadow-sm bg-whiteGray  md:px-32  ">
@@ -39,7 +34,7 @@ const Navigation = () => {
             className="p-1  rounded-full hover:bg-slate-200"
           >
             <ShoppingBagIcon className="h-6 w-6   cursor-pointer" />
-            {data.length > 0 && (
+            {[1].length > 0 && (
               <div className="h-3 w-3 bg-darkGreen absolute rounded-full right-[65px] top-[23px]" />
             )}
           </Link>

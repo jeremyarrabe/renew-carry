@@ -1,6 +1,6 @@
-const { sequelize } = require('@/server/sequelize');
-const DataTypes = require('sequelize');
-const { CATEGORIES_TABLE } = require('../helpers/constants');
+import { sequelize } from '@/server/sequelize';
+import { DataTypes } from 'sequelize';
+import { CATEGORIES_TABLE } from '../helpers/constants';
 
 const Categories = sequelize.define(
   CATEGORIES_TABLE,
@@ -19,4 +19,4 @@ const Categories = sequelize.define(
   { timestamps: true },
 );
 
-module.exports = Categories;
+export default Categories;
