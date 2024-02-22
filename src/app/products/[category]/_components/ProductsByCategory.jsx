@@ -17,24 +17,8 @@ const ProductsByCategory = async ({ category }) => {
   const parsedList = JSON.parse(JSON.stringify(productList));
   return (
     <>
-      <Suspense key={1} fallback={<ProductsLoading />}>
-        <ViewProducts products={parsedList} />
-      </Suspense>
+      <ViewProducts products={parsedList} />
     </>
-  );
-};
-
-const ProductsLoading = () => {
-  return (
-    <div className="flex flex-wrap  justify-around pb-5 px-4 mt-3 ">
-      {[...Array(4).keys()].map((i) => (
-        <div
-          key={i}
-          className="flex flex-col  min-h-52 w-[48%]  bg-gray-300 animate-pulse mt-2 rounded-lg"
-          style={{ animationDelay: `${i * 0.05}s`, animationDuration: '1s' }}
-        ></div>
-      ))}
-    </div>
   );
 };
 

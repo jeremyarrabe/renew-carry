@@ -1,14 +1,11 @@
-import ViewProducts from '@/components/ViewProducts';
-import { getProducts } from '@/lib/services/products';
 import { Suspense } from 'react';
+import ViewAllProducts from './_components/ViewAllProducts';
 
 const ProductsPage = async () => {
-  const productList = await getProducts();
-
   return (
     <>
-      <Suspense key={1} fallback={<ProductsLoading />}>
-        <ViewProducts products={productList} />
+      <Suspense fallback={<ProductsLoading />}>
+        <ViewAllProducts />
       </Suspense>
     </>
   );
