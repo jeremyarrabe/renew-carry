@@ -1,12 +1,9 @@
-import { getCategories } from '@/lib/services/categories';
-import CategoryNavigation from './_components/CategoryNavigation';
-
-export default async function ProductsLayout({ children }) {
-  const categories = await getCategories();
+import NavCategoryComponent from '@/components/CategoryMobileView';
+export default function ProductsLayout({ children }) {
   return (
-    <>
-      <CategoryNavigation categories={categories} />
+    <section>
+      <NavCategoryComponent />
       {children}
-    </>
+    </section>
   );
 }

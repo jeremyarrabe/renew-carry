@@ -1,8 +1,11 @@
-import React, { Suspense } from 'react';
+import { Suspense } from 'react';
+
 import ProductsByCategory from './_components/ProductsByCategory';
+import NavCategoryComponent from '@/components/CategoryMobileView';
 
 const CategoryPage = async ({ params }) => {
   const { category } = params;
+
   return (
     <Suspense fallback={<ProductsLoading />}>
       <ProductsByCategory category={category} />

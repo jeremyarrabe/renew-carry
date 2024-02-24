@@ -23,7 +23,6 @@ const IndividualProduct = async ({ productId }) => {
     ],
     attributes: { exclude: 'categoryId' },
   });
-
   const addItemWithId = addItem.bind(null, userId, product.id);
   return (
     <div className="flex flex-col px-4">
@@ -35,7 +34,6 @@ const IndividualProduct = async ({ productId }) => {
       <div className=" relative w-full min-h-[300px] mt-4">
         <Image src={product.image} alt="" fill className="object-cover rounded-lg" priority />
       </div>
-
       <div className="flex justify-between mt-5 gap-2">
         <form action={addItemWithId} className="flex grow">
           <Button
@@ -45,16 +43,13 @@ const IndividualProduct = async ({ productId }) => {
             Add to cart
           </Button>
         </form>
-
         <button className="text-lg rounded-lg text-white font-bold  py-2 px-5 border border-darkGreen">
           <HeartIcon className="h-6 w-6 text-black" />
         </button>
       </div>
-
       <p className="mt-5">{product.description}</p>
       <div className="mt-10">
         <h2 className="text-3xl font-medium">Size Guide</h2>
-
         <p className="mt-5">
           <span className="font-medium">Height: </span>
           {product.sizes.height}

@@ -1,16 +1,3 @@
-import { Suspense } from 'react';
-import ViewAllProducts from './_components/ViewAllProducts';
-
-import NavCategoryComponent from '@/components/CategoryMobileView';
-
-const ProductsPage = () => {
-  return (
-    <>
-      <ViewAllProducts />
-    </>
-  );
-};
-
 const ProductsLoading = () => {
   return (
     <div className="flex flex-wrap  justify-around pb-5 px-4 mt-3 ">
@@ -25,4 +12,4 @@ const ProductsLoading = () => {
   );
 };
 
-export default ProductsPage;
+export default ProductsLoading;
