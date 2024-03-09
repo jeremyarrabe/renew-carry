@@ -1,5 +1,5 @@
 'use client';
-import { HeartIcon } from '@heroicons/react/24/outline';
+import { HeartIcon, TrashIcon } from '@heroicons/react/24/outline';
 import React from 'react';
 import DeleteForm from './DeleteForm';
 import Link from 'next/link';
@@ -7,6 +7,7 @@ import Image from 'next/image';
 import { useOptimistic } from 'react';
 import { deleteItem, updateQuantity } from '../_actions';
 import { currencyFormat } from '@/helpers/currencyFormat';
+import Button from '@/components/ui/Button';
 
 const CartItems = ({ cart }) => {
   const [optimisticCart, addOptimisticCart] = useOptimistic(cart, (state, data) => {
@@ -86,7 +87,14 @@ const CartItems = ({ cart }) => {
                   <button>
                     <HeartIcon className="h-6 w-6" />
                   </button>
-                  <DeleteForm userId={item.userId} productId={item.productId} />
+                  {/* <DeleteForm userId={item.userId} productId={item.productId} /> */}
+                  <form action={deleteItem}>
+                    <input type="hidden" name="userId" value={item.userId} />
+                    <input type="hidden" name="productId" value={item.productId} />
+                    <Button type="submit">
+                      <TrashIcon className="h-6 w-6 " />
+                    </Button>
+                  </form>
                 </div>
               </div>
             </div>

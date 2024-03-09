@@ -9,6 +9,7 @@ export const deleteItem = async (formData) => {
       productId: formData.get('productId'),
       userId: formData.get('userId'),
     };
+
     await CartItems.destroy({
       where: {
         userId: parseInt(rawFormData.userId),

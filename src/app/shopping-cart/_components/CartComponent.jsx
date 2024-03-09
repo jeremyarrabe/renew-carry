@@ -34,7 +34,7 @@ const CartComponent = async () => {
           <p>Total</p>
           <p>{totalPrice !== 0 ? currencyFormat(totalPrice + 10) : currencyFormat(0)}</p>
         </div>
-        <button className="bg-transparentpy-4 mt-4 text-black border py-4 border-darkGreen rounded-lg">
+        <button className="bg-transparent py-4 mt-4 text-black border py-4 border-darkGreen rounded-lg">
           Go to Checkout
         </button>
       </div> */}
