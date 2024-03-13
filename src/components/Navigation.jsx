@@ -20,23 +20,29 @@ const Navigation = () => {
 
   return (
     <>
-      <div className="flex min-w-full text-black p-4 justify-between  items-center shadow-sm bg-whiteGray  md:px-32  ">
-        <div className="flex items-center text-sm">
+      <div className="flex min-w-full text-black p-4 justify-between  items-center shadow-sm bg-whiteGray sm:px-14 lg:px-[300px] xl:px-[350px] ">
+        <div className="flex items-center ">
           {/* <AtSymbolIcon className="h-6 w-6  " /> */}
           <Link className="text-2xl font-bold font-lora-cyrillic" href={'/'}>
             RenewCarry
           </Link>
         </div>
-        <div className="flex gap-4 ">
+        <div className="flex gap-10 text-xl">
+          <Link href={'/shopping-cart'} className="p-1  rounded-full hover:bg-slate-200">
+            About
+          </Link>
+          <Link href={'/shopping-cart'} className="p-1  rounded-full hover:bg-slate-200">
+            Shop All
+          </Link>
           <Link
             href={'/shopping-cart'}
             //  after:content-['${cart?.length}'] after:absolute after:top-[27px] after:right-[77px] after:text-[11px]
             className="p-1  rounded-full hover:bg-slate-200"
           >
             <ShoppingBagIcon className="h-6 w-6   cursor-pointer" />
-            {[1].length > 0 && (
+            {/* {[1].length > 0 && (
               <div className="h-3 w-3 bg-darkGreen absolute rounded-full right-[65px] top-[23px]" />
-            )}
+            )} */}
           </Link>
           {/* {<AddedToCart />} */}
 

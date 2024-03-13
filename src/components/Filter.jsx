@@ -1,7 +1,6 @@
 'use client';
 import { useToggle } from '@/hooks/useToggle';
 import { FunnelIcon, XMarkIcon } from '@heroicons/react/24/outline';
-import Button from './ui/Button';
 
 const Filter = () => {
   const { toggle, visible } = useToggle();
