@@ -12,42 +12,78 @@ import {
 import { AnimatePresence, motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const Navigation = () => {
   const { visible, toggle } = useToggle();
   const [data, setData] = useState();
 
+  const test = () => {};
+
+  console.log(visible);
+
+  useEffect(() => {
+    if (visible) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+  }, [visible]);
+
   return (
     <>
-      <div className="flex min-w-full text-black p-4 justify-between  items-center shadow-sm bg-whiteGray sm:px-14 lg:px-[300px] xl:px-[350px] ">
+      <div className="flex min-w-full text-maroon px-10 py-5  justify-between  items-center shadow-sm bg-whiteGray sm:px-14 lg:px-[300px] xl:px-[350px] ">
         <div className="flex items-center ">
           {/* <AtSymbolIcon className="h-6 w-6  " /> */}
-          <Link className="text-2xl font-bold font-lora-cyrillic" href={'/'}>
+          <Link className="text-3xl font-bold font-lora-cyrillic" href={'/'}>
             RenewCarry
           </Link>
         </div>
-        <div className="flex gap-10 text-xl">
-          <Link href={'/shopping-cart'} className="p-1  rounded-full hover:bg-slate-200">
+        <div className="flex gap-2 text-xl">
+          <Link href={'/shopping-cart'} className="p-1  hover:border-b-2 hidden md:block">
             About
-          </Link>
-          <Link href={'/shopping-cart'} className="p-1  rounded-full hover:bg-slate-200">
-            Shop All
           </Link>
           <Link
             href={'/shopping-cart'}
-            //  after:content-['${cart?.length}'] after:absolute after:top-[27px] after:right-[77px] after:text-[11px]
-            className="p-1  rounded-full hover:bg-slate-200"
+            className="p-1  rounded-full hover:bg-slate-200 hidden md:block"
           >
-            <ShoppingBagIcon className="h-6 w-6   cursor-pointer" />
-            {/* {[1].length > 0 && (
-              <div className="h-3 w-3 bg-darkGreen absolute rounded-full right-[65px] top-[23px]" />
-            )} */}
+            Shop All
           </Link>
+          {/* <Link href={'/shopping-cart'} className="p-1  rounded-full hover:bg-slate-200">
+            <ShoppingBagIcon className="h-6 w-6   cursor-pointer" />
+          </Link> */}
           {/* {<AddedToCart />} */}
 
-          <div className="p-1  rounded-full hover:bg-slate-200 md:hidden" onClick={() => toggle()}>
-            <Bars3Icon className="h-6 w-6   cursor-pointer" />
+          <div
+            className="p-1  rounded-full md:block cursor-pointer stroke-[5.5px] stroke-maroon"
+            onClick={() => toggle()}
+          >
+            {/* <Bars3Icon className="h-9 w-9 cursor-pointer stroke-1" /> */}
+            <svg
+              width="50"
+              height="50"
+              viewBox="0 0 100 100"
+              xmlns="http://www.w3.org/2000/svg"
+              preserveAspectRatio="xMidyMid meet"
+              shapeRendering="crispEdges"
+            >
+              <g id="horizontal-bar">
+                <path
+                  id="top"
+                  d="M22 76L77.1543 20.8457"
+                  className={`transition-all duration-500 ease-linear origin-center ${
+                    visible ? 'scale-95' : 'rotate-[225deg] -translate-y-2'
+                  }`}
+                />
+                <path
+                  id="bottom"
+                  d="M22 21L77.1543 76.1543"
+                  className={`transition-all duration-500  ease-linear origin-center ${
+                    visible ? 'scale-95' : '-rotate-[225deg] translate-y-2  -translate-x-[3px]'
+                  }`}
+                />
+              </g>
+            </svg>
           </div>
         </div>
       </div>
@@ -57,33 +93,24 @@ const Navigation = () => {
         {visible ? (
           <>
             <motion.div
-              className={`fixed top-0 min-h-screen min-w-full z-20 bg-transparent`}
+              className={`fixed top-[98px] min-h-screen w-full z-20 bg-transparent`}
               initial={{
-                translateX: '100px',
+                translateY: '-100px',
                 opacity: 0,
               }}
-              animate={{ translateX: '0px', opacity: 1 }}
-              exit={{ translateX: '100px', opacity: 0 }}
+              animate={{ translateY: '0px', opacity: 1 }}
+              exit={{ translateY: '-100px', opacity: 0 }}
               transition={{ duration: 0.2 }}
               onClick={() => {
                 toggle();
               }}
             >
               <div
-                className="absolute right-0 h-screen min-w-[88%] bg-white flex flex-col py-2 px-4 border shadow-lg gap-9 "
+                className="absolute right-0 h-screen w-full bg-orange flex flex-col py-2 px-10 border shadow-lg gap-9 font-lora-cyrillic text-maroon"
                 onClick={(e) => e.stopPropagation()}
               >
-                <div className="flex justify-end">
-                  <div
-                    className="p-1  rounded-full hover:bg-slate-200 "
-                    onClick={() => {
-                      toggle();
-                    }}
-                  >
-                    <XMarkIcon className="h-6 w-6  cursor-pointer" />
-                  </div>
-                </div>
-                <div className="flex gap-2 text-center font-bold ">
+                <div className="flex justify-end"></div>
+                {/* <div className="flex gap-2 text-center font-bold ">
                   <Link href="#" className="grow py-2 bg-darkGreen rounded-lg text-white">
                     Log in
                   </Link>
@@ -93,46 +120,36 @@ const Navigation = () => {
                   >
                     Sign up
                   </Link>
+                </div> */}
+                <div className=" flex flex-col gap-8 text-2xl font-medium pb-8 border-b-[1px] border-maroon">
+                  <Link
+                    href="/"
+                    className="flex justify-between items-center cursor-pointer py-1  "
+                    onClick={() => {
+                      toggle();
+                    }}
+                  >
+                    <p>Home</p>
+                  </Link>
+                  <Link
+                    href="/products"
+                    className="flex justify-between items-center cursor-pointer py-1  "
+                    onClick={() => {
+                      toggle();
+                    }}
+                  >
+                    <p>All Products</p>
+                  </Link>
+                  <Link
+                    href="#"
+                    className="flex justify-between items-center cursor-pointer py-1  "
+                    onClick={() => {
+                      toggle();
+                    }}
+                  >
+                    <p>About</p>
+                  </Link>
                 </div>
-                <form className="flex" action={''}>
-                  <input
-                    type="text"
-                    placeholder="Search"
-                    className="w-full py-3 px-2 text-base outline-black"
-                    name="search"
-                  />
-                  <button>
-                    <MagnifyingGlassIcon className="h-6 w-6 " />
-                  </button>
-                </form>
-
-                <Link
-                  href="/"
-                  className="flex justify-between items-center cursor-pointer py-1 font-medium text-2xl "
-                  onClick={() => {
-                    toggle();
-                  }}
-                >
-                  <p>Home</p>
-                </Link>
-                <Link
-                  href="/products"
-                  className="flex justify-between items-center cursor-pointer py-1 font-medium text-2xl "
-                  onClick={() => {
-                    toggle();
-                  }}
-                >
-                  <p>All Products</p>
-                </Link>
-                <Link
-                  href="#"
-                  className="flex justify-between items-center cursor-pointer py-1 font-medium text-2xl "
-                  onClick={() => {
-                    toggle();
-                  }}
-                >
-                  <p>About</p>
-                </Link>
               </div>
             </motion.div>
           </>

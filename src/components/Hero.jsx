@@ -19,7 +19,7 @@ const pagination = {
 
 const Hero = () => {
   return (
-    <div className="flex mt-9 flex-col px-4 md:h-[50vh] md:justify-center ">
+    <div className="flex mt-9 flex-col px-4 md:h-[70vh] md:justify-center ">
       <div className=" text-center text-5xl font-lora-cyrillic font-medium text-darkGreen md:text-7xl">
         <div className="flex flex-col md:flex-row md:justify-center">
           <h1>Sustainable.</h1>
@@ -27,7 +27,7 @@ const Hero = () => {
         </div>
         <h1>Modern.</h1>
       </div>
-      <div className="text-center mt-10 text-lg  md:mt-20 md:text-2xl">
+      <div className="text-center mt-10 text-lg  md:mt-20 md:text-2xl  lg:px-[300px] xl:px-[350px]">
         <p>
           Discover the beauty of sustainability in our modern bag collection. Each piece is crafted
           with care, combining timeless style with eco-friendly materials.

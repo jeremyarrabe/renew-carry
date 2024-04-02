@@ -17,6 +17,8 @@ module.exports = {
         yellowishGray: '#FDFAF2',
         whiteGray: '#FEFDFB',
         lightOrange: '#F1BF98',
+        maroon: '#3E012F',
+        orange: '#FCEDD5',
       },
     },
   },

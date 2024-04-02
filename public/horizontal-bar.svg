@@ -1,0 +1,8 @@
+<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="100" height="100" fill="#1E1E1E"/>
+<g id="horizontal-bar">
+<path id="bottom" d="M22 21L77.1543 76.1543" stroke="black" stroke-linecap="round"/>
+<path id="middle" d="M11 49H89" stroke="black" stroke-linecap="round"/>
+<path id="top" d="M22 76L77.1543 20.8457" stroke="black" stroke-linecap="round"/>
+</g>
+</svg>
