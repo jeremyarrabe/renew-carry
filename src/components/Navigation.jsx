@@ -26,7 +26,7 @@ const Navigation = () => {
     if (visible) {
       document.body.style.overflow = 'hidden';
     } else {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = 'scroll';
     }
   }, [visible]);
 
