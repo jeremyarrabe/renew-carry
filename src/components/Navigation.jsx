@@ -16,25 +16,19 @@ import { useEffect, useState } from 'react';
 
 const Navigation = () => {
   const { visible, toggle } = useToggle();
-  const [data, setData] = useState();
 
-  const test = () => {};
-
-  console.log(visible);
-
-  useEffect(() => {
-    if (visible) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'scroll';
-    }
-  }, [visible]);
+  // useEffect(() => {
+  //   if (visible) {
+  //     document.body.style.overflow = 'hidden';
+  //   } else {
+  //     document.body.style.overflow = 'scroll';
+  //   }
+  // }, [visible]);
 
   return (
-    <>
-      <div className="flex min-w-full text-maroon px-10 py-5  justify-between  items-center shadow-sm bg-whiteGray sm:px-14 lg:px-[300px] xl:px-[350px] ">
+    <nav className="flex flex-col shadow-sm  sm:px-14 lg:px-[300px] xl:px-[350px]  ">
+      <div className="flex min-w-full text-maroon  justify-between  items-center bg-whiteGray px-10 py-5  ">
         <div className="flex items-center ">
-          {/* <AtSymbolIcon className="h-6 w-6  " /> */}
           <Link className="text-3xl font-bold font-lora-cyrillic" href={'/'}>
             RenewCarry
           </Link>
@@ -49,16 +43,10 @@ const Navigation = () => {
           >
             Shop All
           </Link>
-          {/* <Link href={'/shopping-cart'} className="p-1  rounded-full hover:bg-slate-200">
-            <ShoppingBagIcon className="h-6 w-6   cursor-pointer" />
-          </Link> */}
-          {/* {<AddedToCart />} */}
-
           <div
-            className="p-1  rounded-full md:block cursor-pointer stroke-[5.5px] stroke-maroon"
+            className="p-1  rounded-full cursor-pointer stroke-[5.5px] stroke-maroon md:hidden"
             onClick={() => toggle()}
           >
-            {/* <Bars3Icon className="h-9 w-9 cursor-pointer stroke-1" /> */}
             <svg
               width="50"
               height="50"
@@ -71,14 +59,14 @@ const Navigation = () => {
                 <path
                   id="top"
                   d="M22 76L77.1543 20.8457"
-                  className={`transition-all duration-500 ease-linear origin-center ${
+                  className={`transition-all duration-300 ease-linear origin-center ${
                     visible ? 'scale-95' : 'rotate-[225deg] -translate-y-2'
                   }`}
                 />
                 <path
                   id="bottom"
                   d="M22 21L77.1543 76.1543"
-                  className={`transition-all duration-500  ease-linear origin-center ${
+                  className={`transition-all duration-300  ease-linear origin-center ${
                     visible ? 'scale-95' : '-rotate-[225deg] translate-y-2  -translate-x-[3px]'
                   }`}
                 />
@@ -87,9 +75,22 @@ const Navigation = () => {
           </div>
         </div>
       </div>
+      <AnimatePresence>
+        {visible && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: '50vh', opacity: 1 }}
+            transition={{ duration: 0.3 }}
+            exit={{ height: 0, opacity: 0 }}
+            className="bg-red-500"
+          >
+            This is the sub menu
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Mobile Nav */}
-      <AnimatePresence>
+      {/* <AnimatePresence>
         {visible ? (
           <>
             <motion.div
@@ -110,17 +111,6 @@ const Navigation = () => {
                 onClick={(e) => e.stopPropagation()}
               >
                 <div className="flex justify-end"></div>
-                {/* <div className="flex gap-2 text-center font-bold ">
-                  <Link href="#" className="grow py-2 bg-darkGreen rounded-lg text-white">
-                    Log in
-                  </Link>
-                  <Link
-                    href="#"
-                    className="grow py-2 text-black  rounded-lg border border-darkGreen"
-                  >
-                    Sign up
-                  </Link>
-                </div> */}
                 <div className=" flex flex-col gap-8 text-2xl font-medium pb-8 border-b-[1px] border-maroon">
                   <Link
                     href="/"
@@ -154,8 +144,8 @@ const Navigation = () => {
             </motion.div>
           </>
         ) : null}
-      </AnimatePresence>
-    </>
+      </AnimatePresence> */}
+    </nav>
   );
 };
 
