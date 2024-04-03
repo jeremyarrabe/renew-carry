@@ -26,8 +26,8 @@ const Navigation = () => {
   // }, [visible]);
 
   return (
-    <nav className="flex flex-col shadow-sm  sm:px-14 lg:px-[300px] xl:px-[350px]  ">
-      <div className="flex min-w-full text-maroon  justify-between  items-center bg-whiteGray px-10 py-5  ">
+    <nav className="flex flex-col shadow-sm  sm:px-14 lg:px-[300px] xl:px-[350px] text-maroon">
+      <div className="flex min-w-full justify-between  items-center bg-whiteGray px-10 py-5  ">
         <div className="flex items-center ">
           <Link className="text-3xl font-bold font-lora-cyrillic" href={'/'}>
             RenewCarry
@@ -75,16 +75,60 @@ const Navigation = () => {
           </div>
         </div>
       </div>
-      <AnimatePresence>
+      <AnimatePresence mode="wait">
         {visible && (
           <motion.div
             initial={{ height: 0, opacity: 0 }}
-            animate={{ height: '50vh', opacity: 1 }}
-            transition={{ duration: 0.3 }}
-            exit={{ height: 0, opacity: 0 }}
-            className="bg-red-500"
+            animate={{
+              height: 'auto',
+              opacity: 1,
+              transition: {
+                height: {
+                  duration: 0.3,
+                },
+                opacity: {
+                  duration: 0.3,
+                  delay: 0.15,
+                },
+              },
+            }}
+            exit={{
+              height: 0,
+              opacity: 0,
+              transition: {
+                height: {
+                  duration: 0.3,
+                  delay: 0.15,
+                },
+                opacity: {
+                  duration: 0.1,
+                },
+              },
+            }}
+            className="bg-orange flex flex-col px-10  font-medium"
           >
-            This is the sub menu
+            <ul className="mt-10 text-2xl flex flex-col gap-8">
+              <li>Shop All</li>
+              <li>About</li>
+              <li>Login</li>
+              <span className="border-b-[1px] border-black border-opacity-10" />
+              <li className="text-xl pb-5">
+                <ul>
+                  <li className="opacity-80">Categories</li>
+                  <li className="mt-5">
+                    <ul className="flex flex-col gap-2">
+                      <li>Backpack</li>
+                      <li>Handbag</li>
+                      <li>Shoulder Bag</li>
+                      <li>Tote</li>
+                      <li>Hiking Bag</li>
+                      <li>Sling Bag</li>
+                      <li>Laptop Bag</li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
           </motion.div>
         )}
       </AnimatePresence>
