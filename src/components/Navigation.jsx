@@ -29,7 +29,11 @@ const Navigation = () => {
     <nav className="flex flex-col shadow-sm  sm:px-14 lg:px-[300px] xl:px-[350px] text-maroon">
       <div className="flex min-w-full justify-between  items-center bg-whiteGray px-10 py-5  ">
         <div className="flex items-center ">
-          <Link className="text-3xl font-bold font-lora-cyrillic" href={'/'}>
+          <Link
+            className="text-3xl font-bold font-lora-cyrillic"
+            href={'/'}
+            onClick={() => toggle()}
+          >
             RenewCarry
           </Link>
         </div>
@@ -115,15 +119,15 @@ const Navigation = () => {
               <li className="text-xl pb-5">
                 <ul>
                   <li className="opacity-80">Categories</li>
-                  <li className="mt-5">
+                  <li className="mt-5" onClick={() => toggle()}>
                     <ul className="flex flex-col gap-2">
-                      <li>Backpack</li>
-                      <li>Handbag</li>
-                      <li>Shoulder Bag</li>
-                      <li>Tote</li>
-                      <li>Hiking Bag</li>
-                      <li>Sling Bag</li>
-                      <li>Laptop Bag</li>
+                      <Link href={'/products/backpack'}>Backpack</Link>
+                      <Link href={'/products/handbag'}>Handbag</Link>
+                      <Link href={'/products/shoulderbag'}>Shoulder Bag</Link>
+                      <Link href={'/products/totebag'}>Tote Bag</Link>
+                      <Link href={'/products/hiking bag'}>Hiking Bag</Link>
+                      <Link href={'/products/slingbag'}>Sling Bag</Link>
+                      <Link href={'/products/laptopbag'}>Laptop Bag</Link>
                     </ul>
                   </li>
                 </ul>
