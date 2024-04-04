@@ -32,7 +32,7 @@ const Navigation = () => {
           <Link
             className="text-3xl font-bold font-lora-cyrillic"
             href={'/'}
-            onClick={() => toggle()}
+            onClick={visible ? () => toggle() : null}
           >
             RenewCarry
           </Link>
