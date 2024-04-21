@@ -1,10 +1,10 @@
 import { useState } from 'react';
 
-export const useToggle = (initial) => {
-  const [visible, setVisibility] = useState(initial || false);
+export const useToggle = () => {
+  const [visible, setVisibility] = useState();
 
-  const toggle = () => {
-    setVisibility((prev) => !prev);
+  const toggle = (initial) => {
+    setVisibility((prev) => (initial ? initial : !prev));
   };
 
   return { visible, toggle };

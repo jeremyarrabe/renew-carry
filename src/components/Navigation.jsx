@@ -17,35 +17,37 @@ import { useEffect, useState } from 'react';
 const Navigation = () => {
   const { visible, toggle } = useToggle();
 
-  // useEffect(() => {
-  //   if (visible) {
-  //     document.body.style.overflow = 'hidden';
-  //   } else {
-  //     document.body.style.overflow = 'scroll';
-  //   }
-  // }, [visible]);
-
   return (
-    <nav className="flex flex-col shadow-sm  sm:px-14 lg:px-[300px] xl:px-[350px] text-maroon">
-      <div className="flex min-w-full justify-between  items-center bg-whiteGray px-10 py-5  ">
+    <nav className="flex flex-col shadow-sm   text-maroon">
+      <div className="flex min-w-full justify-between  items-center bg-whiteGray  px-5 py-5">
         <div className="flex items-center ">
           <Link
             className="text-3xl font-bold font-lora-cyrillic"
             href={'/'}
-            onClick={visible ? () => toggle() : null}
+            onClick={() => toggle(false)}
           >
             RenewCarry
           </Link>
         </div>
-        <div className="flex gap-2 text-xl">
+        <Link href={'/shopping-cart'}>
+          <ShoppingBagIcon className="h-6 w-6  cursor-pointer text-black" />
+        </Link>
+        <div className="flex gap-2 text-xl font-medium ">
           <Link href={'/shopping-cart'} className="p-1  hover:border-b-2 hidden md:block">
-            About
+            Shop All
           </Link>
           <Link
             href={'/shopping-cart'}
             className="p-1  rounded-full hover:bg-slate-200 hidden md:block"
           >
-            Shop All
+            About
+          </Link>
+
+          <Link
+            href={'/shopping-cart'}
+            className="p-1  rounded-full hover:bg-slate-200 hidden md:block"
+          >
+            Login
           </Link>
           <div
             className="p-1  rounded-full cursor-pointer stroke-[5.5px] stroke-maroon md:hidden"
@@ -118,7 +120,7 @@ const Navigation = () => {
               <span className="border-b-[1px] border-black border-opacity-10" />
               <li className="text-xl pb-5">
                 <ul>
-                  <li className="opacity-80">Categories</li>
+                  <li className="font-bold">Categories</li>
                   <li className="mt-5" onClick={() => toggle()}>
                     <ul className="flex flex-col gap-2">
                       <Link href={'/products/backpack'}>Backpack</Link>

@@ -1,6 +1,7 @@
 import Footer from '@/components/Footer';
 import Navigation from '@/components/Navigation';
 import { Lora } from 'next/font/google';
+import { ClerkProvider } from '@clerk/nextjs';
 
 import './globals.css';
 
@@ -31,6 +32,7 @@ export const metadata = {
 
 export default async function RootLayout({ children }) {
   return (
+    // <ClerkProvider>
     <html lang="en">
       <body
         className={`${loraCyrillic.variable} ${loraRegular.variable} bg-yellowishGray font-lora-regular flex flex-col min-h-svh `}
@@ -40,5 +42,6 @@ export default async function RootLayout({ children }) {
         <Footer />
       </body>
     </html>
+    // </ClerkProvider>
   );
 }

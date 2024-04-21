@@ -11,6 +11,7 @@
     "migrate:down": "./src/server npx sequelize-cli db:migrate:undo:all"
   },
   "dependencies": {
+    "@clerk/nextjs": "^4.29.12",
     "@heroicons/react": "^2.1.1",
     "@vercel/postgres": "^0.7.2",
     "clsx": "^2.1.0",
