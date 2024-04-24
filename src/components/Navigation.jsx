@@ -1,56 +1,36 @@
 'use client';
-import { currencyFormat } from '@/helpers/currencyFormat';
-import { useLocalStorage } from '@/hooks/useLocalStorage';
 import { useToggle } from '@/hooks/useToggle';
-import { getUserCart } from '@/lib/services/users';
-import {
-  Bars3Icon,
-  MagnifyingGlassIcon,
-  ShoppingBagIcon,
-  XMarkIcon,
-} from '@heroicons/react/24/outline';
+import { ShoppingBagIcon } from '@heroicons/react/24/outline';
 import { AnimatePresence, motion } from 'framer-motion';
-import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
 
 const Navigation = () => {
   const { visible, toggle } = useToggle();
 
   return (
-    <nav className="flex flex-col shadow-sm   text-maroon">
-      <div className="flex min-w-full justify-between  items-center bg-whiteGray  px-5 py-5">
-        <div className="flex items-center ">
-          <Link
-            className="text-3xl font-bold font-lora-cyrillic"
-            href={'/'}
-            onClick={() => toggle(false)}
-          >
-            RenewCarry
+    <nav className="flex flex-col shadow-sm text-maroon   ">
+      <div className="flex min-w-full justify-between items-center bg-whiteGray px-5 py-5 md:px-20">
+        <div className="flex items-center">
+          <Link className="text-3xl font-bold font-lora-cyrillic" href={'/'}>
+            rc
           </Link>
         </div>
-        <Link href={'/shopping-cart'}>
-          <ShoppingBagIcon className="h-6 w-6  cursor-pointer text-black" />
-        </Link>
-        <div className="flex gap-2 text-xl font-medium ">
-          <Link href={'/shopping-cart'} className="p-1  hover:border-b-2 hidden md:block">
-            Shop All
-          </Link>
-          <Link
-            href={'/shopping-cart'}
-            className="p-1  rounded-full hover:bg-slate-200 hidden md:block"
-          >
+
+        <div className="flex gap-6 font-medium items-center tracking-wide text-xl">
+          <button className="bg-orange px-4 py-2 rounded-lg hidden md:block">
+            <Link href={'/products'} className="  uppercase tracking-wider text-sm font-bold">
+              Shop All
+            </Link>
+          </button>
+
+          <Link href={'/about'} className="p-1 hidden md:block">
             About
           </Link>
-
-          <Link
-            href={'/shopping-cart'}
-            className="p-1  rounded-full hover:bg-slate-200 hidden md:block"
-          >
-            Login
+          <Link href={'/shopping-cart'}>
+            <ShoppingBagIcon className="h-6 w-6 cursor-pointer text-black" />
           </Link>
           <div
-            className="p-1  rounded-full cursor-pointer stroke-[5.5px] stroke-maroon md:hidden"
+            className="rounded-full cursor-pointer stroke-[5.5px] stroke-maroon md:hidden"
             onClick={() => toggle()}
           >
             <svg
@@ -111,9 +91,9 @@ const Navigation = () => {
                 },
               },
             }}
-            className="bg-orange flex flex-col px-10  font-medium"
+            className="bg-orange flex flex-col px-10 font-medium "
           >
-            <ul className="mt-10 text-2xl flex flex-col gap-8">
+            <ul className="mt-10 text-2xl flex flex-col gap-8 pb-2">
               <li>Shop All</li>
               <li>About</li>
               <li>Login</li>
@@ -138,96 +118,7 @@ const Navigation = () => {
           </motion.div>
         )}
       </AnimatePresence>
-
-      {/* Mobile Nav */}
-      {/* <AnimatePresence>
-        {visible ? (
-          <>
-            <motion.div
-              className={`fixed top-[98px] min-h-screen w-full z-20 bg-transparent`}
-              initial={{
-                translateY: '-100px',
-                opacity: 0,
-              }}
-              animate={{ translateY: '0px', opacity: 1 }}
-              exit={{ translateY: '-100px', opacity: 0 }}
-              transition={{ duration: 0.2 }}
-              onClick={() => {
-                toggle();
-              }}
-            >
-              <div
-                className="absolute right-0 h-screen w-full bg-orange flex flex-col py-2 px-10 border shadow-lg gap-9 font-lora-cyrillic text-maroon"
-                onClick={(e) => e.stopPropagation()}
-              >
-                <div className="flex justify-end"></div>
-                <div className=" flex flex-col gap-8 text-2xl font-medium pb-8 border-b-[1px] border-maroon">
-                  <Link
-                    href="/"
-                    className="flex justify-between items-center cursor-pointer py-1  "
-                    onClick={() => {
-                      toggle();
-                    }}
-                  >
-                    <p>Home</p>
-                  </Link>
-                  <Link
-                    href="/products"
-                    className="flex justify-between items-center cursor-pointer py-1  "
-                    onClick={() => {
-                      toggle();
-                    }}
-                  >
-                    <p>All Products</p>
-                  </Link>
-                  <Link
-                    href="#"
-                    className="flex justify-between items-center cursor-pointer py-1  "
-                    onClick={() => {
-                      toggle();
-                    }}
-                  >
-                    <p>About</p>
-                  </Link>
-                </div>
-              </div>
-            </motion.div>
-          </>
-        ) : null}
-      </AnimatePresence> */}
     </nav>
-  );
-};
-
-const AddedToCart = () => {
-  const { localStorageItems } = useLocalStorage('cart');
-  const lastAddedItem = localStorageItems[localStorageItems.length - 1];
-
-  return (
-    <>
-      <div className="bg-white h-[170px] w-screen fixed top-[64px] left-0  p-4 z-50 ">
-        <div className="flex justify-between">
-          <p>✔ Added to bag</p>
-          <XMarkIcon className="h-6 w-6  cursor-pointer" />
-        </div>
-        {lastAddedItem && (
-          <div className="flex py-4 gap-5   " key={lastAddedItem.id}>
-            <div className="relative w-1/3 h-20">
-              <Image src={lastAddedItem.src} alt="" fill className="object-cover " />
-            </div>
-
-            <div className="flex flex-col text-lg">
-              <p className="font-medium font-lora-cyrillic">
-                {currencyFormat(lastAddedItem.price)}
-              </p>
-              <p className="font-medium font-lora-cyrillic">{lastAddedItem.title}</p>
-              <p>{lastAddedItem.category}</p>
-            </div>
-          </div>
-        )}
-      </div>
-      <div className="h-screen w-screen bg-black fixed top-[64px] left-0 opacity-50 "></div>
-    </>
   );
 };
 

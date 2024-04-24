@@ -9,9 +9,9 @@ export default async function Home() {
   return (
     <main className="flex flex-col ">
       <Hero />
-      <Categories />
-      <NewArrivals />
       <WhyChooseUs />
+      <NewArrivals />
+      <Categories />
     </main>
   );
 }
