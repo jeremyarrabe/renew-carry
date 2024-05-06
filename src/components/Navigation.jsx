@@ -4,11 +4,52 @@ import { ShoppingBagIcon } from '@heroicons/react/24/outline';
 import { AnimatePresence, motion } from 'framer-motion';
 import Link from 'next/link';
 
+const containerVariants = {
+  default: { height: 0, paddingTop: 0 },
+  show: {
+    height: '100svh',
+    paddingTop: 10,
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.25,
+      delay: 0.2,
+    },
+  },
+  hidden: {
+    height: 0,
+
+    paddingTop: 0,
+    transition: {
+      delay: 0.3,
+    },
+  },
+};
+
+const linkVariants = {
+  default: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: { delay: 0.3 },
+  },
+  hidden: {
+    opacity: 0,
+  },
+};
+
 const Navigation = () => {
   const { visible, toggle } = useToggle();
 
+  const showMobileNav = () => {
+    toggle();
+    if (!visible) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+  };
+
   return (
-    <nav className="flex flex-col shadow-sm text-maroon   ">
+    <nav className="flex flex-col shadow-sm text-maroon">
       <div className="flex min-w-full justify-between items-center bg-whiteGray px-5 py-5 md:px-20">
         <div className="flex items-center">
           <Link className="text-3xl font-bold font-lora-cyrillic" href={'/'}>
@@ -31,7 +72,7 @@ const Navigation = () => {
           </Link>
           <div
             className="rounded-full cursor-pointer stroke-[5.5px] stroke-maroon md:hidden"
-            onClick={() => toggle()}
+            onClick={() => showMobileNav()}
           >
             <svg
               width="50"
@@ -64,36 +105,13 @@ const Navigation = () => {
       <AnimatePresence mode="wait">
         {visible && (
           <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{
-              height: 'auto',
-              opacity: 1,
-              transition: {
-                height: {
-                  duration: 0.3,
-                },
-                opacity: {
-                  duration: 0.3,
-                  delay: 0.15,
-                },
-              },
-            }}
-            exit={{
-              height: 0,
-              opacity: 0,
-              transition: {
-                height: {
-                  duration: 0.3,
-                  delay: 0.15,
-                },
-                opacity: {
-                  duration: 0.1,
-                },
-              },
-            }}
-            className="bg-orange flex flex-col px-10 font-medium "
+            variants={containerVariants}
+            initial="default"
+            animate="show"
+            exit="hidden"
+            className="absolute w-svw h-svh bg-orange flex flex-col px-10 font-medium top-[91px] z-10"
           >
-            <ul className="mt-10 text-2xl flex flex-col gap-8 pb-2">
+            <motion.ul variants={linkVariants} className="mt-10 text-2xl flex flex-col gap-8 pb-2">
               <li>Shop All</li>
               <li>About</li>
               <li>Login</li>
@@ -114,7 +132,7 @@ const Navigation = () => {
                   </li>
                 </ul>
               </li>
-            </ul>
+            </motion.ul>
           </motion.div>
         )}
       </AnimatePresence>
