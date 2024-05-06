@@ -47,7 +47,7 @@ const Navigation = () => {
   };
 
   return (
-    <nav className="flex flex-col shadow-sm text-maroon">
+    <nav className="flex flex-col fixed w-full shadow-sm text-maroon z-[999]">
       <div className="flex min-w-full justify-between items-center bg-whiteGray px-5 py-5 md:px-20">
         <div className="flex items-center">
           <Link className="text-3xl font-bold font-lora-cyrillic" href={'/'}>
@@ -57,7 +57,7 @@ const Navigation = () => {
 
         <div className="flex gap-6 font-medium items-center tracking-wide text-xl">
           <button className="bg-orange px-4 py-2 rounded-lg hidden md:block">
-            <Link href={'/products'} className="  uppercase tracking-wider text-sm font-bold">
+            <Link href={'/products'} className="uppercase tracking-wider text-sm font-bold">
               Shop All
             </Link>
           </button>
@@ -107,17 +107,18 @@ const Navigation = () => {
             initial="default"
             animate="show"
             exit="hidden"
-            className="absolute w-svw h-svh bg-orange flex flex-col px-10 font-medium top-[91px] z-10"
+            className="absolute w-svw h-svh bg-orange flex flex-col px-10 font-medium top-[90px] "
+            onClick={() => showMobileNav()}
           >
             <motion.ul variants={linkVariants} className="mt-10 text-2xl flex flex-col gap-8 pb-2">
-              <li>Shop All</li>
-              <li>About</li>
-              <li>Login</li>
+              <Link href={'/products'}>Shop All</Link>
+              <Link href={'/about'}>About</Link>
+              <Link href={'/login'}>Login</Link>
               <span className="border-b-[1px] border-black border-opacity-10" />
               <li className="text-xl pb-5">
                 <ul>
                   <li className="font-bold">Categories</li>
-                  <li className="mt-5" onClick={() => toggle()}>
+                  <li className="mt-5">
                     <ul className="flex flex-col gap-2">
                       <Link href={'/products/backpack'}>Backpack</Link>
                       <Link href={'/products/handbag'}>Handbag</Link>

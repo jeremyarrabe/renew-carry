@@ -17,14 +17,6 @@ const Footer = () => {
           <p>Twitter</p>
         </div>
       </div>
-      {/* <div className="text-end">
-        <Link
-          href={'https://github.com/jeremyarrabe'}
-          className="mt-3 text-xs opacity-80 hover:underline"
-        >
-          @ Jeremy Arrabe
-        </Link>
-      </div> */}
     </div>
   );
 };

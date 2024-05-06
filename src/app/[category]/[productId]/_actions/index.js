@@ -25,7 +25,6 @@ export const addItem = async (userId, productId) => {
         },
       );
     }
-
     revalidatePath('/shopping-cart');
   } catch (error) {
     console.log(error);

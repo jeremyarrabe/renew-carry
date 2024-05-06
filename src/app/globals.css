@@ -24,3 +24,7 @@ a:focus {
   border: none;
   -moz-outline-style: none;
 }
+
+html {
+  scroll-behavior: smooth;
+}

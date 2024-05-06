@@ -25,7 +25,7 @@ const IndividualProduct = async ({ productId }) => {
   });
   const addItemWithId = addItem.bind(null, userId, product.id);
   return (
-    <div className="flex flex-col px-4">
+    <div className="flex flex-col px-4 mt-[100px]">
       <div className="flex flex-col mt-10">
         <h1 className="text-3xl font-medium font-lora-cyrillic">{product.title}</h1>
         <h3 className="text-lg font-medium capitalize">{product.categoryDetails.category}</h3>

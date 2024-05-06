@@ -1,1 +1,1 @@
-export const authUser = 2;
+export const authUser = 1;
