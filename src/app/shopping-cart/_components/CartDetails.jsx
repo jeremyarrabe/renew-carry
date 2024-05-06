@@ -27,6 +27,9 @@ const CartDetails = ({ currentCart }) => {
     await updateQuantity(formData);
   };
 
+  console.log(optimisticCart);
+  console.log(currentCart);
+
   return (
     <>
       <div className="text-center py-10  ">
