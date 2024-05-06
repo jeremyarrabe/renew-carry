@@ -5,34 +5,32 @@ import { AnimatePresence, motion } from 'framer-motion';
 import Link from 'next/link';
 
 const containerVariants = {
-  default: { height: 0, paddingTop: 0 },
+  default: { height: 0 },
   show: {
     height: '100svh',
-    paddingTop: 10,
     opacity: 1,
+
     transition: {
-      staggerChildren: 0.25,
-      delay: 0.2,
+      duration: 0.5,
     },
   },
   hidden: {
     height: 0,
 
-    paddingTop: 0,
-    transition: {
-      delay: 0.3,
-    },
+    duration: 0.5,
   },
 };
 
 const linkVariants = {
-  default: { opacity: 0 },
+  default: { opacity: 0, paddingTop: 0 },
   show: {
     opacity: 1,
-    transition: { delay: 0.3 },
+    paddingTop: 10,
+    transition: { delay: 0.2 },
   },
   hidden: {
     opacity: 0,
+    paddingTop: 0,
   },
 };
 
