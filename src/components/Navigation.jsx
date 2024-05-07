@@ -107,7 +107,7 @@ const Navigation = () => {
             initial="default"
             animate="show"
             exit="hidden"
-            className="absolute w-svw h-svh bg-orange flex flex-col px-10 font-medium top-[90px] "
+            className="absolute w-screen h-screen bg-orange flex flex-col px-10 font-medium top-[90px] overflow-auto"
             onClick={() => showMobileNav()}
           >
             <motion.ul variants={linkVariants} className="mt-10 text-2xl flex flex-col gap-8 pb-2">
@@ -127,6 +127,10 @@ const Navigation = () => {
                       <Link href={'/products/hiking bag'}>Hiking Bag</Link>
                       <Link href={'/products/slingbag'}>Sling Bag</Link>
                       <Link href={'/products/laptopbag'}>Laptop Bag</Link>
+                      <br />
+                      <br />
+                      <br />
+                      <br />
                     </ul>
                   </li>
                 </ul>

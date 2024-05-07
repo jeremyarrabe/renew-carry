@@ -9,27 +9,27 @@ import Button from '@/components/ui/Button';
 import IndividualProduct from './_components/IndividualProduct';
 import { Suspense } from 'react';
 
-// export const generateMetadata = async ({ params }) => {
-//   const { productId } = params;
-//   const product = await Products.findOne({
-//     where: {
-//       id: productId,
-//     },
-//     include: [
-//       {
-//         model: Categories,
-//         as: 'categoryDetails',
-//         attributes: { exclude: [, 'createdAt', 'updatedAt'] },
-//       },
-//     ],
-//     attributes: { exclude: 'categoryId' },
-//   });
+export const generateMetadata = async ({ params }) => {
+  const { productId } = params;
+  const product = await Products.findOne({
+    where: {
+      id: productId,
+    },
+    include: [
+      {
+        model: Categories,
+        as: 'categoryDetails',
+        attributes: { exclude: [, 'createdAt', 'updatedAt'] },
+      },
+    ],
+    attributes: { exclude: 'categoryId' },
+  });
 
-//   return {
-//     title: product.title,
-//     description: product.body,
-//   };
-// };
+  return {
+    title: product.title,
+    description: product.body,
+  };
+};
 
 const ProductId = async ({ params }) => {
   const { productId } = params;
@@ -43,7 +43,7 @@ const ProductId = async ({ params }) => {
 
 const ProductLoading = () => {
   return (
-    <div className="flex flex-col px-4">
+    <div className="flex flex-col px-4 mt-[100px]">
       <div className="flex flex-col mt-10 gap-2">
         <div className="h-10 w-40 bg-gray-300 animate-pulse"></div>
         <div className="h-7 w-28 bg-gray-300 animate-pulse"></div>
