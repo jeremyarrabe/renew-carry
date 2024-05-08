@@ -33,12 +33,18 @@ const Hero = () => {
           with care, combining timeless style with eco-friendly materials.
         </p>
       </div>
-      <div className="flex justify-center mt-16 py-4  bg-darkGreen text-xl rounded-lg font-bold text-white">
-        <Link href={'/products'}>Shop Now</Link>
-      </div>
-      <div className="flex justify-center mt-2 py-4  border-[1px] border-darkGreen  text-xl rounded-lg font-bold ">
-        <Link href={'#whyChooseUs'}>Learn More</Link>
-      </div>
+      <Link
+        href={'/products'}
+        className="flex justify-center mt-16 py-4  bg-darkGreen text-xl rounded-lg font-bold text-white"
+      >
+        Shop Now
+      </Link>
+      <Link
+        href={'#whyChooseUs'}
+        className="flex justify-center mt-2 py-4  border-[1px] border-darkGreen  text-xl rounded-lg font-bold "
+      >
+        Learn More
+      </Link>
     </div>
   );
 };
