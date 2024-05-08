@@ -27,9 +27,6 @@ const CartDetails = ({ currentCart }) => {
     await updateQuantity(formData);
   };
 
-  console.log(optimisticCart);
-  console.log(currentCart);
-
   return (
     <>
       <div className="text-center py-10  ">
@@ -42,7 +39,6 @@ const CartDetails = ({ currentCart }) => {
           optimisticCart.map((item, key) => {
             return (
               <div className="flex py-4 gap-5" key={key}>
-                {/* {JSON.stringify(item)} */}
                 <div className="relative w-1/3 h-20">
                   <Image
                     src={item.product.image}
@@ -96,16 +92,20 @@ const CartDetails = ({ currentCart }) => {
                     </select>
                   </form>
 
-                  <div className="flex mt-4 gap-6">
-                    <button>
-                      <HeartIcon className="h-6 w-6" />
-                    </button>
-                    {/* <DeleteForm userId={item.userId} productId={item.productId} /> */}
+                  <div className="flex mt-4 gap-6 bg-red-400 h-12">
+                    <form>
+                      <input type="hidden" name="userId" value={item.userId} />
+                      <input type="hidden" name="productId" value={item.productId} />
+                      <Button type="submit" className="py-2 px-4">
+                        <HeartIcon className="w-6 h-6" />
+                      </Button>
+                    </form>
+
                     <form action={deleteItem}>
                       <input type="hidden" name="userId" value={item.userId} />
                       <input type="hidden" name="productId" value={item.productId} />
-                      <Button type="submit">
-                        <TrashIcon className="h-6 w-6 " />
+                      <Button type="submit" className="py-2 px-4">
+                        <TrashIcon className="w-6 h-6 " />
                       </Button>
                     </form>
                   </div>
