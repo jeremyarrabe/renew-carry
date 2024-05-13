@@ -50,9 +50,9 @@ const Navigation = () => {
     <nav className="flex flex-col fixed w-full shadow-sm text-maroon z-[999]">
       <div className="flex min-w-full justify-between items-center bg-whiteGray px-5 py-5 md:px-20">
         <div className="flex items-center">
-          <Link className="text-3xl font-bold font-lora-cyrillic" href={'/'}>
+          <a className="text-3xl font-bold font-lora-cyrillic" href={'/'}>
             rc
-          </Link>
+          </a>
         </div>
 
         <div className="flex gap-6 font-medium items-center tracking-wide text-xl">
@@ -77,7 +77,7 @@ const Navigation = () => {
               height="50"
               viewBox="0 0 100 100"
               xmlns="http://www.w3.org/2000/svg"
-              preserveAspectRatio="xMidyMid meet"
+              preserveAspectRatio="xMidYMid meet"
               shapeRendering="crispEdges"
             >
               <g id="horizontal-bar">
