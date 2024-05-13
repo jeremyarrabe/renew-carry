@@ -92,7 +92,7 @@ const CartDetails = ({ currentCart }) => {
                     </select>
                   </form>
 
-                  <div className="flex mt-4 gap-6 bg-red-400 h-12">
+                  <div className="flex mt-4 gap-6  h-12">
                     <form>
                       <input type="hidden" name="userId" value={item.userId} />
                       <input type="hidden" name="productId" value={item.productId} />
@@ -105,7 +105,7 @@ const CartDetails = ({ currentCart }) => {
                       <input type="hidden" name="userId" value={item.userId} />
                       <input type="hidden" name="productId" value={item.productId} />
                       <Button type="submit" className="py-2 px-4">
-                        <TrashIcon className="w-6 h-6 " />
+                        <TrashIcon className="w-6 h-6 m-0 p-0" />
                       </Button>
                     </form>
                   </div>

@@ -7,10 +7,10 @@ const Button = ({ className, handleClick, children, type }) => {
   return (
     <button
       disabled={pending}
-      className={cn(' bg-darkGreen rounded-lg text-white disabled:opacity-50', className)}
+      className={cn(`bg-darkGreen rounded-lg text-white disabled:opacity-50 `, className)}
       type={type}
     >
-      {pending ? children : children}
+      {children}
     </button>
   );
 };
