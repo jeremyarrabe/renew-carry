@@ -3,7 +3,7 @@ import { useToggle } from '@/hooks/useToggle';
 import { ShoppingBagIcon } from '@heroicons/react/24/outline';
 import { AnimatePresence, motion } from 'framer-motion';
 import Link from 'next/link';
-import { UserButton, useUser } from '@clerk/nextjs';
+import { UserButton, useUser, SignOutButton } from '@clerk/nextjs';
 
 const containerVariants = {
   default: { height: 0 },
@@ -70,7 +70,7 @@ const Navigation = () => {
           <Link href={'/shopping-cart'}>
             <ShoppingBagIcon className="h-6 w-6 cursor-pointer text-black" />
           </Link>
-          <UserButton afterSignOutUrl="/" />
+          {/* <UserButton afterSignOutUrl="/" /> */}
           <div
             className="rounded-full cursor-pointer stroke-[5.5px] stroke-maroon md:hidden"
             onClick={() => showMobileNav()}
@@ -116,10 +116,15 @@ const Navigation = () => {
             <motion.ul variants={linkVariants} className="mt-10 text-2xl flex flex-col gap-8 pb-2">
               <Link href={'/products'}>Shop All</Link>
               <Link href={'/about'}>About</Link>
-              {isLoaded && user ? (
-                <Link href={'/login'}>Login</Link>
+              {isLoaded && !user ? (
+                <Link href={'/sign-in'}>Login</Link>
               ) : (
-                <Link href={'/profile'}>Profile</Link>
+                <>
+                  <Link href={'/profile'}>Profile</Link>
+                  <SignOutButton>
+                    <button>Signout</button>
+                  </SignOutButton>
+                </>
               )}
               <span className="border-b-[1px] border-black border-opacity-10" />
               <li className="text-xl pb-5">

@@ -20,6 +20,11 @@ const nextConfig = {
         hostname: 'plus.unsplash.com',
         port: '',
       },
+      {
+        protocol: 'https',
+        hostname: 'img.clerk.com',
+        port: '',
+      },
     ],
   },
 };
