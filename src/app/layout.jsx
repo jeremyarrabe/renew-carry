@@ -32,16 +32,16 @@ export const metadata = {
 
 export default async function RootLayout({ children }) {
   return (
-    // <ClerkProvider>
-    <html lang="en">
-      <body
-        className={`${loraCyrillic.variable} ${loraRegular.variable} bg-yellowishGray font-lora-regular flex flex-col min-h-svh `}
-      >
-        <Navigation />
-        <div>{children}</div>
-        <Footer />
-      </body>
-    </html>
-    // </ClerkProvider>
+    <ClerkProvider>
+      <html lang="en">
+        <body
+          className={`${loraCyrillic.variable} ${loraRegular.variable} bg-yellowishGray font-lora-regular flex flex-col min-h-svh `}
+        >
+          <Navigation />
+          <div>{children}</div>
+          <Footer />
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
