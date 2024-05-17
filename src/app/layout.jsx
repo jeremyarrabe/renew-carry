@@ -2,6 +2,7 @@ import Footer from '@/components/Footer';
 import Navigation from '@/components/Navigation';
 import { Lora } from 'next/font/google';
 import { ClerkProvider } from '@clerk/nextjs';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 import './globals.css';
 
@@ -40,6 +41,7 @@ export default async function RootLayout({ children }) {
           <Navigation />
           <div>{children}</div>
           <Footer />
+          <SpeedInsights />
         </body>
       </html>
     </ClerkProvider>
