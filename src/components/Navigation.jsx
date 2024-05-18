@@ -3,7 +3,14 @@ import { useToggle } from '@/hooks/useToggle';
 import { ShoppingBagIcon } from '@heroicons/react/24/outline';
 import { AnimatePresence, motion } from 'framer-motion';
 import Link from 'next/link';
-import { UserButton, useUser, SignOutButton } from '@clerk/nextjs';
+import {
+  UserButton,
+  useUser,
+  SignOutButton,
+  SignedIn,
+  SignedOut,
+  SignInButton,
+} from '@clerk/nextjs';
 
 const containerVariants = {
   default: { height: 0 },
@@ -70,7 +77,9 @@ const Navigation = () => {
           <Link href={'/shopping-cart'}>
             <ShoppingBagIcon className="h-6 w-6 cursor-pointer text-black" />
           </Link>
-          {/* <UserButton afterSignOutUrl="/" /> */}
+          <SignedIn>
+            <UserButton afterSignOutUrl="/" />
+          </SignedIn>
           <div
             className="rounded-full cursor-pointer stroke-[5.5px] stroke-maroon md:hidden"
             onClick={() => showMobileNav()}
@@ -116,16 +125,27 @@ const Navigation = () => {
             <motion.ul variants={linkVariants} className="mt-10 text-2xl flex flex-col gap-8 pb-2">
               <Link href={'/products'}>Shop All</Link>
               <Link href={'/about'}>About</Link>
-              {isLoaded && !user ? (
+              {/* {isLoaded && !user ? (
                 <Link href={'/sign-in'}>Login</Link>
               ) : (
                 <>
                   <Link href={'/profile'}>Profile</Link>
                   <SignOutButton>
-                    <button>Signout</button>
+                    <button>Sign out</button>
                   </SignOutButton>
                 </>
-              )}
+              
+              )} */}
+              <SignedIn>
+                {/* Mount the UserButton component */}
+                <Link href={'/profile'}>Profile</Link>
+                <SignOutButton>Sign out</SignOutButton>
+              </SignedIn>
+              <SignedOut>
+                {/* Signed out users get sign in button */}
+                <SignInButton />
+              </SignedOut>
+
               <span className="border-b-[1px] border-black border-opacity-10" />
               <li className="text-xl pb-5">
                 <ul>

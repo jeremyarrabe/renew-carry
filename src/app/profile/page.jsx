@@ -7,10 +7,14 @@ const Profile = async () => {
   const user = await currentUser();
 
   return (
-    <div className="mt-32 bg-red-300">
-      <div>
-        <Image alt="profile picture" src={user.imageUrl} width={500} height={500} />
+    <div className="mt-28 flex items-center justify-center flex-col">
+      <div className="relative w-[100px] h-[100px] flex   ">
+        <Image alt="profile picture" src={user.imageUrl} fill className="rounded-full" />
       </div>
+      <p className="mt-8">{`${user.firstName} ${user.lastName}`}</p>
+      <form>
+        <input type="text" placeholder="address" />
+      </form>
     </div>
   );
 };
