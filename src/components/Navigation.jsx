@@ -11,6 +11,7 @@ import {
   SignedOut,
   SignInButton,
 } from '@clerk/nextjs';
+import Image from 'next/image';
 
 const containerVariants = {
   default: { height: 0 },
@@ -44,7 +45,6 @@ const linkVariants = {
 
 const Navigation = () => {
   const { visible, toggle } = useToggle();
-  const { user, isLoaded } = useUser();
 
   const showMobileNav = () => {
     toggle();
@@ -77,9 +77,7 @@ const Navigation = () => {
           <Link href={'/shopping-cart'}>
             <ShoppingBagIcon className="h-6 w-6 cursor-pointer text-black" />
           </Link>
-          <SignedIn>
-            <UserButton afterSignOutUrl="/" />
-          </SignedIn>
+          <UserModal />
           <div
             className="rounded-full cursor-pointer stroke-[5.5px] stroke-maroon md:hidden"
             onClick={() => showMobileNav()}
@@ -136,11 +134,6 @@ const Navigation = () => {
                 </>
               
               )} */}
-              <SignedIn>
-                {/* Mount the UserButton component */}
-                <Link href={'/profile'}>Profile</Link>
-                <SignOutButton>Sign out</SignOutButton>
-              </SignedIn>
               <SignedOut>
                 {/* Signed out users get sign in button */}
                 <SignInButton />
@@ -173,6 +166,31 @@ const Navigation = () => {
       </AnimatePresence>
     </nav>
   );
+};
+
+const UserModal = () => {
+  const { user, isLoaded } = useUser();
+  const { visible, toggle } = useToggle();
+  return user && isLoaded ? (
+    <>
+      <div className="h-12 w-12" onClick={() => toggle()}>
+        <Image
+          layout="fixed"
+          width={100}
+          height={100}
+          src={user.imageUrl}
+          alt="Profile Picture"
+          className="rounded-full"
+        />
+      </div>
+      {visible ? (
+        <div className="fixed bg-white h-[120px] w-[200px] top-[90px] right-6 border-2 flex flex-col items-center justify-center gap-4">
+          <Link href={'/profile'}>Manage Profile</Link>
+          <SignOutButton>Sign out</SignOutButton>
+        </div>
+      ) : null}
+    </>
+  ) : null;
 };
 
 export default Navigation;
