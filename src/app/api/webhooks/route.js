@@ -50,18 +50,13 @@ export async function POST(req) {
   // For this guide, you simply log the payload to the console
 
   const eventType = evt.type;
-  console.log(eventType);
+
   if (eventType === 'user.created') {
-    console.log('route hit 1');
     try {
       await addUserToDb(evt.data);
     } catch (error) {
-      return new Response(error, { status: 400 });
+      console.log(error);
     }
-  }
-
-  if (eventType === 'user.updated') {
-    console.log('route hit 2');
   }
 
   return new Response('', { status: 200 });
