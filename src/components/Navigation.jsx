@@ -171,11 +171,11 @@ const Navigation = () => {
 const UserModal = () => {
   const { user, isLoaded } = useUser();
   const { visible, toggle } = useToggle();
+
   return user && isLoaded ? (
     <>
       <div className="h-12 w-12" onClick={() => toggle()}>
         <Image
-          layout="fixed"
           width={100}
           height={100}
           src={user.imageUrl}

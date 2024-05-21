@@ -1,7 +1,8 @@
 import { authMiddleware } from '@clerk/nextjs';
 
 export default authMiddleware({
-  publicRoutes: ['/'],
+  publicRoutes: ['/', '/favicon.ico'],
+  ignoredRoutes: ['/api/webhooks(.*)', '/favicon.ico'],
 });
 
 export const config = {

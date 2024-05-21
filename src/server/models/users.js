@@ -6,9 +6,9 @@ const Users = sequelize.define(
   USERS_TABLE,
   {
     id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       primaryKey: true,
-      autoIncrement: true,
+      // autoIncrement: true,
       allowNull: false,
     },
     firstName: {
@@ -25,11 +25,11 @@ const Users = sequelize.define(
     },
     username: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     password: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
   },
   { timestamps: true },

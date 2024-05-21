@@ -12,7 +12,7 @@ module.exports = {
      * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
      */
     await queryInterface.addColumn(CARTITEMS_TABLE, 'userId', {
-      type: Sequelize.INTEGER,
+      type: Sequelize.STRING,
       references: {
         model: USERS_TABLE,
         key: 'id',
