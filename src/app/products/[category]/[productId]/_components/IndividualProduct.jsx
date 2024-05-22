@@ -5,11 +5,12 @@ import { HeartIcon } from '@heroicons/react/24/outline';
 import Image from 'next/image';
 import React from 'react';
 import { addItem } from '../_actions';
-import { authUser } from '@/lib/auth';
+import { currentUser } from '@clerk/nextjs';
 import { currencyFormat } from '@/helpers/currencyFormat';
+import Link from 'next/link';
 
 const IndividualProduct = async ({ productId }) => {
-  const userId = authUser;
+  const user = await currentUser();
   const product = await Products.findOne({
     where: {
       id: productId,
@@ -23,7 +24,7 @@ const IndividualProduct = async ({ productId }) => {
     ],
     attributes: { exclude: 'categoryId' },
   });
-  const addItemWithId = addItem.bind(null, userId, product.id);
+  const addItemWithId = addItem.bind(null, user?.id, product.id);
   return (
     <div className="flex flex-col px-4 mt-[100px]">
       <div className="flex flex-col mt-10">
@@ -35,17 +36,27 @@ const IndividualProduct = async ({ productId }) => {
         <Image src={product.image} alt="" fill className="object-cover rounded-lg" priority />
       </div>
       <div className="flex justify-between mt-5 gap-2">
-        <form action={addItemWithId} className="flex grow">
-          <Button
-            type="submit"
+        {user ? (
+          <form action={addItemWithId} className="flex grow">
+            <Button
+              type="submit"
+              className="text-lg bg-darkGreen rounded-lg text-white font-bold grow  py-3 px-5 text-center"
+            >
+              Add to cart
+            </Button>
+          </form>
+        ) : (
+          <Link
+            href={'/sign-in'}
             className="text-lg bg-darkGreen rounded-lg text-white font-bold grow  py-3 px-5 text-center"
           >
             Add to cart
-          </Button>
-        </form>
-        <button className="text-lg rounded-lg text-white font-bold  py-2 px-5 border border-darkGreen">
+          </Link>
+        )}
+
+        {/* <button className="text-lg rounded-lg text-white font-bold  py-2 px-5 border border-darkGreen">
           <HeartIcon className="h-6 w-6 text-black" />
-        </button>
+        </button> */}
       </div>
       <p className="mt-5">{product.description}</p>
       <div className="mt-10">

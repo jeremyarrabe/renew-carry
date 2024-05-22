@@ -20,7 +20,6 @@ export const getCurrentUserCart = async (id) => {
         },
       ],
     });
-    console.log(JSON.parse(JSON.stringify(cart)));
     return JSON.parse(JSON.stringify(cart));
   } catch (error) {
     console.log(error);

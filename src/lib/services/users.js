@@ -15,6 +15,7 @@ export const addUserToDb = async (userObj) => {
         firstName: userObj.first_name,
         lastName: userObj.last_name,
         email: userObj.email_addresses[0].email_address,
+        username: userObj.username,
       });
     }
   } catch (error) {

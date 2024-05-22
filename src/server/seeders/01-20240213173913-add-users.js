@@ -18,20 +18,11 @@ module.exports = {
       USERS_TABLE,
       [
         {
+          id: 123,
           firstName: 'Jeremy',
           lastName: 'Arrabe',
           email: 'jeremy@gmail.com',
           username: 'jeremyarrabe',
-          password: 'hashedpassword1',
-          createdAt: new Date().toLocaleString(),
-          updatedAt: new Date().toLocaleString(),
-        },
-        {
-          firstName: 'Shirley',
-          lastName: 'Anciro',
-          email: 'shirley@gmail.com',
-          username: 'shirleyanciro',
-          password: 'hashedpassword2',
           createdAt: new Date().toLocaleString(),
           updatedAt: new Date().toLocaleString(),
         },

@@ -93,13 +93,13 @@ const CartDetails = ({ currentCart }) => {
                   </form>
 
                   <div className="flex mt-4 gap-6  h-12">
-                    <form>
+                    {/* <form>
                       <input type="hidden" name="userId" value={item.userId} />
                       <input type="hidden" name="productId" value={item.productId} />
                       <Button type="submit" className="py-2 px-4">
                         <HeartIcon className="w-6 h-6" />
                       </Button>
-                    </form>
+                    </form> */}
 
                     <form action={deleteItem}>
                       <input type="hidden" name="userId" value={item.userId} />

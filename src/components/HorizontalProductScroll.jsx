@@ -13,7 +13,7 @@ const HorizontalProductScroll = async () => {
           newArrival.map((product) => (
             <Link
               key={product.id}
-              href={`/${product.categoryDetails.category}/${product.id}`}
+              href={`/products/${product.categoryDetails.category}/${product.id}`}
               className="flex h-28 flex-col   "
             >
               <div className={' relative w-[230px] min-h-[230px]'}>

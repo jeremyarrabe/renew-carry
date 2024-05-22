@@ -6,6 +6,7 @@ import NavCategoryComponent from '@/components/CategoryMobileView';
 const ProductsPage = () => {
   return (
     <>
+      <NavCategoryComponent />
       <ViewAllProducts />
     </>
   );

@@ -4,6 +4,7 @@ import { CartItems } from '@/server/models';
 import { revalidatePath } from 'next/cache';
 
 export const deleteItem = async (formData) => {
+  console.log(formData);
   try {
     const rawFormData = {
       productId: formData.get('productId'),
@@ -12,7 +13,7 @@ export const deleteItem = async (formData) => {
 
     await CartItems.destroy({
       where: {
-        userId: parseInt(rawFormData.userId),
+        userId: rawFormData.userId,
         productId: parseInt(rawFormData.productId),
       },
     });
@@ -24,6 +25,7 @@ export const deleteItem = async (formData) => {
 };
 
 export const updateQuantity = async (formData) => {
+  // console.log(formData);
   try {
     const rawFormData = {
       productId: formData.get('productId'),
@@ -35,7 +37,7 @@ export const updateQuantity = async (formData) => {
       { quantity: parseInt(rawFormData.quantity) },
       {
         where: {
-          userId: parseInt(rawFormData.userId),
+          userId: rawFormData.userId,
           productId: parseInt(rawFormData.productId),
         },
       },

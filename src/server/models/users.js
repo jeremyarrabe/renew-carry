@@ -8,28 +8,32 @@ const Users = sequelize.define(
     id: {
       type: DataTypes.STRING,
       primaryKey: true,
-      // autoIncrement: true,
       allowNull: false,
+      // autoIncrement: true,
     },
     firstName: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     lastName: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     email: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     username: {
       type: DataTypes.STRING,
       allowNull: true,
     },
-    password: {
-      type: DataTypes.STRING,
-      allowNull: true,
+    createdAt: {
+      type: DataTypes.DATE,
+      allowNull: false,
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
+      allowNull: false,
     },
   },
   { timestamps: true },
