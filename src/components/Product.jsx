@@ -6,11 +6,7 @@ import React from 'react';
 
 const Product = ({ id, image, title, category, price }) => {
   return (
-    <Link
-      href={`/products/${category}/${id}`}
-      className="flex flex-col  min-h-52 w-1/2 p-1"
-      key={id}
-    >
+    <Link href={`/item/${id}`} className="flex flex-col  min-h-52 w-1/2 p-1" key={id}>
       <div className="relative h-[175px] w-full sm:h-[300px]">
         <Image
           src={image}

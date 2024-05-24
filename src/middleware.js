@@ -2,8 +2,8 @@ import { authMiddleware } from '@clerk/nextjs';
 import { NextResponse } from 'next/server';
 
 export default authMiddleware({
-  publicRoutes: ['/', '/products(.*)'],
-
+  publicRoutes: ['/', '/products(.*)', '/item(.*)'],
+  // publicRoutes: ['/(.*)'],
   ignoredRoutes: ['/api/webhooks(.*)', '/favicon.ico'],
 });
 

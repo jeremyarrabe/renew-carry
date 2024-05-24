@@ -1,17 +1,15 @@
 'use client';
 import { useToggle } from '@/hooks/useToggle';
+import {
+  SignInButton,
+  SignOutButton,
+  SignedOut,
+  useUser
+} from '@clerk/nextjs';
 import { ShoppingBagIcon } from '@heroicons/react/24/outline';
 import { AnimatePresence, motion } from 'framer-motion';
-import Link from 'next/link';
-import {
-  UserButton,
-  useUser,
-  SignOutButton,
-  SignedIn,
-  SignedOut,
-  SignInButton,
-} from '@clerk/nextjs';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const containerVariants = {
   default: { height: 0 },

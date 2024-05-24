@@ -8,7 +8,6 @@ const CategoryPage = async ({ params }) => {
 
   return (
     <Suspense fallback={<ProductsLoading />}>
-      <NavCategoryComponent />
       <ProductsByCategory category={category} />
     </Suspense>
   );
