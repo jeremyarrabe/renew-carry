@@ -1,13 +1,11 @@
 import HorizontalProductScroll from '@/components/HorizontalProductScroll';
-import Button from '@/components/ui/Button';
-import { Categories, Products } from '@/server/models';
-import { HeartIcon } from '@heroicons/react/24/outline';
-import Image from 'next/image';
-import React from 'react';
-import { addItem } from '../_actions';
-import { currentUser } from '@clerk/nextjs';
 import { currencyFormat } from '@/helpers/currencyFormat';
+import { Categories, Products } from '@/server/models';
+import { currentUser } from '@clerk/nextjs';
+import Image from 'next/image';
 import Link from 'next/link';
+import { addItem } from '../_actions';
+import AddToCartButton from './AddToCartButton';
 
 const IndividualProduct = async ({ productId }) => {
   const user = await currentUser();
@@ -49,12 +47,7 @@ const IndividualProduct = async ({ productId }) => {
       <div className="flex justify-between mt-5 gap-2">
         {user ? (
           <form action={addItemWithId} className="flex grow">
-            <Button
-              type="submit"
-              className="text-lg bg-darkGreen rounded-lg text-white font-bold grow  py-3 px-5 text-center"
-            >
-              Add to cart
-            </Button>
+            <AddToCartButton />
           </form>
         ) : (
           <Link

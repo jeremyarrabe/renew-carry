@@ -4,7 +4,6 @@ import { CartItems } from '@/server/models';
 import { revalidatePath } from 'next/cache';
 
 export const deleteItem = async (formData) => {
-  console.log(formData);
   try {
     const rawFormData = {
       productId: formData.get('productId'),
@@ -25,7 +24,6 @@ export const deleteItem = async (formData) => {
 };
 
 export const updateQuantity = async (formData) => {
-  // console.log(formData);
   try {
     const rawFormData = {
       productId: formData.get('productId'),

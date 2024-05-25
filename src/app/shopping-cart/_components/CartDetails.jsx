@@ -1,11 +1,10 @@
 'use client';
-import Button from '@/components/ui/Button';
 import { currencyFormat } from '@/helpers/currencyFormat';
-import { TrashIcon } from '@heroicons/react/24/outline';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useOptimistic } from 'react';
 import { deleteItem, updateQuantity } from '../_actions';
+import DeleteButton from './DeleteButton';
 
 const CartDetails = ({ currentCart }) => {
   const [optimisticCart, addOptimisticCart] = useOptimistic(currentCart, (state, data) => {
@@ -106,9 +105,7 @@ const CartDetails = ({ currentCart }) => {
                     <form action={deleteItem}>
                       <input type="hidden" name="userId" value={item.userId} />
                       <input type="hidden" name="productId" value={item.productId} />
-                      <Button type="submit" className="py-2 px-4">
-                        <TrashIcon className="w-6 h-6 m-0 p-0" />
-                      </Button>
+                      <DeleteButton />
                     </form>
                   </div>
                 </div>
