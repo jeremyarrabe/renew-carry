@@ -1,11 +1,11 @@
 'use client';
 import Button from '@/components/ui/Button';
 import { currencyFormat } from '@/helpers/currencyFormat';
-import { HeartIcon, TrashIcon } from '@heroicons/react/24/outline';
+import { TrashIcon } from '@heroicons/react/24/outline';
 import Image from 'next/image';
 import Link from 'next/link';
-import { deleteItem, updateQuantity } from '../_actions';
 import { useOptimistic } from 'react';
+import { deleteItem, updateQuantity } from '../_actions';
 
 const CartDetails = ({ currentCart }) => {
   const [optimisticCart, addOptimisticCart] = useOptimistic(currentCart, (state, data) => {
@@ -22,7 +22,6 @@ const CartDetails = ({ currentCart }) => {
   const updateQuantityWithId = async (formData) => {
     const quantity = parseInt(formData.get('quantity'));
     const productId = JSON.parse(formData.get('productId'));
-
     addOptimisticCart({ quantity, productId });
     await updateQuantity(formData);
   };
@@ -53,8 +52,12 @@ const CartDetails = ({ currentCart }) => {
                   <p className="font-medium font-lora-cyrillic">
                     {currencyFormat(item.product.price * item.quantity)}
                   </p>
-                  <p className="font-medium font-lora-cyrillic">{item.product.title}</p>
-                  <p>{item.product.category}</p>
+                  <Link
+                    className="font-medium font-lora-cyrillic"
+                    href={`/item/${item.product.id}`}
+                  >
+                    {item.product.title}
+                  </Link>
                   <form className="flex text-base items-center" action={updateQuantityWithId}>
                     <label htmlFor="quantity">Quantity</label>
                     <input
@@ -100,7 +103,6 @@ const CartDetails = ({ currentCart }) => {
                         <HeartIcon className="w-6 h-6" />
                       </Button>
                     </form> */}
-
                     <form action={deleteItem}>
                       <input type="hidden" name="userId" value={item.userId} />
                       <input type="hidden" name="productId" value={item.productId} />

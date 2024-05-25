@@ -29,11 +29,22 @@ const IndividualProduct = async ({ productId }) => {
     <div className="flex flex-col px-4 mt-[100px]">
       <div className="flex flex-col mt-10">
         <h1 className="text-3xl font-medium font-lora-cyrillic">{product.title}</h1>
-        <h3 className="text-lg font-medium capitalize">{product.categoryDetails.category}</h3>
+        <Link
+          className="text-lg font-medium capitalize"
+          href={`/products/${product.categoryDetails.category}`}
+        >
+          {product.categoryDetails.category}
+        </Link>
         <h3 className="text-lg font-bold mt-4">{currencyFormat(product.price)}</h3>
       </div>
       <div className=" relative w-full min-h-[300px] mt-4">
-        <Image src={product.image} alt="" fill className="object-cover rounded-lg" priority />
+        <Image
+          src={product.image}
+          alt="item image"
+          fill
+          className="object-cover rounded-lg"
+          priority
+        />
       </div>
       <div className="flex justify-between mt-5 gap-2">
         {user ? (

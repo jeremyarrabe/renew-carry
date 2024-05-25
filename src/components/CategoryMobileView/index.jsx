@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { getCategories } from '@/lib/services/categories';
 import NavCategory from './NavCategory';
 const NavCategoryComponent = async () => {
