@@ -1,11 +1,6 @@
 'use client';
 import { useToggle } from '@/hooks/useToggle';
-import {
-  SignInButton,
-  SignOutButton,
-  SignedOut,
-  useUser
-} from '@clerk/nextjs';
+import { SignInButton, SignOutButton, SignedOut, useUser } from '@clerk/nextjs';
 import { ShoppingBagIcon } from '@heroicons/react/24/outline';
 import { AnimatePresence, motion } from 'framer-motion';
 import Image from 'next/image';
@@ -119,22 +114,14 @@ const Navigation = () => {
             onClick={() => showMobileNav()}
           >
             <motion.ul variants={linkVariants} className="mt-10 text-2xl flex flex-col gap-8 pb-2">
-              <Link href={'/products'}>Shop All</Link>
-              <Link href={'/about'}>About</Link>
-              {/* {isLoaded && !user ? (
-                <Link href={'/sign-in'}>Login</Link>
-              ) : (
-                <>
-                  <Link href={'/profile'}>Profile</Link>
-                  <SignOutButton>
-                    <button>Sign out</button>
-                  </SignOutButton>
-                </>
-              
-              )} */}
+              <Link href={'/products'} className="font-bold">
+                Shop All
+              </Link>
+              <Link href={'/about'} className="font-bold">
+                About
+              </Link>
               <SignedOut>
-                {/* Signed out users get sign in button */}
-                <SignInButton />
+                <SignInButton className="text-left font-bold">Sign In</SignInButton>
               </SignedOut>
 
               <span className="border-b-[1px] border-black border-opacity-10" />
@@ -183,7 +170,7 @@ const UserModal = () => {
       </div>
       {visible ? (
         <div className="fixed bg-white h-[120px] w-[200px] top-[90px] right-6 border-2 flex flex-col items-center justify-center gap-4">
-          <Link href={'/profile'}>Manage Profile</Link>
+          <Link href={'/user-profile'}>Manage Profile</Link>
           <SignOutButton>Sign out</SignOutButton>
         </div>
       ) : null}

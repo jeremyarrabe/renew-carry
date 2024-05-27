@@ -1,9 +1,9 @@
 import { SignUp } from '@clerk/nextjs';
 
-export default function Page() {
+export default function SignUpPage() {
   return (
     <div className="mt-32 flex items-center justify-center">
-      <SignUp path="/sign-up" />;
+      <SignUp />
     </div>
   );
 }

@@ -6,7 +6,6 @@ const ViewProducts = ({ products }) => {
     <div className="min-h-96 flex mt-3 px-4 flex-col ">
       <div className="flex justify-between items-center ">
         <p className="text-lg opacity-85">{products.length} Results Found</p>
-        <Filter />
       </div>
 
       <div className="flex flex-wrap mt-2 justify-between pb-5">
