@@ -52,7 +52,7 @@ const IndividualProduct = async ({ productId }) => {
         ) : (
           <Link
             href={'/sign-in'}
-            className="text-lg bg-darkGreen rounded-lg text-white font-bold grow  py-3 px-5 text-center"
+            className="text-lg bg-darkGreen rounded-lg text-white font-bold grow  py-3 px-5 text-center "
           >
             Add to cart
           </Link>

@@ -9,14 +9,14 @@ const AddToCartButton = ({ className, handleClick, children, type }) => {
     <button
       disabled={pending}
       type="submit"
-      class=" text-white bg-darkGreen hover:bg-darkGreen/95 cursor-pointer disabled:bg-darkGreen/80 font-lora-cyrillic rounded-lg text-base  px-5 py-4 text-center me-2  inline-flex items-center w-full justify-center"
+      className=" text-white bg-darkGreen hover:bg-darkGreen/95 cursor-pointer disabled:bg-darkGreen/80  rounded-lg text-lg font-bold  px-5 py-4 text-center me-2  inline-flex items-center w-full justify-center"
     >
       {pending ? (
         <>
           <svg
             aria-hidden="true"
             role="status"
-            class="inline w-4 h-4 me-3 text-white animate-spin"
+            className="inline w-4 h-4 me-3 text-white animate-spin"
             viewBox="0 0 100 101"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"

@@ -169,9 +169,25 @@ const UserModal = () => {
         />
       </div>
       {visible ? (
-        <div className="fixed bg-white h-[120px] w-[200px] top-[90px] right-6 border-2 flex flex-col items-center justify-center gap-4">
-          <Link href={'/user-profile'}>Manage Profile</Link>
-          <SignOutButton>Sign out</SignOutButton>
+        <div className="fixed bg-white h-auto w-[300px] top-[90px] right-6 border-2 flex flex-col rounded-lg shadow-md">
+          <div className="flex flex-row p-4 gap-2 bg-darkGreen">
+            <Image
+              width={70}
+              height={70}
+              src={user.imageUrl}
+              alt="Profile Picture"
+              className="rounded-full"
+            />
+            <div className="text-sm flex flex-col justify-center text-white">
+              <p>{user.fullName}</p>
+              <p>{user.primaryEmailAddress.emailAddress}</p>
+            </div>
+          </div>
+          <div className="flex flex-col gap-2 p-4">
+            <Link href={'/user-profile'}>Manage Profile</Link>
+            <span className="border-t-2" />
+            <SignOutButton className="text-left">Sign out</SignOutButton>
+          </div>
         </div>
       ) : null}
     </>
