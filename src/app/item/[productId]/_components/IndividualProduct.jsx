@@ -24,7 +24,7 @@ const IndividualProduct = async ({ productId }) => {
   });
   const addItemWithId = addItem.bind(null, user?.id, product.id);
   return (
-    <div className="flex flex-col px-4 mt-[100px]">
+    <div className="flex flex-col px-4 mt-[100px] md:px-20">
       <div className="flex flex-col mt-10">
         <h1 className="text-3xl font-medium font-lora-cyrillic">{product.title}</h1>
         <Link
@@ -94,7 +94,7 @@ const IndividualProduct = async ({ productId }) => {
           {product.sizes.carryOnStandards}
         </p>
       </div>
-      <div className="mt-16">
+      <div className="mt-16 pb-20 ">
         <h2 className="text-3xl font-medium text-center">You may also like</h2>
         <HorizontalProductScroll />
       </div>

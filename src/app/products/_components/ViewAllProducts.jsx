@@ -5,7 +5,7 @@ import React from 'react';
 const ViewAllProducts = async () => {
   const productList = await getProducts();
   return (
-    <div className="min-h-96 flex mt-3 px-4 flex-col">
+    <div className="min-h-96 flex mt-3 px-4 flex-col md:px-20">
       <div className="flex justify-between items-center ">
         <p className="text-lg opacity-85">{productList.length} Results Found</p>
       </div>

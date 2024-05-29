@@ -1,6 +1,6 @@
 const ProductsLoading = () => {
   return (
-    <div className="flex flex-wrap  justify-around pb-5 px-4 mt-14 ">
+    <div className="flex flex-wrap  justify-around pb-5 px-4 mt-14 md:px-20 ">
       {[...Array(2).keys()].map((i) => (
         <div
           key={i}
