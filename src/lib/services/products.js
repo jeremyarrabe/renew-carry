@@ -3,7 +3,7 @@ import { Categories, Products } from '@/server/models';
 export const getNewArrivals = async () => {
   try {
     const products = await Products.findAll({
-      limit: 5,
+      limit: 15,
       order: [['createdAt', 'DESC']],
       include: [
         {

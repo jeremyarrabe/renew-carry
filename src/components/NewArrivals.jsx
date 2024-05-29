@@ -4,8 +4,10 @@ import HorizontalProductScroll from './HorizontalProductScroll';
 
 const NewArrivals = () => {
   return (
-    <div className="px-4 py-16 bg-yellowishGray">
-      <h2 className="text-4xl font-medium text-black">New Arrivals</h2>
+    <div className="px-4 py-16 bg-yellowishGray md:px-20">
+      <h2 className="text-4xl font-medium  font-lora-cyrillic  md:text-5xl text-black">
+        New Arrivals
+      </h2>
       <HorizontalProductScroll />
     </div>
   );

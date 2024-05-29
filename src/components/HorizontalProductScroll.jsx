@@ -7,7 +7,7 @@ const HorizontalProductScroll = async () => {
   const newArrival = await getNewArrivals();
 
   return (
-    <div className="h-80 overflow-auto no-scrollbar">
+    <div className="h-80 overflow-auto overflow-y-scroll">
       <div className="flex pt-6 gap-4">
         {newArrival &&
           newArrival.map((product) => (

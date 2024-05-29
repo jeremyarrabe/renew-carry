@@ -50,7 +50,7 @@ const Navigation = () => {
 
   return (
     <nav className="flex flex-col fixed w-full shadow-sm text-maroon z-[999]">
-      <div className="flex min-w-full justify-between items-center bg-whiteGray px-5 py-5 md:px-20">
+      <div className="flex min-w-full justify-between items-center bg-whiteGray px-5 py-5 md:px-20 ">
         <div className="flex items-center">
           <a className="text-3xl font-bold font-lora-cyrillic" href={'/'}>
             rc
@@ -58,15 +58,16 @@ const Navigation = () => {
         </div>
 
         <div className="flex gap-6 font-medium items-center tracking-wide text-xl">
-          <button className="bg-orange px-4 py-2 rounded-lg hidden md:block">
-            <Link href={'/products'} className="uppercase tracking-wider text-sm font-bold">
-              Shop All
-            </Link>
-          </button>
-
-          <Link href={'/about'} className="p-1 hidden md:block">
-            About
+          <Link
+            href={'/products'}
+            className="uppercase tracking-wider text-sm font-bold bg-orange px-4 py-2 rounded-lg hidden md:block"
+          >
+            Shop All
           </Link>
+
+          {/* <Link href={'/about'} className="p-1 hidden md:block">
+            About
+          </Link> */}
           <Link href={'/shopping-cart'}>
             <ShoppingBagIcon className="h-6 w-6 cursor-pointer text-black" />
           </Link>
