@@ -19,6 +19,7 @@ module.exports = {
         lightOrange: '#F1BF98',
         maroon: '#3E012F',
         orange: '#FAE5B9',
+        pink: '#FEF5ED',
       },
     },
   },

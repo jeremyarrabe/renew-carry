@@ -49,8 +49,8 @@ const Navigation = () => {
   };
 
   return (
-    <nav className="flex flex-col fixed w-full shadow-sm text-maroon z-[999]">
-      <div className="flex min-w-full justify-between items-center bg-whiteGray px-5 py-5 md:px-20 ">
+    <nav className="flex flex-col fixed w-full shadow-sm text-maroon z-[999] h-[90px] bg-whiteGray">
+      <div className="flex min-w-full justify-between items-center  px-5 py-5 md:px-20 lg:px-32">
         <div className="flex items-center">
           <a className="text-3xl font-bold font-lora-cyrillic" href={'/'}>
             rc

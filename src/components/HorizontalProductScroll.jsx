@@ -8,7 +8,7 @@ const HorizontalProductScroll = async () => {
 
   return (
     <div className="h-80 overflow-auto overflow-y-scroll">
-      <div className="flex pt-6 gap-4">
+      <div className="flex pt-6 gap-4 ">
         {newArrival &&
           newArrival.map((product) => (
             <Link key={product.id} href={`/item/${product.id}`} className="flex h-28 flex-col   ">
@@ -24,10 +24,12 @@ const HorizontalProductScroll = async () => {
               </div>
               <div className="flex  justify-between">
                 <div>
-                  <p className="font-bold text-base">{product.title}</p>
-                  <p className="text-sm capitalize">{product.categoryDetails.category}</p>
+                  <p className="font-bold text-base lg:text-lg">{product.title}</p>
+                  <p className="text-sm capitalize lg:text-base">
+                    {product.categoryDetails.category}
+                  </p>
                 </div>
-                <div className="font-bold text-base">
+                <div className="font-bold text-base lg:text-lg">
                   <p>{currencyFormat(product.price)}</p>
                 </div>
               </div>

@@ -3,7 +3,7 @@ import React from 'react';
 
 const Categories = () => {
   return (
-    <div className=" bg-darkGreen mt-16 px-4 py-16 md:px-20">
+    <div className=" bg-darkGreen mt-16 px-4 py-16 md:px-20 lg:px-32">
       <h2 className="text-3xl font-medium text-white  font-lora-cyrillic  md:text-5xl">
         Shop by category
       </h2>

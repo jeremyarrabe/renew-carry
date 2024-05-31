@@ -43,7 +43,7 @@ const ProductId = async ({ params }) => {
 
 const ProductLoading = () => {
   return (
-    <div className="flex flex-col px-4 mt-[100px] md:px-20">
+    <div className="flex flex-col px-4 mt-[100px] md:px-20 lg:px-32">
       <div className="flex flex-col mt-10 gap-2">
         <div className="h-10 w-40 bg-gray-300 animate-pulse"></div>
         <div className="h-7 w-28 bg-gray-300 animate-pulse"></div>
