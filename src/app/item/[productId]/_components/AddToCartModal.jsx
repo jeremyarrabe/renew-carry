@@ -2,12 +2,25 @@
 import Link from 'next/link';
 import AddToCartButton from './AddToCartButton';
 import { addItem } from '../_actions';
+import { motion } from 'framer-motion';
 
-const AddToCartModal = ({ userId, productId, title, category }) => {
-  const addItemWithId = addItem.bind(null, userId, productId);
+const AddToCartModal = ({ userId, productId, title, category, addItemWithId }) => {
+  const modalVariants = {
+    default: { y: '200%' },
+    show: {
+      y: '0%',
+    },
+    hidden: { y: '200%' },
+  };
 
   return (
-    <div className=" self-center fixed bottom-10 w-[70%] h-[80px] bg-white flex  py-2 px-4 justify-between rounded-lg shadow-xl ">
+    <motion.div
+      variants={modalVariants}
+      initial="default"
+      animate="show"
+      exit="hidden"
+      className=" self-center fixed bottom-10 w-[70%] h-[80px] bg-white flex  py-2 px-4 justify-between rounded-lg shadow-xl  z-50"
+    >
       <div className="flex flex-col  justify-center ">
         <p className="font-lora-cyrillic font-bold text-lg">{title}</p>
         <p className="capitalize">{category}</p>
@@ -26,7 +39,7 @@ const AddToCartModal = ({ userId, productId, title, category }) => {
           </Link>
         )}
       </div>
-    </div>
+    </motion.div>
   );
 };
 

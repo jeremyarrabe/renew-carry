@@ -6,7 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { addItem } from '../_actions';
 import AddToCartButton from './AddToCartButton';
-import AddToCartModal from './AddToCartModal';
+import FullProductDetail from './FullProductDetail';
 
 const IndividualProduct = async ({ productId }) => {
   const user = await currentUser();
@@ -65,32 +65,15 @@ const IndividualProduct = async ({ productId }) => {
       </div>
 
       {/* Show on larger screens */}
-      <div className="hidden lg:block bg-pink">
-        <div className="flex flex-row h-[calc(100svh-90px)]">
-          <div className="relative w-[50%] bg-red-500">
-            <Image src={product.image} alt="item image" fill className="object-cover" priority />
-          </div>
-          <div className="flex flex-col w-[50%] justify-center grow lg:pr-32 pl-20 text-maroon">
-            <h2 className="font-lora-cyrillic text-7xl font-bold">{product.title}</h2>
-            <p className="capitalize text-xl pb-10 pt-2">{product.categoryDetails.category}</p>
-            <p className=" text-xl font-bold">{currencyFormat(product.price)}</p>
-            <div className="flex justify-between mt-5 gap-2">
-              {user ? (
-                <form action={addItemWithId} className="flex grow">
-                  <AddToCartButton />
-                </form>
-              ) : (
-                <Link
-                  href={'/sign-in'}
-                  className="text-lg bg-darkGreen rounded-lg text-white font-bold grow  py-3 px-5 text-center "
-                >
-                  Add to cart
-                </Link>
-              )}
-            </div>
-          </div>
-        </div>
-      </div>
+      <FullProductDetail
+        image={product.image}
+        title={product.title}
+        category={product.categoryDetails.category}
+        price={product.price}
+        userId={user?.id}
+        addItemWithId={addItemWithId}
+        productId={product.id}
+      />
       <div className=" px-4 md:px-20 lg:px-32 lg:text-lg">
         <p className="mt-5">{product.description}</p>
         <div className="mt-10">
@@ -129,13 +112,6 @@ const IndividualProduct = async ({ productId }) => {
           <HorizontalProductScroll />
         </div>
       </div>
-
-      <AddToCartModal
-        title={product.title}
-        category={product.categoryDetails.category}
-        userId={user?.id}
-        productId={product.id}
-      />
     </div>
   );
 };
