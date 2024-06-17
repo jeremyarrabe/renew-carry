@@ -1,15 +1,15 @@
-'use client';
-import { useToggle } from '@/hooks/useToggle';
-import { SignInButton, SignOutButton, SignedOut, useUser } from '@clerk/nextjs';
-import { ShoppingBagIcon } from '@heroicons/react/24/outline';
-import { AnimatePresence, motion } from 'framer-motion';
-import Image from 'next/image';
-import Link from 'next/link';
+"use client";
+import { useToggle } from "@/hooks/useToggle";
+import { SignInButton, SignOutButton, SignedOut, useUser } from "@clerk/nextjs";
+import { ShoppingBagIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
+import { AnimatePresence, motion } from "framer-motion";
+import Image from "next/image";
+import Link from "next/link";
 
 const containerVariants = {
   default: { height: 0 },
   show: {
-    height: '100svh',
+    height: "100svh",
     opacity: 1,
 
     transition: {
@@ -42,38 +42,57 @@ const Navigation = () => {
   const showMobileNav = () => {
     toggle();
     if (!visible) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
+    }
+  };
+
+  const test = () => {
+    toggle();
+    if (!visible) {
+      console.log("test is visible");
     }
   };
 
   return (
-    <nav className="flex flex-col fixed w-full shadow-sm text-maroon z-[999] h-[90px] bg-whiteGray">
-      <div className="flex min-w-full justify-between items-center  px-5 py-5 md:px-20 lg:px-32">
+    <nav className="fixed z-[999] flex h-[90px] w-full flex-col bg-whiteGray text-maroon shadow-sm">
+      <div className="flex min-w-full items-center justify-between px-5 py-5 md:px-20 lg:px-32">
         <div className="flex items-center">
-          <a className="text-3xl font-bold font-lora-cyrillic" href={'/'}>
+          <a className="font-lora-cyrillic text-3xl font-bold" href={"/"}>
             rc
           </a>
         </div>
 
-        <div className="flex gap-6 font-medium items-center tracking-wide text-xl">
+        <div className="flex items-center gap-6 text-xl font-medium tracking-wide">
           <Link
-            href={'/products'}
-            className="uppercase tracking-wider text-sm font-bold bg-orange px-4 py-2 rounded-lg hidden md:block"
+            href={"/products"}
+            className="hidden rounded-lg bg-orange px-4 py-2 text-lg font-bold uppercase tracking-wider md:block"
           >
             Shop All
           </Link>
+          <button
+            className="hidden rounded-lg bg-white px-4 py-2 text-lg font-bold uppercase tracking-wider md:flex md:items-center md:justify-center md:gap-2"
+            onClick={() => test()}
+          >
+            Shop By
+            <ChevronDownIcon
+              className={`h-5 w-5 cursor-pointer text-black transition-all duration-300 ease-out ${
+                visible ? "rotate-180" : "rotate-0"
+              }`}
+            />
+            {/* <ChevronDownIcon className="h-5 w-5 cursor-pointer text-black  rotate-0 transition duration-150 ease-out" /> */}
+          </button>
 
           {/* <Link href={'/about'} className="p-1 hidden md:block">
             About
           </Link> */}
-          <Link href={'/shopping-cart'}>
+          <Link href={"/shopping-cart"}>
             <ShoppingBagIcon className="h-6 w-6 cursor-pointer text-black" />
           </Link>
           <UserModal />
           <div
-            className="rounded-full cursor-pointer stroke-[5.5px] stroke-maroon md:hidden"
+            className="cursor-pointer rounded-full stroke-maroon stroke-[5.5px] md:hidden"
             onClick={() => showMobileNav()}
           >
             <svg
@@ -88,15 +107,17 @@ const Navigation = () => {
                 <path
                   id="top"
                   d="M22 76L77.1543 20.8457"
-                  className={`transition-all duration-300 ease-linear origin-center ${
-                    visible ? 'scale-95' : 'rotate-[225deg] -translate-y-2'
+                  className={`origin-center transition-all duration-300 ease-linear ${
+                    visible ? "scale-95" : "-translate-y-2 rotate-[225deg]"
                   }`}
                 />
                 <path
                   id="bottom"
                   d="M22 21L77.1543 76.1543"
-                  className={`transition-all duration-300  ease-linear origin-center ${
-                    visible ? 'scale-95' : '-rotate-[225deg] translate-y-2  -translate-x-[3px]'
+                  className={`origin-center transition-all duration-300 ease-linear ${
+                    visible
+                      ? "scale-95"
+                      : "-translate-x-[3px] translate-y-2 -rotate-[225deg]"
                   }`}
                 />
               </g>
@@ -106,48 +127,58 @@ const Navigation = () => {
       </div>
       <AnimatePresence mode="wait">
         {visible && (
-          <motion.div
-            variants={containerVariants}
-            initial="default"
-            animate="show"
-            exit="hidden"
-            className="absolute w-screen h-screen bg-orange flex flex-col px-10 font-medium top-[90px] overflow-auto"
-            onClick={() => showMobileNav()}
-          >
-            <motion.ul variants={linkVariants} className="mt-10 text-2xl flex flex-col gap-8 pb-2">
-              <Link href={'/products'} className="font-bold">
-                Shop All
-              </Link>
-              <Link href={'/about'} className="font-bold">
-                About
-              </Link>
-              <SignedOut>
-                <SignInButton className="text-left font-bold">Sign In</SignInButton>
-              </SignedOut>
+          <>
+            <motion.div
+              variants={containerVariants}
+              initial="default"
+              animate="show"
+              exit="hidden"
+              className="absolute top-[90px] flex h-screen w-screen flex-col overflow-auto bg-orange px-10 font-medium md:hidden"
+              onClick={() => showMobileNav()}
+            >
+              <motion.ul
+                variants={linkVariants}
+                className="mt-10 flex flex-col gap-8 pb-2 text-2xl"
+              >
+                <Link href={"/products"} className="font-bold">
+                  Shop All
+                </Link>
+                <Link href={"/about"} className="font-bold">
+                  About
+                </Link>
+                <SignedOut>
+                  <SignInButton className="text-left font-bold">
+                    Sign In
+                  </SignInButton>
+                </SignedOut>
 
-              <span className="border-b-[1px] border-black border-opacity-10" />
-              <li className="text-xl pb-5">
-                <ul>
-                  <li className="font-bold">Categories</li>
-                  <li className="mt-5">
-                    <ul className="flex flex-col gap-2">
-                      <Link href={'/products/backpack'}>Backpack</Link>
-                      <Link href={'/products/handbag'}>Handbag</Link>
-                      <Link href={'/products/shoulderbag'}>Shoulder Bag</Link>
-                      <Link href={'/products/totebag'}>Tote Bag</Link>
-                      <Link href={'/products/hiking bag'}>Hiking Bag</Link>
-                      <Link href={'/products/slingbag'}>Sling Bag</Link>
-                      <Link href={'/products/laptopbag'}>Laptop Bag</Link>
-                      <br />
-                      <br />
-                      <br />
-                      <br />
-                    </ul>
-                  </li>
-                </ul>
-              </li>
-            </motion.ul>
-          </motion.div>
+                <span className="border-b-[1px] border-black border-opacity-10" />
+                <li className="pb-5 text-xl">
+                  <ul>
+                    <li className="font-bold">Categories</li>
+                    <li className="mt-5">
+                      <ul className="flex flex-col gap-2">
+                        <Link href={"/products/backpack"}>Backpack</Link>
+                        <Link href={"/products/handbag"}>Handbag</Link>
+                        <Link href={"/products/shoulderbag"}>Shoulder Bag</Link>
+                        <Link href={"/products/totebag"}>Tote Bag</Link>
+                        <Link href={"/products/hiking bag"}>Hiking Bag</Link>
+                        <Link href={"/products/slingbag"}>Sling Bag</Link>
+                        <Link href={"/products/laptopbag"}>Laptop Bag</Link>
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+              </motion.ul>
+            </motion.div>
+            <motion.div className="hidden md:flex">
+              <p>Test</p>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </nav>
@@ -170,8 +201,8 @@ const UserModal = () => {
         />
       </div>
       {visible ? (
-        <div className="fixed bg-white h-auto w-[300px] top-[90px] right-6 border-2 flex flex-col rounded-lg shadow-md">
-          <div className="flex flex-row p-4 gap-2 bg-darkGreen">
+        <div className="fixed right-6 top-[90px] flex h-auto w-[300px] flex-col rounded-lg border-2 bg-white shadow-md">
+          <div className="flex flex-row gap-2 bg-darkGreen p-4">
             <Image
               width={70}
               height={70}
@@ -179,13 +210,13 @@ const UserModal = () => {
               alt="Profile Picture"
               className="rounded-full"
             />
-            <div className="text-sm flex flex-col justify-center text-white">
+            <div className="flex flex-col justify-center text-sm text-white">
               <p>{user.fullName}</p>
               <p>{user.primaryEmailAddress.emailAddress}</p>
             </div>
           </div>
           <div className="flex flex-col gap-2 p-4">
-            <Link href={'/user-profile'}>Manage Profile</Link>
+            <Link href={"/user-profile"}>Manage Profile</Link>
             <span className="border-t-2" />
             <SignOutButton className="text-left">Sign out</SignOutButton>
           </div>
