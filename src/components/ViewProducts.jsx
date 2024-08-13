@@ -7,11 +7,19 @@ const ViewProducts = ({ products, currentCategory }) => {
     <>
       <CategoryHeader currentCategory={currentCategory} />
       <div className="container m-auto mt-3 flex min-h-[90svh] flex-col">
-        <p className="p-3 text-lg opacity-85">
-          {products.length} Results Found
-        </p>
+        <div className="flex items-center justify-between gap-4 pb-4">
+          <p className="text-lg opacity-85">
+            <span className="font-medium">{products.length}</span> items
+          </p>
+          <button className="ml-auto rounded-lg border-[1px] px-4 py-2 text-lg font-bold uppercase tracking-wider">
+            A→Z
+          </button>
+          <button className="text-lg font-bold uppercase tracking-wider">
+            Recent
+          </button>
+        </div>
 
-        <div className="xs:grid-cols-2 grid grid-cols-1 gap-4 md:grid-cols-3 xl:grid-cols-4">
+        <div className="grid grid-cols-1 gap-4 xs:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
           {products.map((product) => {
             return (
               <Product

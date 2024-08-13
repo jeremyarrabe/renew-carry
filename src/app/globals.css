@@ -48,4 +48,10 @@ html {
       hsl(18deg 87% 94%) 100%
     );
   }
+
+  .transparent-text {
+    -webkit-text-stroke: 1px #3e012f;
+    -webkit-text-fill-color: transparent;
+    color: #3e012f;
+  }
 }
