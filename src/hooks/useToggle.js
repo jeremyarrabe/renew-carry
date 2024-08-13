@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState } from "react";
 
 export const useToggle = (initial) => {
   const [visible, setVisibility] = useState(initial || false);
@@ -7,5 +7,5 @@ export const useToggle = (initial) => {
     setVisibility((prev) => !prev);
   };
 
-  return { visible, toggle };
+  return [visible, toggle];
 };

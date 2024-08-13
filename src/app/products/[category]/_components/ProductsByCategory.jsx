@@ -1,6 +1,6 @@
-import ViewProducts from '@/components/ViewProducts';
-import { getProducts } from '@/lib/services/products';
-import React, { Suspense } from 'react';
+import ViewProducts from "@/components/ViewProducts";
+import { getProducts } from "@/lib/services/products";
+import React, { Suspense } from "react";
 
 const ProductsByCategory = async ({ category }) => {
   const dictionary = {
@@ -17,7 +17,7 @@ const ProductsByCategory = async ({ category }) => {
   const parsedList = JSON.parse(JSON.stringify(productList));
   return (
     <>
-      <ViewProducts products={parsedList} />
+      <ViewProducts products={parsedList} currentCategory={category} />
     </>
   );
 };

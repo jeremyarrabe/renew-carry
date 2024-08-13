@@ -1,14 +1,6 @@
-'use client';
-import Image from 'next/image';
-// import Swiper core and required modules
-import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
-import { Swiper, SwiperSlide } from 'swiper/react';
+import Link from "next/link";
 
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import 'swiper/css/scrollbar';
-import Link from 'next/link';
+import ProductVerticalCarousel from "./ProductVerticalCarousel";
 
 const pagination = {
   clickable: true,
@@ -18,35 +10,38 @@ const pagination = {
 };
 
 const Hero = () => {
+  // md:mt-20 md:justify-center md:px-20 lg:px-32
   return (
-    <div className="flex mt-36 flex-col px-4 md:h-[70vh] md:justify-center  bg-yellowishGray md:px-20 md:mt-20 lg:px-32">
-      <div className=" text-center text-5xl font-lora-cyrillic font-medium text-darkGreen md:text-7xl ">
-        <div className="flex flex-col  md:justify-center lg:flex-row">
+    <div className="container flex h-[90svh] flex-col justify-between bg-yellowishGray pt-36">
+      <div className="text-center font-lora-cyrillic text-5xl font-medium text-darkGreen md:text-7xl">
+        <div className="flex flex-col md:justify-center lg:flex-row">
           <h1>Sustainable.</h1>
           <h1 className="py-2 md:py-0">Beautiful.</h1>
         </div>
         <h1>Modern.</h1>
       </div>
-      <div className="text-center mt-10 text-lg  md:mt-20 md:text-2xl font-light ">
+      <div className="mt-10 text-center text-lg font-light md:mt-20 md:text-2xl">
         <p>
-          Discover the beauty of sustainability in our modern bag collection. Each piece is crafted
-          with care, combining timeless style with eco-friendly materials.
+          Discover the beauty of sustainability in our modern bag collection.
+          Each piece is crafted with care, combining timeless style with
+          eco-friendly materials.
         </p>
       </div>
-      <div className="md:flex md:flex-row md:justify-center md:items-center md:mt-10 md:gap-4 capitalize ">
+      <div className="capitalize md:mt-10 md:flex md:flex-row md:items-center md:justify-center md:gap-4">
         <Link
-          href={'/products'}
-          className="flex justify-center mt-16 py-4  bg-darkGreen text-xl rounded-lg font-bold text-white md:mt-0 md:w-[300px] tracking-wider"
+          href={"/products"}
+          className="mt-16 flex justify-center rounded-lg bg-darkGreen py-4 text-xl font-bold tracking-wider text-white md:mt-0 md:w-[300px]"
         >
           Shop Now
         </Link>
         <Link
-          href={'#whyChooseUs'}
-          className="flex justify-center mt-2 py-4  border-[1px] border-gray-500/50  text-xl rounded-lg font-bold md:mt-0  md:w-[200px]"
+          href={"#whyChooseUs"}
+          className="mt-2 flex justify-center rounded-lg border-[1px] border-gray-500/50 py-4 text-xl font-bold md:mt-0 md:w-[200px]"
         >
           Learn More
         </Link>
       </div>
+      <ProductVerticalCarousel />
     </div>
   );
 };

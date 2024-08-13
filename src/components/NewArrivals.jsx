@@ -1,11 +1,11 @@
-import Image from 'next/image';
-import Link from 'next/link';
-import HorizontalProductScroll from './HorizontalProductScroll';
+import Image from "next/image";
+import Link from "next/link";
+import HorizontalProductScroll from "./HorizontalProductScroll";
 
 const NewArrivals = () => {
   return (
-    <div className="px-4 py-16 bg-yellowishGray md:px-20 lg:px-32">
-      <h2 className="text-4xl font-medium  font-lora-cyrillic  md:text-5xl text-black">
+    <div className="container bg-yellowishGray py-24">
+      <h2 className="font-lora-cyrillic text-4xl font-medium text-black md:text-5xl">
         New Arrivals
       </h2>
       <HorizontalProductScroll />
