@@ -1,3 +1,5 @@
+const { transform } = require("next/dist/build/swc");
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -25,13 +27,17 @@ module.exports = {
       screens: {
         xs: "375px",
       },
-      animation: {
-        marquee: "marquee 20s linear infinite",
-      },
+      // animation: {
+      //   marquee: "marquee 2s linear infinite",
+      // },
       keyframes: {
         marquee: {
-          from: { transform: "translateX(0%)" },
-          to: { transform: "translateX(-100%)" },
+          "0%": {
+            transform: "translate3d(0, 0, 0)",
+          },
+          "100%": {
+            transform: "translate3d(-100%, 0, 0)",
+          },
         },
       },
     },
