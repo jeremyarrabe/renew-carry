@@ -1,6 +1,7 @@
 import Footer from "@/components/Footer";
 import Navigation from "@/components/Navigation";
-import { Lora } from "next/font/google";
+import { Lora, Comfortaa, Inter } from "next/font/google";
+
 import { ClerkProvider } from "@clerk/nextjs";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
@@ -22,6 +23,22 @@ const loraRegular = Lora({
   adjustFontFallback: false,
 });
 
+const comfortaa = Comfortaa({
+  subsets: ["latin"],
+  variable: "--font-comfortaa-regular",
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+  adjustFontFallback: false,
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter-regular",
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+  adjustFontFallback: false,
+});
+
 export const metadata = {
   title: {
     template: "%s | RenewCarry",
@@ -36,7 +53,7 @@ export default async function RootLayout({ children }) {
     <ClerkProvider>
       <html lang="en">
         <body
-          className={`${loraCyrillic.variable} ${loraRegular.variable} flex min-h-svh flex-col bg-yellowishGray font-lora-regular`}
+          className={`${loraCyrillic.variable} ${loraRegular.variable} ${comfortaa.variable} ${inter.variable} font-inter-regular flex min-h-svh flex-col bg-yellowishGray`}
         >
           <Navigation />
           <div>{children}</div>

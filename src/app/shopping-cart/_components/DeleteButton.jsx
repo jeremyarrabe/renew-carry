@@ -1,6 +1,6 @@
-'use client';
-import { TrashIcon } from '@heroicons/react/24/outline';
-import { useFormStatus } from 'react-dom';
+"use client";
+import { TrashIcon } from "@heroicons/react/24/outline";
+import { useFormStatus } from "react-dom";
 
 const DeleteButton = ({ className, handleClick, children, type }) => {
   const { pending } = useFormStatus();
@@ -9,13 +9,13 @@ const DeleteButton = ({ className, handleClick, children, type }) => {
     <button
       disabled={pending}
       type="submit"
-      class=" text-white bg-darkGreen hover:bg-darkGreen/95 cursor-pointer disabled:bg-darkGreen/80 font-lora-cyrillic rounded-lg text-base  px-5 py-4 text-center me-2  inline-flex items-center  justify-center"
+      className="me-2 inline-flex cursor-pointer items-center justify-center rounded-lg bg-darkGreen px-5 py-4 text-center font-lora-cyrillic text-base text-white hover:bg-darkGreen/95 disabled:bg-darkGreen/80"
     >
       {pending ? (
         <>
           <svg
             aria-hidden="true"
-            class="w-5 h-5 text-gray-200 animate-spin  fill-white"
+            className="h-5 w-5 animate-spin fill-white text-gray-200"
             viewBox="0 0 100 101"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -29,10 +29,10 @@ const DeleteButton = ({ className, handleClick, children, type }) => {
               fill="currentFill"
             />
           </svg>
-          <span class="sr-only">Loading...</span>
+          <span className="sr-only">Loading...</span>
         </>
       ) : (
-        <TrashIcon className="w-5 h-5" />
+        <TrashIcon classNameName="w-5 h-5" />
       )}
     </button>
   );

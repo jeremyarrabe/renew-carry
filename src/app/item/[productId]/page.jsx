@@ -5,7 +5,7 @@ import { Categories, Products } from "@/server/models";
 import { HeartIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import { authUser } from "@/lib/auth";
-import Button from "@/components/ui/Button";
+
 import IndividualProduct from "./_components/IndividualProduct";
 import { Suspense } from "react";
 

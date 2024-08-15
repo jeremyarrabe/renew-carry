@@ -3,37 +3,22 @@ import React from "react";
 const CategoryHeader = ({ currentCategory }) => {
   if (currentCategory === undefined)
     return (
-      <div className="background-gradient flex h-40 md:h-[350px]">
-        <div class="flex items-center overflow-hidden font-lora-cyrillic text-4xl font-bold text-maroon sm:text-[110px]">
-          <h2 class="flex w-max shrink-0 translate-x-[0%] animate-[marquee_20s_linear_infinite] whitespace-nowrap">
-            Handpicked eco-friendly bags
-            <span className="transparent-text mx-9">•</span>Choose wisely, Own
-            mindfully <span className="transparent-text mx-9">•</span>
+      <div className="background-gradient inset-1 flex h-60 shadow-sm md:h-[350px]">
+        <div className="font-inter-regular flex items-center overflow-hidden text-6xl font-bold text-maroon sm:text-[110px]">
+          <h2 className="flex w-max shrink-0 translate-x-[0%] animate-[marquee_20s_linear_infinite] whitespace-nowrap">
+            <span className="transparent-dot mx-20">•</span>
+            Handpicked eco-friendly
+            <span className="transparent-text">&nbsp;bags</span>
           </h2>
-          <h2 class="flex w-max shrink-0 translate-x-[0%] animate-[marquee_20s_linear_infinite] whitespace-nowrap">
-            Handpicked eco-friendly bags
-            <span className="transparent-text mx-9">•</span>Choose wisely, Own
-            mindfully <span className="transparent-text mx-9">•</span>
+          <h2 className="flex w-max shrink-0 translate-x-[0%] animate-[marquee_20s_linear_infinite] whitespace-nowrap">
+            <span className="transparent-dot mx-20">•</span>
+            Handpicked eco-friendly
+            <span className="transparent-text">&nbsp;bags</span>
           </h2>
-          <h2 class="flex w-max shrink-0 translate-x-[0%] animate-[marquee_20s_linear_infinite] whitespace-nowrap">
-            Handpicked eco-friendly bags
-            <span className="transparent-text mx-9">•</span>Choose wisely, Own
-            mindfully <span className="transparent-text mx-9">•</span>
-          </h2>
-          <h2 class="flex w-max shrink-0 translate-x-[0%] animate-[marquee_20s_linear_infinite] whitespace-nowrap">
-            Handpicked eco-friendly bags
-            <span className="transparent-text mx-9">•</span>Choose wisely, Own
-            mindfully <span className="transparent-text mx-9">•</span>
-          </h2>
-          <h2 class="flex w-max shrink-0 translate-x-[0%] animate-[marquee_20s_linear_infinite] whitespace-nowrap">
-            Handpicked eco-friendly bags
-            <span className="transparent-text mx-9">•</span>Choose wisely, Own
-            mindfully <span className="transparent-text mx-9">•</span>
-          </h2>
-          <h2 class="flex w-max shrink-0 translate-x-[0%] animate-[marquee_20s_linear_infinite] whitespace-nowrap">
-            Handpicked eco-friendly bags
-            <span className="transparent-text mx-9">•</span>Choose wisely, Own
-            mindfully <span className="transparent-text mx-9">•</span>
+          <h2 className="flex w-max shrink-0 translate-x-[0%] animate-[marquee_20s_linear_infinite] whitespace-nowrap">
+            <span className="transparent-dot mx-20">•</span>
+            Handpicked eco-friendly
+            <span className="transparent-text">&nbsp;bags</span>
           </h2>
         </div>
       </div>

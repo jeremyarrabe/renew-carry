@@ -12,6 +12,8 @@ module.exports = {
       fontFamily: {
         "lora-regular": "var(--font-lora-regular)",
         "lora-cyrillic": "var(--font-lora-cyrillic)",
+        "comfortaa-regular": "var(--font-comfortaa-regular)",
+        "inter-regular": "var(--font-inter-regular)",
       },
       colors: {
         darkGreen: "#1F554E",
