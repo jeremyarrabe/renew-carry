@@ -25,6 +25,8 @@ export const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 export const getProducts = async (categoryId, orderBy) => {
   try {
     // All products sorted recently
+    // await new Promise((r) => setTimeout(r, 2000));
+
     if (!categoryId && orderBy === "recently") {
       const allProductsSortedByRecent = await Products.findAll({
         include: [

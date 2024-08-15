@@ -15,11 +15,6 @@ const CategoryHeader = ({ currentCategory }) => {
             Handpicked eco-friendly
             <span className="transparent-text">&nbsp;bags</span>
           </h2>
-          <h2 className="flex w-max shrink-0 translate-x-[0%] animate-[marquee_20s_linear_infinite] whitespace-nowrap">
-            <span className="transparent-dot mx-20">•</span>
-            Handpicked eco-friendly
-            <span className="transparent-text">&nbsp;bags</span>
-          </h2>
         </div>
       </div>
     );
