@@ -1,4 +1,4 @@
-import ViewProducts from "@/components/ViewProducts";
+import ProductList from "@/components/ProductList";
 import { getProducts } from "@/lib/services/products";
 import React, { Suspense } from "react";
 
@@ -17,7 +17,7 @@ const ProductsByCategory = async ({ category }) => {
   const parsedList = JSON.parse(JSON.stringify(productList));
   return (
     <>
-      <ViewProducts products={parsedList} currentCategory={category} />
+      <ProductList products={parsedList} currentCategory={category} />
     </>
   );
 };
