@@ -4,38 +4,32 @@ import ProductList from "@/components/ProductList";
 import { getProducts } from "@/lib/services/products";
 import { notFound, redirect } from "next/navigation";
 import { dictionary } from "@/helpers/categoryDictionary";
+import { Suspense } from "react";
+import ProductsLoadingSkeleton from "@/components/ProductsLoadingSkeleton";
 
-const CategoryPage = async ({ searchParams, params }) => {
+const ProductsByCategoryPage = async ({ searchParams, params }) => {
   const { category } = params;
-
   if (!dictionary[category]) {
     return notFound();
   }
 
-  if (!searchParams.order) {
-    redirect(`/products/${category}?order=recently`);
-  }
-  const productList = await getProducts(
-    dictionary[category],
-    searchParams.order,
-  );
+  const orderBy = searchParams.order || "recently";
+  const categoryId = dictionary[category];
+
   return (
     <>
       <CategoryHeader currentCategory={category} />
-      <div className="container m-auto mt-3 flex min-h-[90svh] flex-col">
-        <div className="flex items-center justify-end gap-4 pb-4 pt-6">
-          <p className="text-lg">
-            <span className="font-medium">{productList.length}</span>{" "}
-            <span className="text-sm font-light">items</span>
-          </p>
-          <div className="hidden gap-4 text-maroon md:flex">
-            <ProductFilterButton />
-          </div>
-        </div>
-        <ProductList products={productList} />
+      <div className="container m-auto flex justify-end gap-4 pt-6 text-maroon">
+        <ProductFilterButton />
       </div>
+      <Suspense
+        fallback={<ProductsLoadingSkeleton />}
+        key={JSON.stringify(searchParams)}
+      >
+        <ProductList orderBy={orderBy} category={categoryId} />
+      </Suspense>
     </>
   );
 };
 
-export default CategoryPage;
+export default ProductsByCategoryPage;

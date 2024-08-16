@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import ProductVerticalCarousel from "./ProductVerticalCarousel";
+import VerticalCarousel from "./VerticalCarousel";
 
 const pagination = {
   clickable: true,
@@ -41,7 +41,7 @@ const Hero = () => {
           Learn More
         </Link>
       </div>
-      <ProductVerticalCarousel />
+      <VerticalCarousel />
     </div>
   );
 };
