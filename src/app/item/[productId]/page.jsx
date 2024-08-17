@@ -31,7 +31,7 @@ const ItemPage = async ({ params }) => {
 
   return (
     <main className="flex flex-col">
-      <div className="relative min-h-[80svh] bg-red-200">
+      <div className="relative min-h-[50svh] bg-red-200">
         <Image
           src={
             "https://images.unsplash.com/photo-1602064493605-8c715aa4deeb?q=80&w=2727&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
@@ -44,9 +44,9 @@ const ItemPage = async ({ params }) => {
         />
       </div>
       <div className="container">
-        <section className="bg-fuchsia-200">
-          <h1>Product Title</h1>
-          <p>Category</p>
+        <section className="mt-4 bg-fuchsia-200">
+          <h1 className="text-4xl font-bold">Product Title</h1>
+          <p className="mt-2 text-lg">Category</p>
           <p>Price</p>
           <button>Add to cart</button>
         </section>

@@ -8,7 +8,7 @@ import { Navigation } from "swiper/modules";
 
 export default async function Home() {
   return (
-    <main className="flex flex-col items-center">
+    <main>
       <Hero />
       <WhyChooseUs />
       <NewArrivals />

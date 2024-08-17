@@ -1,48 +1,57 @@
 import Link from "next/link";
 
-import VerticalCarousel from "./VerticalCarousel";
-
-const pagination = {
-  clickable: true,
-  renderBullet: function (index, className) {
-    return '<span">test</span>';
-  },
-};
+import Tree from "./Tree";
+import TreeBlob from "./svg/TreeBlob";
+import TreeCircle from "./svg/TreeCircle";
+import TwoLeaves from "./svg/TwoLeaves";
+import SingleLeaf from "./svg/SingleLeaf";
 
 const Hero = () => {
-  // md:mt-20 md:justify-center md:px-20 lg:px-32
   return (
-    <div className="container flex h-[90svh] flex-col justify-between bg-yellowishGray pt-36">
-      <div className="text-center font-lora-cyrillic text-5xl font-medium text-darkGreen md:text-7xl">
-        <div className="flex flex-col md:justify-center lg:flex-row">
-          <h1>Sustainable.</h1>
-          <h1 className="py-2 md:py-0">Beautiful.</h1>
+    <main className="container flex min-h-[calc(100svh-90px)] flex-col lg:flex-row">
+      <div className="mt-10 flex flex-col justify-center gap-6 md:mt-16 md:gap-1 lg:mt-0 lg:flex-1">
+        <h1 className="text-center font-lora-cyrillic text-4xl md:text-6xl">
+          Step Into a{" "}
+          <span className="text-primary relative inline-block font-bold">
+            <TwoLeaves className="absolute -top-[3px] h-6 w-6 -rotate-[18deg]" />
+            Greener Future
+            <SingleLeaf className="fill-primary relative -left-1 -top-3 inline-block h-3 w-3 scale-x-[-1]" />
+          </span>{" "}
+          <br />
+          With Stylish, <br /> Sustainable Bags
+        </h1>
+
+        <div className="text-center md:mt-10">
+          <p>
+            Discover our collection of eco-friendly bags, where modern design
+            meets sustainability. Every piece is crafted with care, ensuring you
+            never have to choose between style and ethics.
+          </p>
         </div>
-        <h1>Modern.</h1>
+
+        <div className="flex flex-col gap-2 capitalize md:mt-10 md:flex-row lg:flex-row lg:items-center lg:justify-center lg:gap-4">
+          <Link
+            href={"/products"}
+            className="bg-primary relative flex-1 justify-center rounded-lg px-10 py-3 text-center font-lora-regular text-xl font-bold tracking-wide text-white"
+          >
+            <SingleLeaf className="fill-primary gg absolute -left-3 -top-3 h-4 w-4" />
+            <TwoLeaves className="absolute -right-2 -top-2 h-6 w-6 rotate-[30deg]" />
+            Shop Now
+          </Link>
+          <Link
+            href={"#whyChooseUs"}
+            className="flex-1 justify-center rounded-lg border-2 px-6 py-3 text-center font-lora-regular text-xl font-bold tracking-wide"
+          >
+            Learn More
+          </Link>
+        </div>
       </div>
-      <div className="mt-10 text-center text-lg font-light md:mt-20 md:text-2xl">
-        <p>
-          Discover the beauty of sustainability in our modern bag collection.
-          Each piece is crafted with care, combining timeless style with
-          eco-friendly materials.
-        </p>
+      <div className="flex items-center justify-center lg:flex-[1]">
+        <Tree className="absolute w-20" />
+        <TreeCircle className="animate-spinToLeft absolute w-[200px]" />
+        <TreeBlob className="w-[450px]" />
       </div>
-      <div className="capitalize md:mt-10 md:flex md:flex-row md:items-center md:justify-center md:gap-4">
-        <Link
-          href={"/products"}
-          className="mt-16 flex justify-center rounded-lg bg-darkGreen py-4 text-xl font-bold tracking-wider text-white md:mt-0 md:w-[300px]"
-        >
-          Shop Now
-        </Link>
-        <Link
-          href={"#whyChooseUs"}
-          className="mt-2 flex justify-center rounded-lg border-[1px] border-gray-500/50 py-4 text-xl font-bold md:mt-0 md:w-[200px]"
-        >
-          Learn More
-        </Link>
-      </div>
-      <VerticalCarousel />
-    </div>
+    </main>
   );
 };
 

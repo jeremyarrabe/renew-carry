@@ -1,5 +1,5 @@
 const VerticalCarousel = () => {
-  return <div className="mt-20 h-[500px] bg-orange"></div>;
+  return <div className="h-full w-full bg-orange"></div>;
 };
 
 export default VerticalCarousel;

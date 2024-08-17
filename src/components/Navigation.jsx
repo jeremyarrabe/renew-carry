@@ -66,8 +66,8 @@ const Navigation = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center bg-whiteGray shadow-sm">
-      <nav className="container z-[999] flex h-[90px] w-full items-center justify-center text-maroon">
+    <div className="z-[999] flex flex-col bg-white shadow-sm">
+      <nav className="container flex h-[90px] w-full items-center justify-center font-lora-regular">
         <div className="flex min-w-full items-center justify-between">
           <div className="flex items-center">
             <Link className="font-lora-cyrillic text-3xl font-bold" href={"/"}>
@@ -77,7 +77,7 @@ const Navigation = () => {
 
           <div className="flex items-center gap-6 text-xl font-medium tracking-wide">
             <button
-              className="hidden rounded-lg bg-white px-4 py-2 text-lg font-bold uppercase tracking-wider md:flex md:items-center md:justify-center md:gap-2"
+              className="hidden rounded-lg px-4 py-2 text-lg font-bold uppercase tracking-wider md:flex md:items-center md:justify-center md:gap-2"
               onClick={() => desktopToggle()}
             >
               Shop By
@@ -96,7 +96,7 @@ const Navigation = () => {
             </Link>
             <Link
               href={"/products"}
-              className="hidden rounded-lg bg-orange px-4 py-2 text-lg font-bold uppercase tracking-wider md:block"
+              className="bg-primary hidden rounded-lg px-4 py-2 text-lg font-bold uppercase tracking-wider text-white md:block"
             >
               Shop All
             </Link>
@@ -105,7 +105,7 @@ const Navigation = () => {
             About
           </Link> */}
             <Link href={"/shopping-cart"}>
-              <ShoppingBagIcon className="h-6 w-6 cursor-pointer text-black" />
+              <ShoppingBagIcon className="h-6 w-6 cursor-pointer" />
             </Link>
             <UserModal />
             <div
@@ -165,7 +165,7 @@ const Navigation = () => {
             initial="default"
             animate="show"
             exit="hidden"
-            className="absolute top-[90px] flex h-screen w-screen flex-col overflow-auto bg-orange px-10 font-medium md:hidden"
+            className="bg-accent absolute top-[90px] flex h-screen w-screen flex-col overflow-auto px-10 font-medium md:hidden"
             onClick={() => showMobileNav()}
           >
             <motion.ul

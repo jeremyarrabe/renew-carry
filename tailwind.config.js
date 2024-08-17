@@ -25,13 +25,25 @@ module.exports = {
         maroon: "#3E012F",
         orange: "#FAE5B9",
         pink: "#FEF5ED",
+
+        deepTeal: "#1F554E",
+        softSage: "#C0C5B0",
+        warmBeige: "#D9B68C",
+        lightGray: "#F5F5F5",
+        charcoalGray: "#333333",
+
+        primary: "#4A7C59",
+        secondary: "#D9B08C",
+        accent: "#F28C28",
+        backgroundColor: "#FAF8F5",
+        textColor: "#2E2E2E",
       },
       screens: {
         xs: "375px",
       },
-      // animation: {
-      //   marquee: "marquee 2s linear infinite",
-      // },
+      animation: {
+        spinToLeft: "spinToLeft 10s linear infinite",
+      },
       keyframes: {
         marquee: {
           "0%": {
@@ -39,6 +51,11 @@ module.exports = {
           },
           "100%": {
             transform: "translate3d(-100%, 0, 0)",
+          },
+        },
+        spinToLeft: {
+          from: {
+            transform: "rotate(360deg)",
           },
         },
       },

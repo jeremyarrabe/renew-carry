@@ -1,5 +1,14 @@
 import { Categories, Products } from "@/server/models";
 
+// export const getProductForEachCategory = ({categoryId}) => {
+//   try {
+
+//   } catch (error) {
+//     console.log(error);
+//   }
+
+// }
+
 export const getNewArrivals = async () => {
   try {
     const products = await Products.findAll({

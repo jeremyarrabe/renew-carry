@@ -1,39 +1,50 @@
+import SingleLeaf from "./svg/SingleLeaf";
+
 const WhyChooseUs = () => {
   return (
-    <div className="mt-16 flex w-full justify-center bg-white">
-      <div className="container flex flex-col gap-20 py-40" id="whyChooseUs ">
-        <h2 className="text-left font-lora-cyrillic text-4xl font-medium text-darkGreen md:text-5xl">
+    <section className="bg-primary py-10 text-white md:py-24" id="whyChooseUs">
+      <div className="container flex flex-col items-center justify-center gap-10">
+        <h2 className="text-center font-lora-cyrillic text-4xl md:text-5xl">
           Why Choose Us?
         </h2>
-        <div className="mt-14 flex flex-col gap-2">
-          <h3 className="text-xl font-medium md:text-2xl">
-            Sustainable Styles
-          </h3>
-          <p className="text-left md:mt-5 md:text-lg">
-            Our bags feature eco-friendly materials like organic cotton and
-            recycled polyester, ensuring fashion with a conscience.
-          </p>
-        </div>
-        <div className="mt-14 flex flex-col gap-2">
-          <h3 className="text-end text-xl font-medium md:text-2xl">
-            Modern Elegance
-          </h3>
-          <p className="text-end md:mt-5 md:text-lg">
-            Enjoy timeless designs with a contemporary edge, perfect for any
-            occasion.
-          </p>
-        </div>
-        <div className="mt-14 flex flex-col gap-2">
-          <h3 className="text-xl font-medium md:text-2xl">
-            Quality You Can Trust
-          </h3>
-          <p className="text-left md:mt-5 md:text-lg">
-            Crafted with precision and durability in mind, our bags are built to
-            last, providing reliable style for years to come.
-          </p>
+        <div className="flex flex-col gap-10 lg:flex-row">
+          <div className="flex flex-col gap-4 lg:flex-1">
+            <span>
+              <SingleLeaf className="h-6 w-6 scale-x-[-1] fill-white" />
+            </span>
+            <p className="font-lora-regular text-2xl">Eco-Friendly Materials</p>
+            <p className="md:max-w-[95%] lg:max-w-full">
+              Our bags are crafted from sustainable materials, ensuring that
+              your purchase supports environmental conservation.
+            </p>
+          </div>
+          <div className="flex flex-col gap-4 lg:flex-1">
+            <span className="flex">
+              <SingleLeaf className="h-6 w-6 scale-x-[-1] fill-white" />
+              <SingleLeaf className="h-6 w-6 scale-x-[-1] fill-white" />
+            </span>
+            <p className="font-lora-regular text-2xl">Timeless Design</p>
+            <p className="md:max-w-[95%] lg:max-w-full">
+              We prioritize style that never goes out of fashion, so you can
+              enjoy your bag for years to come.
+            </p>
+          </div>
+
+          <div className="flex flex-col gap-4 lg:flex-1">
+            <span className="flex">
+              <SingleLeaf className="h-6 w-6 scale-x-[-1] fill-white" />
+              <SingleLeaf className="h-6 w-6 scale-x-[-1] fill-white" />
+              <SingleLeaf className="h-6 w-6 scale-x-[-1] fill-white" />
+            </span>
+            <p className="font-lora-regular text-2xl">Durability and Quality</p>
+            <p className="md:max-w-[95%] lg:max-w-full">
+              Our bags are built to last, combining strength and beauty in every
+              piece, so you can carry them with confidence.
+            </p>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
