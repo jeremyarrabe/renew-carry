@@ -12,10 +12,10 @@ const Hero = () => {
       <div className="mt-10 flex flex-col justify-center gap-6 md:mt-16 md:gap-1 lg:mt-0 lg:flex-1">
         <h1 className="text-center font-lora-cyrillic text-4xl md:text-6xl">
           Step Into a{" "}
-          <span className="text-primary relative inline-block font-bold">
+          <span className="relative inline-block font-bold text-primary">
             <TwoLeaves className="absolute -top-[3px] h-6 w-6 -rotate-[18deg]" />
             Greener Future
-            <SingleLeaf className="fill-primary relative -left-1 -top-3 inline-block h-3 w-3 scale-x-[-1]" />
+            <SingleLeaf className="relative -left-1 -top-3 inline-block h-3 w-3 scale-x-[-1] fill-primary" />
           </span>{" "}
           <br />
           With Stylish, <br /> Sustainable Bags
@@ -32,9 +32,9 @@ const Hero = () => {
         <div className="flex flex-col gap-2 capitalize md:mt-10 md:flex-row lg:flex-row lg:items-center lg:justify-center lg:gap-4">
           <Link
             href={"/products"}
-            className="bg-primary relative flex-1 justify-center rounded-lg px-10 py-3 text-center font-lora-regular text-xl font-bold tracking-wide text-white"
+            className="relative flex-1 justify-center rounded-lg bg-primary px-10 py-3 text-center font-lora-regular text-xl font-bold tracking-wide text-white"
           >
-            <SingleLeaf className="fill-primary gg absolute -left-3 -top-3 h-4 w-4" />
+            <SingleLeaf className="gg absolute -left-3 -top-3 h-4 w-4 fill-primary" />
             <TwoLeaves className="absolute -right-2 -top-2 h-6 w-6 rotate-[30deg]" />
             Shop Now
           </Link>
@@ -46,9 +46,9 @@ const Hero = () => {
           </Link>
         </div>
       </div>
-      <div className="flex items-center justify-center lg:flex-[1]">
+      <div className="flex flex-[1] items-center justify-center">
         <Tree className="absolute w-20" />
-        <TreeCircle className="animate-spinToLeft absolute w-[200px]" />
+        <TreeCircle className="absolute w-[200px] animate-spinToLeft" />
         <TreeBlob className="w-[450px]" />
       </div>
     </main>
