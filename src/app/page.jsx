@@ -1,5 +1,5 @@
+import Accordion from "@/components/Accordion";
 import Categories from "@/components/Categories";
-import FAQList from "@/components/FAQ";
 
 import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
@@ -12,7 +12,7 @@ export default async function Home() {
       <Hero />
       <WhyChooseUs />
       <NewArrivals />
-      <FAQList />
+      <Accordion />
       <Categories />
     </main>
   );

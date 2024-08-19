@@ -2,9 +2,12 @@ import SingleLeaf from "./svg/SingleLeaf";
 
 const WhyChooseUs = () => {
   return (
-    <section className="bg-primary py-10 text-white md:py-24" id="whyChooseUs">
-      <div className="container flex flex-col items-center justify-center gap-10">
-        <h2 className="text-center font-lora-cyrillic text-4xl md:text-5xl">
+    <section
+      className="bg-primary py-10 text-white md:py-14 lg:py-20"
+      id="whyChooseUs"
+    >
+      <div className="container flex flex-col items-center justify-center gap-10 md:gap-20">
+        <h2 className="text-center font-lora-cyrillic text-4xl font-bold md:text-5xl">
           Why Choose Us?
         </h2>
         <div className="flex flex-col gap-10 lg:flex-row">
