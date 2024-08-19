@@ -29,19 +29,21 @@ const QnA = [
 
 const Accordion = () => {
   return (
-    <div className="container mt-16 flex flex-col gap-4">
-      <h2 className="text-center font-lora-cyrillic text-4xl font-bold md:text-5xl">
-        <span className="text-primary">Frequently</span> asked questions
-      </h2>
-      <p className="py-4 text-end">
-        Want to know more?{" "}
-        <span className="font-bold text-primary underline">
-          Email us at renewcarry@gmail.com
-        </span>
-      </p>
-      {QnA.map((qna) => (
-        <FAQ key={qna.id} question={qna.question} answer={qna.answer} />
-      ))}
+    <div className="bg-white">
+      <div className="container mt-16 flex flex-col gap-4 py-24">
+        <h2 className="text-center font-lora-cyrillic text-4xl font-bold md:text-5xl">
+          <span className="text-primary">Frequently</span> asked questions
+        </h2>
+        <p className="py-4 text-end">
+          Want to know more?{" "}
+          <span className="font-bold text-primary underline">
+            Email us at renewcarry@gmail.com
+          </span>
+        </p>
+        {QnA.map((qna) => (
+          <FAQ key={qna.id} question={qna.question} answer={qna.answer} />
+        ))}
+      </div>
     </div>
   );
 };

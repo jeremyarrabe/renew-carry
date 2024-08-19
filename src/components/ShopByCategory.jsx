@@ -11,9 +11,9 @@ const categoryList = [
   "laptopbag",
 ];
 
-const Categories = () => {
+const ShopByCategory = () => {
   return (
-    <div className="flex w-full justify-center bg-primary">
+    <div className="flex w-full justify-center bg-textColor">
       <div className="container py-20">
         <h2 className="font-lora-cyrillic text-3xl font-medium text-white md:text-5xl">
           Shop by category
@@ -36,4 +36,4 @@ const Categories = () => {
   );
 };
 
-export default Categories;
+export default ShopByCategory;

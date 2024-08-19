@@ -34,7 +34,7 @@ module.exports = {
 
         primary: "#4A7C59",
         secondary: "#D9B08C",
-        accent: "#F28C28",
+        accent: "#F4A300",
         backgroundColor: "#FAF8F5",
         textColor: "#2E2E2E",
       },

@@ -1,9 +1,10 @@
 import Accordion from "@/components/Accordion";
-import Categories from "@/components/Categories";
+import ShopByCategory from "@/components/ShopByCategory";
 
 import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
 import NewArrivals from "@/components/NewArrivals";
+import NewsLetter from "@/components/NewsLetter";
 import WhyChooseUs from "@/components/WhyChooseUs";
 
 export default async function Home() {
@@ -13,7 +14,9 @@ export default async function Home() {
       <WhyChooseUs />
       <NewArrivals />
       <Accordion />
-      <Categories />
+      <NewsLetter />
+      <ShopByCategory />
+      <Footer />
     </main>
   );
 }
