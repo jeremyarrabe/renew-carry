@@ -1,15 +1,7 @@
 import Link from "next/link";
 import React from "react";
 
-const categoryList = [
-  "backpack",
-  "handbag",
-  "shoulderbag",
-  "totebag",
-  "hikingbag",
-  "slingbag",
-  "laptopbag",
-];
+import { categoryList } from "@/helpers/categoryList";
 
 const ShopByCategory = () => {
   return (
@@ -25,7 +17,7 @@ const ShopByCategory = () => {
             <Link
               key={category}
               href={"/products/backpack"}
-              className="rounded-lg bg-white px-3 py-2 font-medium capitalize xs:text-xl"
+              className="btn-hovered rounded-lg bg-white px-3 py-2 font-medium capitalize xs:text-xl"
             >
               {category}
             </Link>

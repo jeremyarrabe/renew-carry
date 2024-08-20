@@ -8,7 +8,7 @@ const ProductsLoadingSkeleton = () => {
         {[...Array(4).keys()].map((i) => (
           <div
             key={i}
-            className="h-[450px] w-full animate-pulse bg-gray-300 xs:h-[250px] md:h-[375px]"
+            className="h-[450px] w-full animate-pulse rounded-md bg-gray-300 xs:h-[250px] md:h-[375px]"
             style={{ animationDelay: `${i * 0.05}s`, animationDuration: "1s" }}
           ></div>
         ))}

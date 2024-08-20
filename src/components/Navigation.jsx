@@ -1,15 +1,19 @@
 "use client";
+import { categoryList } from "@/helpers/categoryList";
+import { useScreenSize } from "@/hooks/useScreenSize";
 import { useToggle } from "@/hooks/useToggle";
 import { SignInButton, SignOutButton, SignedOut, useUser } from "@clerk/nextjs";
 import { ShoppingBagIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import SaleBanner from "../../public/salebanner.png";
 
 const containerVariants = {
   default: { height: 0 },
   show: {
     height: "100svh",
+
     opacity: 1,
 
     transition: {
@@ -39,16 +43,28 @@ const linkVariants = {
 const desktopCategoryVariant = {
   default: { height: 0 },
   show: {
-    height: "100px",
+    height: "500px",
     opacity: 1,
 
     transition: {
-      duration: 0.5,
+      duration: 0.3,
     },
   },
   hidden: {
     height: 0,
-    duration: 0.5,
+    duration: 0.3,
+    opacity: 0,
+  },
+};
+
+const desktopLinkVariants = {
+  default: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: { delay: 0.4 },
+  },
+  hidden: {
+    opacity: 0,
   },
 };
 
@@ -66,7 +82,7 @@ const Navigation = () => {
   };
 
   return (
-    <div className="z-[999] flex flex-col bg-white shadow-sm">
+    <div className="fixed top-0 z-[999] flex w-full flex-col bg-white shadow-sm">
       <nav className="container flex h-[90px] w-full items-center justify-center font-lora-regular">
         <div className="flex min-w-full items-center justify-between">
           <div className="flex items-center">
@@ -83,7 +99,7 @@ const Navigation = () => {
               Shop By
               <ChevronDownIcon
                 className={`h-5 w-5 cursor-pointer text-black transition-all duration-300 ease-out ${
-                  mobileVisible ? "rotate-180" : "rotate-0"
+                  desktopVisible ? "rotate-180" : "rotate-0"
                 }`}
               />
               {/* <ChevronDownIcon className="h-5 w-5 cursor-pointer text-black  rotate-0 transition duration-150 ease-out" /> */}
@@ -96,7 +112,7 @@ const Navigation = () => {
             </Link>
             <Link
               href={"/products"}
-              className="bg-primary hidden rounded-lg px-4 py-2 text-lg font-bold uppercase tracking-wider text-white md:block"
+              className="btn-hovered hidden rounded-lg bg-accent px-4 py-2 text-lg font-bold uppercase tracking-wider text-black md:block"
             >
               Shop All
             </Link>
@@ -148,24 +164,58 @@ const Navigation = () => {
       <AnimatePresence mode="wait">
         {desktopVisible && (
           <motion.div
-            className="flex bg-red-400"
+            className="hidden items-center justify-center bg-[#5C8167] text-white opacity-0 md:flex"
             variants={desktopCategoryVariant}
             initial="default"
             animate="show"
             exit="hidden"
           >
-            <Link href={"/products"} className="font-bold">
-              Shop All
-            </Link>
+            <motion.div
+              className="container flex justify-between gap-10"
+              variants={desktopLinkVariants}
+              initial="default"
+              animate="show"
+              exit="hidden"
+            >
+              <div className="flex flex-col gap-2">
+                <p className="text-2xl font-bold">Categories</p>
+                {categoryList.map((category) => {
+                  return (
+                    <Link
+                      key={category}
+                      className="btn-hovered w-full rounded-md p-2 text-lg capitalize"
+                      href={`/products/${category}`}
+                      onClick={() => desktopToggle(false)}
+                    >
+                      <ul>{category}</ul>
+                    </Link>
+                  );
+                })}
+              </div>
+              <div className="flex flex-1 items-center justify-end">
+                <div className="relative h-[400px] w-[90%]">
+                  <Image
+                    src={SaleBanner}
+                    alt=""
+                    fill
+                    className="rounded-md object-cover"
+                    // onLoad={(img) => img.target.classList.remove('blur transition-all blur')}
+                    sizes="100%"
+                  />
+                </div>
+              </div>
+            </motion.div>
           </motion.div>
         )}
+      </AnimatePresence>
+      <AnimatePresence>
         {mobileVisible && (
           <motion.div
             variants={containerVariants}
             initial="default"
             animate="show"
             exit="hidden"
-            className="bg-accent absolute top-[90px] flex h-screen w-screen flex-col overflow-auto px-10 font-medium md:hidden"
+            className="absolute top-[90px] flex w-screen flex-col overflow-auto bg-[#5C8167] px-10 font-medium text-white md:hidden"
             onClick={() => showMobileNav()}
           >
             <motion.ul
@@ -190,13 +240,16 @@ const Navigation = () => {
                   <li className="font-bold">Categories</li>
                   <li className="mt-5">
                     <ul className="flex flex-col gap-2">
-                      <Link href={"/products/backpack"}>Backpack</Link>
-                      <Link href={"/products/handbag"}>Handbag</Link>
-                      <Link href={"/products/shoulderbag"}>Shoulder Bag</Link>
-                      <Link href={"/products/totebag"}>Tote Bag</Link>
-                      <Link href={"/products/hiking bag"}>Hiking Bag</Link>
-                      <Link href={"/products/slingbag"}>Sling Bag</Link>
-                      <Link href={"/products/laptopbag"}>Laptop Bag</Link>
+                      {categoryList.map((category) => (
+                        <Link
+                          className="capitalize"
+                          key={category}
+                          href={`/products/${category}`}
+                        >
+                          {category}
+                        </Link>
+                      ))}
+
                       <br />
                       <br />
                       <br />

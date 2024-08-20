@@ -10,7 +10,7 @@ const AllProductsPage = async ({ searchParams }) => {
   return (
     <>
       <CategoryHeader />
-      <div className="container m-auto flex justify-end gap-4 pt-6 text-maroon">
+      <div className="container m-auto flex justify-end gap-4 pt-6 text-textColor">
         <ProductFilterButton />
       </div>
 

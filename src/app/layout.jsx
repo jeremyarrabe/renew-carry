@@ -53,12 +53,12 @@ export default async function RootLayout({ children }) {
     <ClerkProvider>
       <html lang="en">
         <body
-          className={`${loraCyrillic.variable} ${loraRegular.variable} ${comfortaa.variable} ${inter.variable} bg-backgroundColor text-textColor flex flex-col font-inter-regular`}
+          className={`${loraCyrillic.variable} ${loraRegular.variable} ${comfortaa.variable} ${inter.variable} flex flex-col bg-backgroundColor font-inter-regular text-textColor`}
         >
           <Navigation />
-          <div>{children}</div>
+          <div className="mt-[90px]">{children}</div>
 
-          {/* <Footer /> */}
+          <Footer />
           <SpeedInsights />
         </body>
       </html>

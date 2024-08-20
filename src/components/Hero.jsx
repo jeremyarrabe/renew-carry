@@ -32,15 +32,15 @@ const Hero = () => {
         <div className="flex flex-col gap-2 capitalize md:mt-10 md:flex-row lg:flex-row lg:items-center lg:justify-center lg:gap-4">
           <Link
             href={"/products"}
-            className="relative flex-1 justify-center rounded-lg bg-primary px-10 py-3 text-center font-lora-regular text-xl font-bold tracking-wide text-white"
+            className="btn-hovered relative flex-1 justify-center rounded-lg bg-primary px-10 py-3 text-center font-lora-regular text-xl font-bold tracking-wide text-white"
           >
-            <SingleLeaf className="gg absolute -left-3 -top-3 h-4 w-4 fill-primary" />
+            <SingleLeaf className="absolute -left-3 -top-3 h-4 w-4 fill-primary" />
             <TwoLeaves className="absolute -right-2 -top-2 h-6 w-6 rotate-[30deg]" />
             Shop Now
           </Link>
           <Link
             href={"#whyChooseUs"}
-            className="flex-1 justify-center rounded-lg border-2 px-6 py-3 text-center font-lora-regular text-xl font-bold tracking-wide"
+            className="btn-hovered flex-1 justify-center rounded-lg bg-accent px-6 py-3 text-center font-lora-regular text-xl font-bold tracking-wide hover:bg-opacity-90"
           >
             Learn More
           </Link>
