@@ -1,6 +1,6 @@
-import { sequelize } from '@/server/sequelize';
-import { DataTypes } from 'sequelize';
-import { CARTITEMS_TABLE } from '../helpers/constants';
+const { sequelize } = require("@/server/sequelize");
+const { DataTypes } = require("sequelize");
+const { CARTITEMS_TABLE } = require("../helpers/constants");
 
 const CartItems = sequelize.define(
   CARTITEMS_TABLE,
@@ -19,16 +19,16 @@ const CartItems = sequelize.define(
     userId: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'users',
-        key: 'id',
+        model: "users",
+        key: "id",
       },
       allowNull: false,
     },
     productId: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'products',
-        key: 'id',
+        model: "products",
+        key: "id",
       },
       allowNull: false,
     },
@@ -38,4 +38,4 @@ const CartItems = sequelize.define(
   },
 );
 
-export default CartItems;
+module.exports = CartItems;

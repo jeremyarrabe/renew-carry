@@ -1,7 +1,7 @@
-import Users from "./users";
-import CartItems from "./cartItems";
-import Categories from "./categories";
-import Products from "./products";
+const Users = require("./users");
+const CartItems = require("./cartItems");
+const Categories = require("./categories");
+const Products = require("./products");
 
 Users.hasMany(CartItems, { as: "userCartItems" });
 CartItems.belongsTo(Users);
@@ -20,6 +20,4 @@ Products.belongsTo(Categories, {
   as: "categoryDetails",
 });
 
-// A product has one category
-
-export { Users, CartItems, Categories, Products };
+module.exports = { Users, CartItems, Categories, Products };
