@@ -1,8 +1,8 @@
-import { SignIn } from '@clerk/nextjs';
+import { SignIn } from "@clerk/nextjs";
 
 export default function SignInPage() {
   return (
-    <div className="mt-32 flex items-center justify-center">
+    <div className="flex h-[100svh] items-center justify-center">
       <SignIn redirectUrl="/" />
     </div>
   );

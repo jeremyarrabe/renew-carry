@@ -1,6 +1,6 @@
 "use client";
 import { categoryList } from "@/helpers/categoryList";
-import { useScreenSize } from "@/hooks/useScreenSize";
+
 import { useToggle } from "@/hooks/useToggle";
 import { SignInButton, SignOutButton, SignedOut, useUser } from "@clerk/nextjs";
 import { ShoppingBagIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
@@ -8,6 +8,9 @@ import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import SaleBanner from "../../public/salebanner.png";
+import { useRef } from "react";
+
+import { useOnClickOutside } from "@/hooks/useOnClickOutside";
 
 const containerVariants = {
   default: { height: 0 },
@@ -71,6 +74,7 @@ const desktopLinkVariants = {
 const Navigation = () => {
   const [mobileVisible, mobileToggle] = useToggle();
   const [desktopVisible, desktopToggle] = useToggle();
+  const { user, isLoaded } = useUser();
 
   const showMobileNav = () => {
     mobileToggle();
@@ -104,22 +108,28 @@ const Navigation = () => {
               />
               {/* <ChevronDownIcon className="h-5 w-5 cursor-pointer text-black  rotate-0 transition duration-150 ease-out" /> */}
             </button>
-            <Link
+            {/* <Link
               href={"/about"}
               className="hidden rounded-lg px-4 py-2 text-lg font-bold uppercase tracking-wider md:block"
             >
               About
-            </Link>
+            </Link> */}
+            {!user && isLoaded && (
+              <Link
+                href={"/sign-in"}
+                className="hidden rounded-lg px-4 py-2 text-lg font-bold uppercase tracking-wider md:block"
+              >
+                Sign in
+              </Link>
+            )}
+
             <Link
               href={"/products"}
-              className="btn-hovered hidden rounded-lg bg-primary px-4 py-2 text-lg font-bold uppercase tracking-wider text-black text-white md:block"
+              className="btn-hovered hidden rounded-lg bg-primary px-4 py-2 text-lg font-bold uppercase tracking-wider text-white md:block"
             >
               Shop All
             </Link>
 
-            {/* <Link href={'/about'} className="p-1 hidden md:block">
-            About
-          </Link> */}
             <Link href={"/shopping-cart"}>
               <ShoppingBagIcon className="h-6 w-6 cursor-pointer" />
             </Link>
@@ -268,10 +278,14 @@ const Navigation = () => {
 
 const UserModal = () => {
   const { user, isLoaded } = useUser();
-  const [visible, toggle] = useToggle();
+  const [visible, toggle, setVisibility] = useToggle();
+
+  const modalRef = useRef();
+
+  useOnClickOutside(modalRef, () => setVisibility(false));
 
   return user && isLoaded ? (
-    <div className="relative">
+    <div className="relative cursor-pointer" ref={modalRef}>
       <div className="h-12 w-12" onClick={() => toggle()}>
         <Image
           width={100}
@@ -282,7 +296,7 @@ const UserModal = () => {
         />
       </div>
       {visible ? (
-        <div className="absolute right-0 top-[67px] flex h-auto w-[300px] flex-col rounded-lg border-2 bg-white shadow-md">
+        <div className="absolute right-[-90px] top-[67px] flex h-auto w-[300px] flex-col rounded-lg border-2 bg-white shadow-md md:right-0">
           <div className="flex flex-row gap-2 bg-darkGreen p-4">
             <Image
               width={70}

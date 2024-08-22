@@ -7,5 +7,5 @@ export const useToggle = (initial) => {
     setVisibility((prev) => !prev);
   };
 
-  return [visible, toggle];
+  return [visible, toggle, setVisibility];
 };
