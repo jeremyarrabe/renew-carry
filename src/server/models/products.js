@@ -1,6 +1,6 @@
-import { sequelize } from '@/server/sequelize';
-import { DataTypes } from 'sequelize';
-import { PRODUCTS_TABLE } from '../helpers/constants';
+import { sequelize } from "@/server/sequelize";
+import { DataTypes } from "sequelize";
+import { PRODUCTS_TABLE } from "../helpers/constants";
 
 const Products = sequelize.define(
   PRODUCTS_TABLE,
@@ -18,8 +18,8 @@ const Products = sequelize.define(
     categoryId: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'categories',
-        key: 'id',
+        model: "categories",
+        key: "id",
       },
       allowNull: false,
     },
@@ -42,5 +42,12 @@ const Products = sequelize.define(
   },
   { timestamps: true },
 );
+
+// Products.associate = (models) => {
+//   Products.hasMany(models.Categories, {
+//     foreignKey: "categoryId",
+//     as: "categoryDetails",
+//   });
+// };
 
 export default Products;

@@ -15,13 +15,13 @@ const ProductFilterButton = () => {
     <>
       <button
         onClick={() => handleFilter("alphabetically")}
-        className={`rounded-lg border-[1px] px-5 py-3 font-bold uppercase tracking-wider ${search === "alphabetically" && "bg-accent"}`}
+        className={`rounded-lg border-[1px] px-5 py-3 font-bold uppercase tracking-wider ${search === "alphabetically" && "bg-primary text-white"}`}
         disabled={search === "alphabetically"}
       >
         A → Z
       </button>
       <button
-        className={`rounded-lg border-[1px] px-5 py-3 font-bold uppercase tracking-wider ${search === "recently" && "bg-accent"}`}
+        className={`rounded-lg border-[1px] px-5 py-3 font-bold uppercase tracking-wider ${search === "recently" && "bg-primary text-white"}`}
         onClick={() => handleFilter("recently")}
         disabled={search === "recently"}
       >

@@ -1,6 +1,6 @@
-import { sequelize } from '@/server/sequelize';
-import { DataTypes } from 'sequelize';
-import { CATEGORIES_TABLE } from '../helpers/constants';
+import { sequelize } from "@/server/sequelize";
+import { DataTypes } from "sequelize";
+import { CATEGORIES_TABLE } from "../helpers/constants";
 
 const Categories = sequelize.define(
   CATEGORIES_TABLE,
@@ -18,5 +18,12 @@ const Categories = sequelize.define(
   },
   { timestamps: true },
 );
+
+// Categories.associate = (models) => {
+//   Categories.belongsToMany(models.Products, {
+//     foreignKey: "categoryId",
+//     as: "productsDetails",
+//   });
+// };
 
 export default Categories;

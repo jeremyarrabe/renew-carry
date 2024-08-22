@@ -1,6 +1,6 @@
-import { sequelize } from '@/server/sequelize';
-import { DataTypes } from 'sequelize';
-import { USERS_TABLE } from '../helpers/constants';
+import { sequelize } from "@/server/sequelize";
+import { DataTypes } from "sequelize";
+import { USERS_TABLE } from "../helpers/constants";
 
 const Users = sequelize.define(
   USERS_TABLE,

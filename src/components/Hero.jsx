@@ -40,7 +40,7 @@ const Hero = () => {
           </Link>
           <Link
             href={"#whyChooseUs"}
-            className="btn-hovered flex-1 justify-center rounded-lg bg-accent px-6 py-3 text-center font-lora-regular text-xl font-bold tracking-wide hover:bg-opacity-90"
+            className="btn-hovered flex-1 justify-center rounded-lg border-2 bg-white px-6 py-3 text-center font-lora-regular text-xl font-bold tracking-wide hover:bg-opacity-90"
           >
             Learn More
           </Link>

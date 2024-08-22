@@ -1,9 +1,15 @@
 import { Sequelize } from "sequelize";
+import config from "./config/config";
 
-export const sequelize = new Sequelize(process.env.DATABASE_URL, {
-  dialectModule: require("pg"),
-  logging: false,
-});
+export const sequelize = new Sequelize(config[process.env.NODE_ENV]);
+
+async function connectToDB() {
+  try {
+    await sequelize.authenticate();
+  } catch (error) {
+    console.error("Unable to connect to the database error:", error);
+  }
+}
 
 (async () => {
   try {
@@ -12,12 +18,5 @@ export const sequelize = new Sequelize(process.env.DATABASE_URL, {
     console.error("Sequelize synchronization error:", error);
   }
 })();
-async function connectToDB() {
-  try {
-    await sequelize.authenticate();
-  } catch (error) {
-    console.error("Unable to connect to the database error:", error);
-  }
-}
 
 connectToDB();

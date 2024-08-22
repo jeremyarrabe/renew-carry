@@ -112,7 +112,7 @@ const Navigation = () => {
             </Link>
             <Link
               href={"/products"}
-              className="btn-hovered hidden rounded-lg bg-accent px-4 py-2 text-lg font-bold uppercase tracking-wider text-black md:block"
+              className="btn-hovered hidden rounded-lg bg-primary px-4 py-2 text-lg font-bold uppercase tracking-wider text-black text-white md:block"
             >
               Shop All
             </Link>
@@ -271,7 +271,7 @@ const UserModal = () => {
   const [visible, toggle] = useToggle();
 
   return user && isLoaded ? (
-    <>
+    <div className="relative">
       <div className="h-12 w-12" onClick={() => toggle()}>
         <Image
           width={100}
@@ -282,7 +282,7 @@ const UserModal = () => {
         />
       </div>
       {visible ? (
-        <div className="fixed right-6 top-[90px] flex h-auto w-[300px] flex-col rounded-lg border-2 bg-white shadow-md">
+        <div className="absolute right-0 top-[67px] flex h-auto w-[300px] flex-col rounded-lg border-2 bg-white shadow-md">
           <div className="flex flex-row gap-2 bg-darkGreen p-4">
             <Image
               width={70}
@@ -303,7 +303,7 @@ const UserModal = () => {
           </div>
         </div>
       ) : null}
-    </>
+    </div>
   ) : null;
 };
 
