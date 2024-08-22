@@ -1,18 +1,9 @@
 const { Sequelize } = require("sequelize");
 
 export const sequelize = new Sequelize(process.env.DATABASE_URL, {
-  dialect: "postgres",
+  dialect: require("pg"),
   logging: false,
 });
-
-async function connectToDB() {
-  try {
-    await sequelize.authenticate();
-    console.log("Database connection established successfully.");
-  } catch (error) {
-    console.error("Unable to connect to the database error:", error);
-  }
-}
 
 (async () => {
   try {
@@ -22,5 +13,14 @@ async function connectToDB() {
     console.error("Sequelize synchronization error:", error);
   }
 })();
+
+async function connectToDB() {
+  try {
+    await sequelize.authenticate();
+    console.log("Database connection established successfully.");
+  } catch (error) {
+    console.error("Unable to connect to the database error:", error);
+  }
+}
 
 connectToDB();
