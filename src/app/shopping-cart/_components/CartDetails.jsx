@@ -1,63 +1,82 @@
-'use client';
-import { currencyFormat } from '@/helpers/currencyFormat';
-import Image from 'next/image';
-import Link from 'next/link';
-import { useOptimistic } from 'react';
-import { deleteItem, updateQuantity } from '../_actions';
-import DeleteButton from './DeleteButton';
+"use client";
+import { currencyFormat } from "@/helpers/currencyFormat";
+import Image from "next/image";
+import Link from "next/link";
+import { useOptimistic } from "react";
+import { deleteItem, updateQuantity } from "../_actions";
+import DeleteButton from "./DeleteButton";
 
 const CartDetails = ({ currentCart }) => {
-  const [optimisticCart, addOptimisticCart] = useOptimistic(currentCart, (state, data) => {
-    return state.map((item) =>
-      item.productId === data.productId ? { ...item, quantity: data.quantity } : item,
-    );
-  });
+  const [optimisticCart, addOptimisticCart] = useOptimistic(
+    currentCart,
+    (state, data) => {
+      return state.map((item) =>
+        item.productId === data.productId
+          ? { ...item, quantity: data.quantity }
+          : item,
+      );
+    },
+  );
 
   const totalPrice = optimisticCart.reduce(
-    (acc, currentItem) => acc + currentItem.product.price * currentItem.quantity,
+    (acc, currentItem) =>
+      acc + currentItem.product.price * currentItem.quantity,
     0,
   );
 
   const updateQuantityWithId = async (formData) => {
-    const quantity = parseInt(formData.get('quantity'));
-    const productId = JSON.parse(formData.get('productId'));
+    const quantity = parseInt(formData.get("quantity"));
+    const productId = JSON.parse(formData.get("productId"));
     addOptimisticCart({ quantity, productId });
     await updateQuantity(formData);
   };
 
   return (
-    <>
-      <div className="text-center py-10  ">
-        <h1 className="text-2xl font-medium font-lora-cyrillic">Cart</h1>
-        <p className="mt-2 font-bold">{currentCart.length} Item(s)</p>
+    <div className="flex min-h-[calc(100svh-90px)] flex-col">
+      <div className="my-10">
+        <h1 className="text-center font-lora-cyrillic text-4xl font-medium">
+          Cart
+        </h1>
+        <p className="mt-2 text-right font-bold">
+          {currentCart.length} Item(s)
+        </p>
       </div>
 
-      <div className="flex flex-col border">
+      <div className="flex flex-col border-y-[1px]">
         {optimisticCart && optimisticCart.length > 0 ? (
           optimisticCart.map((item, key) => {
             return (
-              <div className="flex py-4 gap-5" key={key}>
-                <div className="relative w-1/3 h-20">
+              <div
+                className="flex items-center justify-between gap-5 py-4 md:justify-evenly"
+                key={key}
+              >
+                <Link
+                  className="relative h-[200px] w-[50%] md:h-[400px] md:w-[30%]"
+                  href={`/item/${item.product.id}`}
+                >
                   <Image
                     src={item.product.image}
                     alt=""
                     fill
-                    className="object-cover "
+                    className="object-cover object-center"
                     sizes="100%"
                   />
-                </div>
+                </Link>
 
                 <div className="flex flex-col text-lg">
-                  <p className="font-medium font-lora-cyrillic">
+                  <p className="font-lora-cyrillic font-medium">
                     {currencyFormat(item.product.price * item.quantity)}
                   </p>
                   <Link
-                    className="font-medium font-lora-cyrillic"
+                    className="font-lora-cyrillic font-medium"
                     href={`/item/${item.product.id}`}
                   >
                     {item.product.title}
                   </Link>
-                  <form className="flex text-base items-center" action={updateQuantityWithId}>
+                  <form
+                    className="flex items-center text-base"
+                    action={updateQuantityWithId}
+                  >
                     <label htmlFor="quantity">Quantity</label>
                     <input
                       type="text"
@@ -78,7 +97,7 @@ const CartDetails = ({ currentCart }) => {
                     <select
                       id="quantity"
                       name="quantity"
-                      className="px-4 bg-yellowishGray py-2 "
+                      className="bg-backgroundColor px-4 py-2"
                       defaultValue={item.quantity}
                       onChange={(event) => event.target.form.requestSubmit()}
                     >
@@ -94,7 +113,7 @@ const CartDetails = ({ currentCart }) => {
                     </select>
                   </form>
 
-                  <div className="flex mt-4 gap-6  h-12">
+                  <div className="mt-4 flex h-12 gap-6">
                     {/* <form>
                       <input type="hidden" name="userId" value={item.userId} />
                       <input type="hidden" name="productId" value={item.productId} />
@@ -104,7 +123,11 @@ const CartDetails = ({ currentCart }) => {
                     </form> */}
                     <form action={deleteItem}>
                       <input type="hidden" name="userId" value={item.userId} />
-                      <input type="hidden" name="productId" value={item.productId} />
+                      <input
+                        type="hidden"
+                        name="productId"
+                        value={item.productId}
+                      />
                       <DeleteButton />
                     </form>
                   </div>
@@ -116,32 +139,51 @@ const CartDetails = ({ currentCart }) => {
           <div className="flex flex-col justify-center py-10">
             <p className="text-center">
               Cart Empty...
-              <Link href={'/products'} className="underline text-blue-500">
+              <Link href={"/products"} className="text-blue-500 underline">
                 Shop Here
               </Link>
             </p>
           </div>
         )}
       </div>
-      <div className="flex flex-col mt-4 font-medium gap-1 pb-6">
-        <h3 className="text-2xl font-medium font-lora-cyrillic">Summary</h3>
+      <div className="mt-4 flex flex-col gap-1 pb-6 font-medium">
+        <h3 className="font-lora-cyrillic text-2xl font-medium">Summary</h3>
         <div className="flex justify-between">
           <p>Subtotal</p>
           <p> {currencyFormat(totalPrice)}</p>
         </div>
         <div className="flex justify-between">
           <p>Estimated Delivery & Handling Fee</p>
-          <p>{totalPrice !== 0 ? currencyFormat(10) : currencyFormat(0)}</p>
+          {totalPrice !== 0 ? (
+            totalPrice >= 50 ? (
+              <p>
+                <span className="line-through">{currencyFormat(10)}</span>
+              </p>
+            ) : (
+              currencyFormat(10)
+            )
+          ) : (
+            currencyFormat(0)
+          )}
+
+          {/* <p>{totalPrice !== 0 ? currencyFormat(10) : currencyFormat(0)}</p> */}
         </div>
-        <div className="flex justify-between mt-2">
+        <div className="mt-2 flex justify-between">
           <p>Total</p>
-          <p>{totalPrice !== 0 ? currencyFormat(totalPrice + 10) : currencyFormat(0)}</p>
+
+          <p>
+            {totalPrice !== 0
+              ? totalPrice >= 50
+                ? currencyFormat(totalPrice)
+                : currencyFormat(totalPrice + 10)
+              : currencyFormat(0)}
+          </p>
         </div>
-        <button className="bg-transparent  mt-4 text-black border py-4 border-darkGreen rounded-lg">
+        <button className="mt-4 rounded-lg border border-primary bg-transparent py-4">
           Go to Checkout
         </button>
       </div>
-    </>
+    </div>
   );
 };
 

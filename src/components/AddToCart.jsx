@@ -1,22 +1,21 @@
-'use client';
-import { cn } from '@/helpers/cn';
-import { useFormStatus } from 'react-dom';
+"use client";
+import { useFormStatus } from "react-dom";
 
-const AddToCartButton = ({ className, handleClick, children, type }) => {
+const AddToCart = () => {
   const { pending } = useFormStatus();
+
   return (
-    // dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800
     <button
+      className={`w-full rounded-md ${pending ? "bg-darkDarkGreen" : "bg-primary"} py-4 text-sm uppercase text-white`}
       disabled={pending}
       type="submit"
-      className=" text-white bg-darkGreen hover:bg-darkGreen/95 cursor-pointer disabled:bg-darkGreen/80  rounded-lg text-lg font-bold  px-5 py-4 text-center me-2  inline-flex items-center w-full justify-center"
     >
       {pending ? (
         <>
           <svg
             aria-hidden="true"
             role="status"
-            className="inline w-4 h-4 me-3 text-white animate-spin"
+            className="me-3 inline h-4 w-4 animate-spin text-white"
             viewBox="0 0 100 101"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -30,37 +29,12 @@ const AddToCartButton = ({ className, handleClick, children, type }) => {
               fill="currentColor"
             />
           </svg>
-          <p>Loading...</p>
         </>
       ) : (
-        'Add to cart'
+        "Add to cart"
       )}
     </button>
   );
 };
 
-{
-  /* <button
-      disabled={pending}
-      className={cn(`bg-darkGreen rounded-lg text-white disabled:opacity-50 `, className)}
-      type={type}
-    >
-      {pending ? (
-        <div
-          class="inline-block h-4 w-4 animate-spin rounded-full border-4 border-solid border-current border-e-transparent align-[-0.125em] text-surface motion-reduce:animate-[spin_1.5s_linear_infinite] dark:text-white"
-          role="status"
-        >
-          <span class="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">
-            Loading...
-          </span>
-        </div>
-      ) : (
-        children
-      )}
-    </button> */
-}
-
-// type="submit"
-// className="text-lg bg-darkGreen rounded-lg text-white font-bold grow  py-3 px-5 text-center"
-
-export default AddToCartButton;
+export default AddToCart;

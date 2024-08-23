@@ -32,7 +32,7 @@ const DeleteButton = ({ className, handleClick, children, type }) => {
           <span className="sr-only">Loading...</span>
         </>
       ) : (
-        <TrashIcon classNameName="w-5 h-5" />
+        <TrashIcon className="h-5 w-5" />
       )}
     </button>
   );

@@ -1,17 +1,14 @@
 import { currencyFormat } from "@/helpers/currencyFormat";
-import { getNewArrivals } from "@/lib/services/products";
 import Image from "next/image";
 import Link from "next/link";
-import Product from "./Product";
 
-const HorizontalProductScroll = async () => {
-  const newArrival = await getNewArrivals();
-
+const HorizontalProductScroll = async ({ newArrivals }) => {
+  if (!newArrivals) return <p>newArrivals none heheh</p>;
   return (
     <div className="h-auto overflow-y-hidden">
       <div className="flex gap-4 pt-6">
-        {newArrival &&
-          newArrival.map((product) => (
+        {newArrivals &&
+          newArrivals.map((product) => (
             <Link
               href={`/item/${product.id}`}
               className="my-1 flex min-w-[300px] flex-col rounded-md transition-all hover:-translate-y-1 hover:shadow-md"

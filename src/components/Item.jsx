@@ -1,11 +1,14 @@
-import React from "react";
 import HorizontalProductScroll from "./HorizontalProductScroll";
 import Image from "next/image";
-import AddToCartSticky from "./AddToCartSticky";
 import { currencyFormat } from "@/helpers/currencyFormat";
 import { Categories, Products } from "@/server/models";
+import { currentUser } from "@clerk/nextjs";
+import { notFound } from "next/navigation";
+import { addItemToCart } from "@/lib/services/cart";
+import AddToCart from "./AddToCartSticky";
 
 const Item = async ({ productId }) => {
+  const user = await currentUser();
   const product = await Products.findOne({
     where: {
       id: productId,
@@ -20,7 +23,8 @@ const Item = async ({ productId }) => {
     attributes: { exclude: "categoryId" },
   });
 
-  if (!productId || !product) return notFound();
+  if (!product) return notFound();
+  const addItemWithId = addItemToCart.bind(null, user?.id, productId);
 
   return (
     <>
@@ -99,7 +103,7 @@ const Item = async ({ productId }) => {
 
       {/* Mobile */}
       <div className="flex flex-col md:hidden">
-        <div className="h-[calc(100svh-90px)] w-full overflow-hidden">
+        <div className="relative h-[calc(60svh)] w-full overflow-hidden">
           <Image
             src={product.image}
             alt=""
@@ -140,9 +144,16 @@ const Item = async ({ productId }) => {
             {product.sizes.carryOnStandards}
           </p>
         </div>
+        <form
+          action={addItemWithId}
+          className="container sticky bottom-0 bg-backgroundColor py-2"
+        >
+          <AddToCart />
+        </form>
 
-        <AddToCartSticky />
-        <p className="text-center text-sm">Free Delivery on orders over $50</p>
+        <p className="mt-4 text-center text-sm">
+          Free Delivery on orders over $50
+        </p>
         <div className="container flex flex-col py-24">
           <h2 className="font-lora-cyrillic text-4xl font-bold md:text-5xl">
             You may also like
