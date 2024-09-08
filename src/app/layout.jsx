@@ -3,7 +3,6 @@ import Navigation from "@/components/Navigation";
 import { Lora, Comfortaa, Inter } from "next/font/google";
 
 import { ClerkProvider } from "@clerk/nextjs";
-import { SpeedInsights } from "@vercel/speed-insights/next";
 
 import "./globals.css";
 
@@ -59,7 +58,6 @@ export default async function RootLayout({ children }) {
           <div className="mt-[90px]">{children}</div>
 
           <Footer />
-          <SpeedInsights />
         </body>
       </html>
     </ClerkProvider>
